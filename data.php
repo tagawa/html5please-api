@@ -26,8 +26,14 @@ foreach ($features as &$featureName) {
 	}
 }
 
-if ($type === 'js' && $callback) {
-	exit($callback . '(' . json_encode($jsonDataDataCustom) . ')');
+$jsonTextCustom = json_encode($jsonDataDataCustom);
+
+if ($type === 'js') {
+	if ($callback) {
+		$jsonTextCustom = $callback . '(' . $jsonTextCustom . ')';
+	}
+
+	exit($jsonTextCustom);
 }
 
 if ($type === 'json') {
