@@ -42,7 +42,7 @@ foreach ($features as $featureName)
 
 if ($callback)
 {
-	exit($callback . '(' . json_encode($jsonDataDataCustom) . ');');
+	exit($callback . '(' . json_encode($jsonDataDataCustom) . ')');
 }
 else
 {
