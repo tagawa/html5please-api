@@ -1,8 +1,18 @@
 <?php
 
-header('Content-Type: text/javascript');
-
+$callback = isset($_GET['callback']) ? $_GET['callback'] : null;
+$type = isset($_GET['type']) ? $_GET['type'] : 'js';
 $features = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
+
+if ($type === 'json')
+{
+	header('Content-Type: text/json');
+}
+
+if ($type === 'js')
+{
+	header('Content-Type: text/javascript');
+}
 
 if (!$features)
 {
@@ -30,6 +40,13 @@ foreach ($features as $featureName)
 	}
 }
 
-print_r(json_encode($jsonDataDataCustom));
+if ($callback)
+{
+	exit($callback . '(' . json_encode($jsonDataDataCustom) . ');');
+}
+else
+{
+	exit(json_encode($jsonDataDataCustom));
+}
 
 ?>
