@@ -41,7 +41,7 @@ if ($type === 'js' || $type === 'json') {
 
 	if ($type === 'js') {
 		if ($callback) {
-			$jsonTextCustom = $callback . '(' . $jsonNewText . ')';
+			$jsonNewText = $callback . '(' . $jsonNewText . ')';
 		}
 
 		exit($jsonNewText);
