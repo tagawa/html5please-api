@@ -24,7 +24,7 @@ $jsonDataDataCustom = array();
 
 foreach ($features as &$featureName) {
 	if (isset($jsonDataData[$featureName])) {
-		$featureData  = $jsonDataData[$featureName];
+		$featureData  =& $jsonDataData[$featureName];
 
 		$jsonDataDataCustom[$featureName] = $featureData;
 	}
