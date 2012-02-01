@@ -9,6 +9,7 @@ $header      = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type =
 $jsonName    = 'data.json';
 $jsonText    = file_get_contents($jsonName);
 $jsonArr     = json_decode($jsonText, true);
+$jsonArrAgs  =& $jsonArr['agents'];
 $jsonArrData =& $jsonArr['data'];
 $jsonArrNew  = array('caniuse' => true);
 
@@ -36,6 +37,12 @@ if ($type === 'js' || $type === 'json') {
 	if ($type === 'json') {
 		exit($jsonNewText);
 	}
+}
+
+if ($type === 'html') {
+	include "data.html.php";
+
+	exit();
 }
 
 if ($type === 'xml') {
