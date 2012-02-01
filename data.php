@@ -1,43 +1,47 @@
 <?php
 
-$callback = isset($_GET['callback']) ? $_GET['callback'] : null;
-$type     = isset($_GET['type']) ? $_GET['type'] : 'js';
-$features = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
+require_once 'data.xml.php';
 
-$header   = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : 'text/html'));
+$callback    = isset($_GET['callback']) ? $_GET['callback'] : null;
+$type        = isset($_GET['type']) ? $_GET['type'] : 'js';
+$features    = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
+$header      = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : ($type === 'html' ? 'text/html' : 'text/xml')));
+$jsonName    = 'data.json';
+$jsonText    = file_get_contents($jsonName);
+$jsonArr     = json_decode($jsonText, true);
+$jsonArrData =& $jsonArr['data'];
+$jsonArrNew  = array('caniuse' => true);
+
+foreach ($features as &$featureName) {
+	if (isset($jsonArrData[$featureName])) {
+		$featureData  =& $jsonArrData[$featureName];
+
+		$jsonArrNew[$featureName] = $featureData;
+	}
+}
 
 header($header);
 
-$jsonName = 'data.json';
+if ($type === 'js' || $type === 'json') {
+	$jsonNewText = json_encode($jsonArrNew);
 
-$jsonText = file_get_contents($jsonName);
+	if ($type === 'js') {
+		if ($callback) {
+			$jsonTextCustom = $callback . '(' . $jsonNewText . ')';
+		}
 
-$jsonData = json_decode($jsonText, true);
+		exit($jsonNewText);
+	}
 
-$jsonDataData =& $jsonData['data'];
-
-$jsonDataDataCustom = array('timestamp' => time());
-
-foreach ($features as &$featureName) {
-	if (isset($jsonDataData[$featureName])) {
-		$featureData  =& $jsonDataData[$featureName];
-
-		$jsonDataDataCustom[$featureName] = $featureData;
+	if ($type === 'json') {
+		exit($jsonNewText);
 	}
 }
 
-$jsonTextCustom = json_encode($jsonDataDataCustom);
+if ($type === 'xml') {
+	$jsonNewXml  = generate_valid_xml_from_array($jsonArrNew);
 
-if ($type === 'js') {
-	if ($callback) {
-		$jsonTextCustom = $callback . '(' . $jsonTextCustom . ')';
-	}
-
-	exit($jsonTextCustom);
-}
-
-if ($type === 'json') {
-	exit(json_encode($jsonDataDataCustom));
+	exit($jsonNewXml);
 }
 
 ?>
