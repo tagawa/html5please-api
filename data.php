@@ -11,13 +11,26 @@ $jsonText    = file_get_contents($jsonName);
 $jsonArr     = json_decode($jsonText, true);
 $jsonArrAgs  =& $jsonArr['agents'];
 $jsonArrData =& $jsonArr['data'];
-$jsonArrNew  = array('caniuse' => true);
+$jsonArrNew  = array('required' => array());
 
 foreach ($features as &$featureName) {
 	if (isset($jsonArrData[$featureName])) {
-		$featureData  =& $jsonArrData[$featureName];
+		$featureData =& $jsonArrData[$featureName];
+		$featureReq  =& $featureData['required'];
 
 		$jsonArrNew[$featureName] = $featureData;
+
+		foreach ($featureReq as $browserName => & $browserVersion) {
+			if (empty($jsonArrNew['required'])) {
+				$jsonArrNew['required'] = $featureReq;
+			}
+
+			if (isset($jsonArrNew['required'][$browserName])) {
+				$jsonArrNew['required'][$browserName] = max(floatval($jsonArrNew['required'][$browserName]), floatval($browserVersion));
+			}
+		}
+	} else {
+		unset($features[$featureName]);
 	}
 }
 

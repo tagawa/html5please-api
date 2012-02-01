@@ -3,18 +3,15 @@
 $featuresNames = array();
 $featuresBrowsers = array();
 
-$featuresLength = count($features);
-
-foreach ($features as $featureName) {
+foreach ($features as &$featureName) {
 	$feature = $jsonArrNew[$featureName];
 	$featureTitle = $feature['title'];
-	$featureRequired = $feature['required'];
 
 	array_push($featuresNames, $featureTitle);
+}
 
-	foreach ($featureRequired as $browserName => $browserVersion) {
-		array_push($featuresBrowsers, $jsonArrAgs[$browserName]['browser'] . ' v' . $browserVersion);
-	}
+foreach ($jsonArrNew['required'] as $browserName => &$browserVersion) {
+	array_push($featuresBrowsers, $jsonArrAgs[$browserName]['browser'] . ' v' . $browserVersion);
 }
 
 $featuresNamesHtml = implode(' &amp; ', $featuresNames);
@@ -29,11 +26,8 @@ $featuresBrowsersHtml = implode(' &amp; ', $featuresBrowsers);
 	</head>
 	<body>
 		<h1>Can I use <?php print($featuresNamesHtml); ?>?</h1>
-			<p>
-				Yes, in <?php print($featuresBrowsersHtml); ?>.
-			</p>
 		<p>
-			
+			Yes, in <?php print($featuresBrowsersHtml); ?>.
 		</p>
 	</body>
 </html>
