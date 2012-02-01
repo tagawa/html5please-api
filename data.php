@@ -4,7 +4,7 @@ $callback = isset($_GET['callback']) ? $_GET['callback'] : null;
 $type     = isset($_GET['type']) ? $_GET['type'] : 'js';
 $features = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
 
-$header = 'Content-Type: ' . ( $type === 'js' ? 'text/javascript' : ( $type === 'json' ? 'text/json' : 'text/html' ) );
+$header = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : 'text/html'));
 
 header($header);
 
