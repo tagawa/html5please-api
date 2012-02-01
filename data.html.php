@@ -11,7 +11,10 @@ foreach ($features as &$featureName) {
 }
 
 foreach ($jsonArrNew['required'] as $browserName => &$browserVersion) {
-	array_push($featuresBrowsers, $jsonArrAgs[$browserName]['browser'] . ' v' . $browserVersion);
+	$browserHtml = $jsonArrAgs[$browserName]['browser'] . ' ' . $browserVersion;
+	$browserHtml = '<a href="' . $jsonArrAgs[$browserName]['url'] . '" rel="external" target="_blank">' . $browserHtml . '</a>';
+
+	array_push($featuresBrowsers, $browserHtml);
 }
 
 $featuresNamesHtml = implode(' &amp; ', $featuresNames);
