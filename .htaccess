@@ -1,7 +1,5 @@
 RewriteEngine On
 
-RewriteCond %{QUERY_STRING} callback
-
 RewriteRule (.+?)\.js$ data.php?type=js&features=$1 [NC,QSA]
 
 RewriteRule (.+)\.json$ data.php?type=json&features=$1 [NC]
