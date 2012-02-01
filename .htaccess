@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule (.+)\.js$ data.php?features=$1 [NC]
