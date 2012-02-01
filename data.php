@@ -4,13 +4,9 @@ $callback = isset($_GET['callback']) ? $_GET['callback'] : null;
 $type     = isset($_GET['type']) ? $_GET['type'] : 'js';
 $features = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
 
-$header = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : 'text/html'));
+$header   = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : 'text/html'));
 
 header($header);
-
-if (!$features) {
-	exit();
-}
 
 $jsonName = 'data.json';
 
@@ -20,7 +16,7 @@ $jsonData = json_decode($jsonText, true);
 
 $jsonDataData =& $jsonData['data'];
 
-$jsonDataDataCustom = array();
+$jsonDataDataCustom = array('timestamp' => time());
 
 foreach ($features as &$featureName) {
 	if (isset($jsonDataData[$featureName])) {
