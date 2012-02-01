@@ -1,5 +1,3 @@
 RewriteEngine On
 
-RewriteRule (.+?)\.js$ data.php?type=js&features=$1 [NC,QSA]
-
-RewriteRule (.+)\.json$ data.php?type=json&features=$1 [NC]
+RewriteRule (.+?)\.(html|js|json)$ data.php?type=$2&features=$1 [NC,QSA]
