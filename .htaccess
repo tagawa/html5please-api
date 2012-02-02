@@ -1,3 +1,6 @@
 RewriteEngine On
 
-RewriteRule ^(.+?)\.(html|js|json|xml)$ data.php?type=$2&features=$1 [NC,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.+?)\.(html|js|json|xml)$ data.php?features=$1&format=$2 [NC,QSA]

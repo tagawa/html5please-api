@@ -1,67 +1,96 @@
 <?php
 
-require_once 'data.xml.php';
+require_once 'data.methods.php';
 
-$callback    = isset($_GET['callback']) ? $_GET['callback'] : null;
-$type        = isset($_GET['type']) ? $_GET['type'] : 'js';
-$features    = isset($_GET['features']) ? explode(' ', $_GET['features']) : array();
-$header      = 'Content-Type: ' . ($type === 'js' ? 'text/javascript' : ($type === 'json' ? 'text/json' : ($type === 'html' ? 'text/html' : 'text/xml')));
-$jsonName    = 'data.json';
-$jsonText    = file_get_contents($jsonName);
-$jsonArr     = json_decode($jsonText, true);
-$jsonArrAgs  =& $jsonArr['agents'];
-$jsonArrData =& $jsonArr['data'];
-$jsonArrNew  = array('required' => array());
+// caniuse/[ features ].[ format ][ ? [ actions ] ]
 
-foreach ($features as &$featureName) {
-	if (isset($jsonArrData[$featureName])) {
-		$featureData =& $jsonArrData[$featureName];
-		$featureReq  =& $featureData['required'];
+$features  = explode(' ', first_set(@$_GET['features'], '')); unset($_GET['features']);
+$method   = first_set(@$_GET['method'], 'display'); unset($_GET['method']);
+$format   = first_set(@$_GET['format'], 'js'); unset($_GET['format']);
+$actions  = $_GET;
+$mime     = mime_type($format);
 
-		$jsonArrNew[$featureName] = $featureData;
+header('Content-Type: ' . $mime);
 
-		foreach ($featureReq as $browserName => & $browserVersion) {
-			if (empty($jsonArrNew['required'])) {
-				$jsonArrNew['required'] = $featureReq;
+$data_name  = 'data.json';
+$data_json  = file_get_contents($data_name);
+$data       = json_decode($data_json, true);
+
+$data_agents   =& $data['agents'];
+$data_features =& $data['data'];
+$data_custom   = array( 'required' => array() );
+
+// loop through the features
+foreach ($features as $index => $feature_name) {
+	// if feature does exist in data
+	if (isset($data_features[$feature_name])) {
+		// set feature statistics and requirements
+		$feature_statistics    =& $data_features[$feature_name];
+		$feature_requirements  =& $feature_statistics['required'];
+
+		// add to custom data these feature statistics
+		$data_custom[$feature_name] = $feature_statistics;
+
+		// loop through the feature requirements
+		foreach ($feature_requirements as $browser_id => &$browser_version) {
+			// if custom data does not have a required section then add it
+			if (empty($data_custom['required'])) {
+				$data_custom['required'] = $feature_requirements;
 			}
 
-			if (isset($jsonArrNew['required'][$browserName])) {
-				$jsonArrNew['required'][$browserName] = max(floatval($jsonArrNew['required'][$browserName]), floatval($browserVersion));
+			// if custom data already has a required section for this browser
+			if (isset($data_array_new['required'][$browser_id])) {
+				// compare browser versions between the custom data and the feature requirements and use the newest
+				$data_custom['required'][$browser_id] = max(floatval($data_custom['required'][$browser_id]), floatval($browser_version));
 			}
 		}
-	} else {
-		unset($features[$featureName]);
+	}
+	// if feature does not exist in data
+	else {
+		// remove feature from features
+		unset($features[$index]);
 	}
 }
 
-header($header);
+/*
+ * Output
+ */
 
-if ($type === 'js' || $type === 'json') {
-	$jsonNewText = json_encode($jsonArrNew);
+if ($format === 'html') {
+	$data_html_custom  = html_encode($data_custom, $data_agents, $features, $actions);
 
-	if ($type === 'js') {
-		if ($callback) {
-			$jsonNewText = $callback . '(' . $jsonNewText . ')';
+	// exit as html
+	exit($data_html_custom);
+}
+
+// if format is xml
+if ($format === 'xml') {
+	$data_xml_custom = xml_encode($data_custom);
+
+	// exit as xml
+	exit($data_xml_custom);
+}
+
+// if format is javascript or json
+if ($format === 'js' || $format === 'json') {
+	$data_json_custom = json_encode($data_custom);
+
+	// if format is javascript
+	if ($format === 'js') {
+		// if method defines a callback
+		if (isset($actions['callback'])) {
+			exit($actions['callback'] . '(' . $data_json_custom . ')');
 		}
-
-		exit($jsonNewText);
+		// if method does not define a callback
+		else {
+			exit($data_json_custom);
+		}
 	}
 
+	// if format is json
 	if ($type === 'json') {
 		exit($jsonNewText);
 	}
-}
-
-if ($type === 'html') {
-	include "data.html.php";
-
-	exit();
-}
-
-if ($type === 'xml') {
-	$jsonNewXml  = generate_valid_xml_from_array($jsonArrNew);
-
-	exit($jsonNewXml);
 }
 
 ?>
