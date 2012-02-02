@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>caniuse api</title>
+		<style>
+		* { font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; }
+		html { background: #F2F2F2; color: #333; font: 100%/1 sans-serif; }
+		body { margin: 0 auto; width: 33em; }
+		h1, section { margin: 2em 0; }
+		h1 { font-size: 2em; font-weight: bold; }
+		h2 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
+		h3 { font-weight: bold; margin: 1em 0; }
+		p { line-height: 1.5; margin: 0.5em 0; }
+		em { color: #555; font-size: 75%; }
+		var { background: #EEE; border: 1px solid #DDD; border-radius: 0.25em; font-style: italic; padding: 0.125em 0.25em; }
+		code { font-family: monospace, monospace; }
+		strong { font-weight: bold; }
+		</style>
+	</head>
+	<body>
+		<h1>
+			caniuse api
+		</h1>
+		<p>
+			Powered by the services powering <a href="http://caniuse.com/">caniuse.com</a>.
+		</p>
+		<section>
+			<h2>
+				How to use
+			</h2>
+			<p>
+				url: <code>[ features ].[ format ][ ? [ actions ] ]</code>
+			</p>
+			<h3>
+				features
+			</h3>
+			<p>
+				The features <em>(<var>+</var> delimited)</em> to be tested, like <var>apng</var> or <var>canvas+json</var>.
+			</p>
+			<h3>
+				format
+			</h3>
+			<p>
+				The format the output will be returned as, like <var>json</var> or <var>xml</var>.
+			</p>
+			<h3>
+				actions
+			</h3>
+			<p>
+				The actions to be applied to the data, like <var>callback=myFunction</var> or <var>fail=1</var>.
+			</p>
+		</section>
+		<section>
+			<h2>
+				Examples
+			</h2>
+			<p>
+				<code><a href="canvas+json.js?callback=myFunction">canvas+json.js?callback=myFunction</a></code>: detect browsers supporting both the 'canvas' and 'json' features and output the results as JavaScript wrapped it in a 'myFunction' callback.
+			</p>
+			<p>
+				<code><a href="apng.html?fail=1">apng.html?fail=1</a></code>: detect browsers supporting 'apng' feature and output the results as HTML as though the client browser had failed the test.
+			</p>
+		</section>
+		<section>
+			<h2>
+				Actions
+			</h2>
+			<p>
+				<code><strong>callback=[ functionName ]</strong></code>: the JavaScript output will be wrapped in this function name.
+			</p>
+			<p>
+				<code><strong>display</strong></code>: the HTML output by default.
+			</p>
+			<p>
+				<code><strong>detect</strong></code>: the HTML output based on the client browser's functionality.
+			</p>
+			<p>
+				<code><strong>fail</strong></code>: the HTML output based on the client browser's failure to have that functionality.
+			</p>
+			<p>
+				<code><strong>size=[ large | small | regular ]</strong></code>: the HTML output will use this size for the browser icons.
+			</p>
+			<p>
+				<code><strong>text</strong></code>: the HTML output will include text about the browsers.
+			</p>
+			<p>
+				<code><strong>icon</strong></code>: the HTML output will include the browser icons.
+			</p>
+			<p>
+				<code><strong>texticon</strong></code>: the HTML output will include text about browsers and icons.
+			</p>
+		</section>
+	</body>
+</html>
