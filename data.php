@@ -6,9 +6,10 @@ require_once 'data.methods.php';
 
 $features  = explode(' ', first_set(@$_GET['features'], '')); unset($_GET['features']);
 $method   = first_set(@$_GET['method'], 'display'); unset($_GET['method']);
+$callback = first_set(@$_GET['callback']); unset($_GET['callback']);
 $format   = first_set(@$_GET['format'], 'js'); unset($_GET['format']);
 $actions  = $_GET;
-$mime     = mime_type($format);
+$mime     = mime_type($callback ? 'js' : $format);
 
 header('Content-Type: ' . $mime);
 
@@ -59,8 +60,16 @@ foreach ($features as $index => $feature_name) {
 if ($format === 'html') {
 	$data_html_custom  = html_encode($data_custom, $data_agents, $features, $actions);
 
-	// exit as html
-	exit($data_html_custom);
+	// if method defines a callback
+	if (isset($callback)) {
+		// exit as html wrapped in a callback
+		exit($callback . '("' . json_escape_html($data_html_custom) . '")');
+	}
+	// if method does not define a callback
+	else {
+		// exit as html
+		exit($data_html_custom);
+	}
 }
 
 // if format is xml
@@ -78,8 +87,9 @@ if ($format === 'js' || $format === 'json') {
 	// if format is javascript
 	if ($format === 'js') {
 		// if method defines a callback
-		if (isset($actions['callback'])) {
-			exit($actions['callback'] . '(' . $data_json_custom . ')');
+		if (isset($callback)) {
+		// exit as javascript wrapped in a callback
+			exit($callback . '(' . $data_json_custom . ')');
 		}
 		// if method does not define a callback
 		else {

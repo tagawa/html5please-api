@@ -135,6 +135,15 @@ function caniuse_icon($browserId, $browserName, $size = 'normal') {
 	return '<img class="caniuse-image" alt="' . $browserName . '" src="i/' . $browserId . '-' . $size . '.png" width="' . $size . '" height="' . $size . '">';
 }
 
+function json_escape_html($html = '') {
+	$html = preg_replace('/\n/', '\\n', $html);
+	$html = preg_replace('/\r/', '\\r', $html);
+	$html = preg_replace('/\t/', '\\t', $html);
+	$html = preg_replace('/"/', '\\"', $html);
+
+	return $html;
+}
+
 function html_encode($array = array(), $agents = array(), $features = array(), $actions = array()) {
 	$required = $array['required'];
 
@@ -189,8 +198,6 @@ function html_encode($array = array(), $agents = array(), $features = array(), $
 	$html = preg_replace('/<%= supported_browser_icons %>/', implode('', $supported_browser_icons), $html);
 	$html = preg_replace('/<%= supported_browser_icons_names %>/', implode('', $supported_browser_icons_names), $html);
 	$html = preg_replace('/<%= supported_browser_icons_names_versions %>/', implode('', $supported_browser_icons_names_versions), $html);
-
-	exit($html);
 
 	return $html;
 }
