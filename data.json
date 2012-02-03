@@ -18,7 +18,7 @@
 	},
 	"agents": {
 		"ie": {
-			"browser": "IE",
+			"browser": "Internet Explorer",
 			"abbr": "IE",
 			"prefix": "ms",
 			"type": "desktop",
@@ -198,16 +198,16 @@
 			"notes": "IE6 does support full transparency in 8-bit PNGs, which can sometimes be an alternative to 32-bit PNGs.",
 			"usage_perc_y": 93.43,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 7,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "7",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"apng": {
@@ -312,10 +312,10 @@
 			"notes": "Where support for APNG is missing, only the first frame is displayed",
 			"usage_perc_y": 24.93,
 			"usage_perc_a": 0,
-			"required": {
-				"firefox": 3,
-				"opera": 9.5,
-				"op_mob": 10
+			"supported": {
+				"firefox": "3",
+				"opera": "9.5",
+				"op_mob": "10"
 			}
 		},
 		"video": {
@@ -424,15 +424,15 @@
 			"usage_perc_y": 66.19,
 			"usage_perc_a": 0.75,
 			"keywords": "<video>",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.3
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.3"
 			}
 		},
 		"audio": {
@@ -546,15 +546,15 @@
 			"notes": "",
 			"usage_perc_y": 66.1,
 			"usage_perc_a": 0.05,
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.5,
-				"ios_saf": 4,
-				"op_mob": 11,
-				"android": 2.3
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.5",
+				"ios_saf": "4.0",
+				"op_mob": "11",
+				"android": "2.3"
 			}
 		},
 		"contenteditable": {
@@ -659,14 +659,14 @@
 			"notes": "This support is only refers to very basic editing capability, implementations vary significantly on how certain elements can be edited.",
 			"usage_perc_y": 89.57,
 			"usage_perc_a": 0.4,
-			"required": {
-				"ie": 5.5,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "5.5",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		},
 		"dragndrop": {
@@ -772,11 +772,11 @@
 			"usage_perc_y": 87.43,
 			"usage_perc_a": 0,
 			"keywords": "draganddrop",
-			"required": {
-				"ie": 5.5,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1
+			"supported": {
+				"ie": "5.5",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1"
 			}
 		},
 		"queryselector": {
@@ -876,16 +876,16 @@
 			"usage_perc_y": 89.23,
 			"usage_perc_a": 0,
 			"keywords": "query,selectors,selectors api",
-			"required": {
-				"ie": 8,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.0",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"getelementsbyclassname": {
@@ -985,16 +985,16 @@
 			"usage_perc_y": 69.32,
 			"usage_perc_a": 0,
 			"keywords": "byclassname",
-			"required": {
-				"ie": 9,
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"forms": {
@@ -1097,10 +1097,10 @@
 			"usage_perc_y": 2.14,
 			"usage_perc_a": 48.75,
 			"keywords": "input,range,datepicker",
-			"required": {
-				"opera": 9,
-				"ios_saf": 5,
-				"op_mob": 10
+			"supported": {
+				"opera": "9",
+				"ios_saf": "5",
+				"op_mob": "10"
 			}
 		},
 		"html5semantic": {
@@ -1205,15 +1205,15 @@
 			"notes": "Partial support refers to missing the default styling. This is easily taken care of by using display:block for all new elements (except time and mark, these should be display:inline anyway).",
 			"usage_perc_y": 61.74,
 			"usage_perc_a": 7.58,
-			"required": {
-				"ie": 9,
-				"firefox": 4,
-				"chrome": 6,
-				"safari": 5,
-				"opera": 11.1,
-				"ios_saf": 4,
-				"op_mob": 11,
-				"android": 2.2
+			"supported": {
+				"ie": "9",
+				"firefox": "4",
+				"chrome": "6",
+				"safari": "5",
+				"opera": "11.1",
+				"ios_saf": "4.0",
+				"op_mob": "11",
+				"android": "2.2"
 			}
 		},
 		"offline-apps": {
@@ -1319,15 +1319,15 @@
 			"usage_perc_y": 57.04,
 			"usage_perc_a": 0.4,
 			"keywords": "appcache,app cache,application cache,online",
-			"required": {
-				"ie": 10,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.6,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.6",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"webworkers": {
@@ -1429,15 +1429,15 @@
 			"notes": "",
 			"usage_perc_y": 54.09,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 10,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.6,
-				"ios_saf": 5,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.6",
+				"ios_saf": "5",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"fontface": {
@@ -1546,15 +1546,15 @@
 			"usage_perc_y": 65.15,
 			"usage_perc_a": 27.32,
 			"keywords": "font face",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.2,
-				"opera": 10,
-				"ios_saf": 4.2,
-				"op_mob": 10,
-				"android": 4
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.2",
+				"opera": "10.0",
+				"ios_saf": "4.2",
+				"op_mob": "10",
+				"android": "4"
 			}
 		},
 		"eot": {
@@ -1657,8 +1657,8 @@
 			"usage_perc_y": 35.54,
 			"usage_perc_a": 0,
 			"parent": "fontface",
-			"required": {
-				"ie": 6
+			"supported": {
+				"ie": "6"
 			}
 		},
 		"woff": {
@@ -1758,14 +1758,14 @@
 			"usage_perc_y": 61.77,
 			"usage_perc_a": 0,
 			"parent": "fontface",
-			"required": {
-				"ie": 9,
-				"firefox": 3.6,
-				"chrome": 5,
-				"safari": 5.1,
-				"opera": 11.1,
-				"ios_saf": 5,
-				"op_mob": 11
+			"supported": {
+				"ie": "9",
+				"firefox": "3.6",
+				"chrome": "5",
+				"safari": "5.1",
+				"opera": "11.1",
+				"ios_saf": "5",
+				"op_mob": "11"
 			}
 		},
 		"multibackgrounds": {
@@ -1867,16 +1867,16 @@
 			"notes": "",
 			"usage_perc_y": 68.46,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 9,
-				"firefox": 3.6,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.6",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"border-image": {
@@ -1975,8 +1975,8 @@
 			"notes": "Partial support refers to supporting the shorthand syntax, but not the individual properties (border-image-source, border-image-slice, etc)",
 			"usage_perc_y": 23.26,
 			"usage_perc_a": 33.81,
-			"required": {
-				"chrome": 15
+			"supported": {
+				"chrome": "15"
 			}
 		},
 		"background-img-opts": {
@@ -2078,16 +2078,16 @@
 			"notes": "",
 			"usage_perc_y": 64.08,
 			"usage_perc_a": 4.39,
-			"required": {
-				"ie": 9,
-				"firefox": 4,
-				"chrome": 4,
-				"safari": 5,
-				"opera": 10.5,
-				"ios_saf": 4,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "4",
+				"chrome": "4",
+				"safari": "5",
+				"opera": "10.5",
+				"ios_saf": "4.0",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-table": {
@@ -2190,16 +2190,16 @@
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
 			"keywords": "display:table, display: table,table-cell,table-row,table-layout",
-			"required": {
-				"ie": 8,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-gencontent": {
@@ -2302,16 +2302,16 @@
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
 			"keywords": "before,after",
-			"required": {
-				"ie": 8,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-fixed": {
@@ -2413,15 +2413,15 @@
 			"notes": "Only works in Android 2.2+ by using the following meta tag: &lt;meta name=\"viewport\" content=\"width=device-width, user-scalable=no\">",
 			"usage_perc_y": 88.46,
 			"usage_perc_a": 1.59,
-			"required": {
-				"ie": 7,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 5,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"ie": "7",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "5",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"hashchange": {
@@ -2527,15 +2527,15 @@
 			"usage_perc_y": 86.34,
 			"usage_perc_a": 0,
 			"keywords": "onhashchange,HashChangeEvent",
-			"required": {
-				"ie": 8,
-				"firefox": 3.6,
-				"chrome": 5,
-				"safari": 5,
-				"opera": 10.6,
-				"ios_saf": 4,
-				"op_mob": 11,
-				"android": 2.2
+			"supported": {
+				"ie": "8",
+				"firefox": "3.6",
+				"chrome": "5",
+				"safari": "5",
+				"opera": "10.6",
+				"ios_saf": "4.0",
+				"op_mob": "11",
+				"android": "2.2"
 			}
 		},
 		"css-sel2": {
@@ -2641,16 +2641,16 @@
 			"usage_perc_y": 93.43,
 			"usage_perc_a": 0,
 			"keywords": "child selector,:hover",
-			"required": {
-				"ie": 7,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "7",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-sel3": {
@@ -2756,16 +2756,16 @@
 			"usage_perc_y": 68.91,
 			"usage_perc_a": 0,
 			"keywords": ":target,:not",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.2,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.2",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-textshadow": {
@@ -2870,15 +2870,15 @@
 			"notes": "Opera Mini ignores the blur-radius set, so no blur effect is visible. Text-shadow behavior can be somewhat emulated in older IE versions using the non-standard \"dropshadow\" or \"glow\" filters. ",
 			"usage_perc_y": 57.11,
 			"usage_perc_a": 1.93,
-			"required": {
-				"ie": 10,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-boxshadow": {
@@ -2990,15 +2990,15 @@
 			"usage_perc_y": 66.95,
 			"usage_perc_a": 0,
 			"keywords": "box-shadows,boxshadows,box shadow,shaow",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"css3-colors": {
@@ -3107,16 +3107,16 @@
 			"usage_perc_y": 69.29,
 			"usage_perc_a": 0.12,
 			"keywords": "rgb,hsl,rgba,hsla",
-			"required": {
-				"ie": 9,
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.0",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css3-boxsizing": {
@@ -3219,16 +3219,16 @@
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
 			"keywords": "border-box,content-box",
-			"required": {
-				"ie": 8,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"css-mediaqueries": {
@@ -3331,16 +3331,16 @@
 			"usage_perc_y": 68.9,
 			"usage_perc_a": 0.02,
 			"keywords": "@media",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"multicolumn": {
@@ -3443,15 +3443,15 @@
 			"usage_perc_y": 57.47,
 			"usage_perc_a": 0,
 			"keywords": "column-count",
-			"required": {
-				"ie": 10,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 11.1,
-				"ios_saf": 3.2,
-				"op_mob": 11.1,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "11.1",
+				"ios_saf": "3.2",
+				"op_mob": "11.1",
+				"android": "2.1"
 			}
 		},
 		"border-radius": {
@@ -3557,15 +3557,15 @@
 			"usage_perc_y": 67.36,
 			"usage_perc_a": 0.09,
 			"keywords": "roundedcorners, border radius,-moz-border-radius",
-			"required": {
-				"ie": 9,
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"transforms2d": {
@@ -3677,15 +3677,15 @@
 			"usage_perc_y": 66.95,
 			"usage_perc_a": 0,
 			"keywords": "transformation,rotation,rotate,scale,css-transforms",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"use-strict": {
@@ -3784,14 +3784,14 @@
 			"notes": "Partial support in Safari refers to strict mode still accepting a lot of JS that should be considered invalid.",
 			"usage_perc_y": 43.48,
 			"usage_perc_a": 3.95,
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 13,
-				"opera": 11.6,
-				"ios_saf": 5,
-				"op_mob": 11.5,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "13",
+				"opera": "11.6",
+				"ios_saf": "5",
+				"op_mob": "11.5",
+				"android": "3"
 			}
 		},
 		"transforms3d": {
@@ -3894,13 +3894,13 @@
 			"usage_perc_y": 30.24,
 			"usage_perc_a": 0,
 			"keywords": "css 3d,3dtransforms",
-			"required": {
-				"ie": 10,
-				"firefox": 10,
-				"chrome": 12,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "10",
+				"chrome": "12",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "3"
 			}
 		},
 		"sharedworkers": {
@@ -4004,12 +4004,12 @@
 			"usage_perc_a": 0,
 			"parent": "webworkers",
 			"keywords": "shared worker",
-			"required": {
-				"chrome": 4,
-				"safari": 5,
-				"opera": 10.6,
-				"ios_saf": 5,
-				"op_mob": 11
+			"supported": {
+				"chrome": "4",
+				"safari": "5",
+				"opera": "10.6",
+				"ios_saf": "5",
+				"op_mob": "11"
 			}
 		},
 		"css-hyphens": {
@@ -4112,11 +4112,11 @@
 			"usage_perc_y": 21.14,
 			"usage_perc_a": 0,
 			"keywords": "hyphen,shy",
-			"required": {
-				"ie": 10,
-				"firefox": 6,
-				"safari": 5.1,
-				"ios_saf": 4.2
+			"supported": {
+				"ie": "10",
+				"firefox": "6",
+				"safari": "5.1",
+				"ios_saf": "4.2"
 			}
 		},
 		"css-transitions": {
@@ -4222,15 +4222,15 @@
 			"usage_perc_y": 52.58,
 			"usage_perc_a": 0,
 			"keywords": "css transition",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"font-feature": {
@@ -4333,8 +4333,8 @@
 			"usage_perc_y": 0.01,
 			"usage_perc_a": 29.2,
 			"keywords": "font-feature,font-feature-settings,kern,kerning,font-variant-alternates,ligatures,font-variant-ligatures",
-			"required": {
-				"ie": 10
+			"supported": {
+				"ie": "10"
 			}
 		},
 		"css-animation": {
@@ -4437,13 +4437,13 @@
 			"usage_perc_y": 48.43,
 			"usage_perc_a": 1.63,
 			"keywords": "animations,css-animations,keyframe",
-			"required": {
-				"ie": 10,
-				"firefox": 5,
-				"chrome": 4,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 4
+			"supported": {
+				"ie": "10",
+				"firefox": "5",
+				"chrome": "4",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "4"
 			}
 		},
 		"css-gradients": {
@@ -4546,14 +4546,14 @@
 			"usage_perc_y": 50.76,
 			"usage_perc_a": 5.78,
 			"keywords": "linear,linear-gradient,gradiant",
-			"required": {
-				"ie": 10,
-				"firefox": 3.6,
-				"chrome": 10,
-				"safari": 5.1,
-				"opera": 11.6,
-				"ios_saf": 5,
-				"android": 4
+			"supported": {
+				"ie": "10",
+				"firefox": "3.6",
+				"chrome": "10",
+				"safari": "5.1",
+				"opera": "11.6",
+				"ios_saf": "5",
+				"android": "4"
 			}
 		},
 		"css-canvas": {
@@ -4652,11 +4652,11 @@
 			"notes": "Proposal by Webkit, being considered for W3C standardization. A similar effect can be achieved in Firefox 4+ using the -moz-element() background property",
 			"usage_perc_y": 32.58,
 			"usage_perc_a": 0,
-			"required": {
-				"chrome": 4,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"chrome": "4",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"css-reflections": {
@@ -4756,11 +4756,11 @@
 			"usage_perc_y": 32.58,
 			"usage_perc_a": 0,
 			"keywords": "box-reflect",
-			"required": {
-				"chrome": 4,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"chrome": "4",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"css-masks": {
@@ -4859,11 +4859,11 @@
 			"notes": "Proposal by Webkit, being considered for W3C standardization.",
 			"usage_perc_y": 32.54,
 			"usage_perc_a": 0,
-			"required": {
-				"chrome": 4,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"chrome": "4",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"svg": {
@@ -4974,16 +4974,16 @@
 			"notes": "",
 			"usage_perc_y": 67.73,
 			"usage_perc_a": 0.1,
-			"required": {
-				"ie": 9,
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 3.2,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"ie": "9",
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "3.2",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"svg-css": {
@@ -5083,15 +5083,15 @@
 			"usage_perc_y": 60.75,
 			"usage_perc_a": 2.07,
 			"keywords": "svg-in-css,svgincss,css-svg",
-			"required": {
-				"ie": 9,
-				"firefox": 4,
-				"chrome": 5,
-				"safari": 5,
-				"opera": 9.5,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"ie": "9",
+				"firefox": "4",
+				"chrome": "5",
+				"safari": "5",
+				"opera": "9.5",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"svg-smil": {
@@ -5190,14 +5190,14 @@
 			"notes": "",
 			"usage_perc_y": 49.28,
 			"usage_perc_a": 1.73,
-			"required": {
-				"firefox": 4,
-				"chrome": 5,
-				"safari": 5,
-				"opera": 9,
-				"ios_saf": 5,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"firefox": "4",
+				"chrome": "5",
+				"safari": "5",
+				"opera": "9",
+				"ios_saf": "5",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"svg-fonts": {
@@ -5300,13 +5300,13 @@
 			"usage_perc_y": 32.81,
 			"usage_perc_a": 0,
 			"parent": "fontface",
-			"required": {
-				"chrome": 4,
-				"safari": 3.2,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"chrome": "4",
+				"safari": "3.2",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"svg-filters": {
@@ -5408,14 +5408,14 @@
 			"notes": "",
 			"usage_perc_y": 51.53,
 			"usage_perc_a": 0.26,
-			"required": {
-				"ie": 10,
-				"firefox": 3,
-				"chrome": 8,
-				"safari": 6,
-				"opera": 9,
-				"op_mini": 5,
-				"op_mob": 10
+			"supported": {
+				"ie": "10",
+				"firefox": "3",
+				"chrome": "8",
+				"safari": "6",
+				"opera": "9",
+				"op_mini": "5.0",
+				"op_mob": "10"
 			}
 		},
 		"svg-html": {
@@ -5520,8 +5520,8 @@
 			"notes": "Partial support refers to lack of filter support or buggy result from effects. CSS method is a proposal by Mozilla, being considered for W3C standardization (stats, however, are considered based on the foreignObject support).",
 			"usage_perc_y": 22.71,
 			"usage_perc_a": 43.05,
-			"required": {
-				"firefox": 3.5
+			"supported": {
+				"firefox": "3.5"
 			}
 		},
 		"svg-html5": {
@@ -5623,14 +5623,14 @@
 			"notes": "",
 			"usage_perc_y": 56.82,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 9,
-				"firefox": 4,
-				"chrome": 7,
-				"safari": 5.1,
-				"opera": 11.6,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "9",
+				"firefox": "4",
+				"chrome": "7",
+				"safari": "5.1",
+				"opera": "11.6",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		},
 		"canvas": {
@@ -5741,15 +5741,15 @@
 			"notes": "Opera Mini supports the canvas element, but is unable to play animations or run other more complex applications.",
 			"usage_perc_y": 67.5,
 			"usage_perc_a": 1.91,
-			"required": {
-				"ie": 9,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"canvas-text": {
@@ -5852,15 +5852,15 @@
 			"usage_perc_y": 66.93,
 			"usage_perc_a": 0,
 			"parent": "canvas",
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"namevalue-storage": {
@@ -5966,15 +5966,15 @@
 			"usage_perc_y": 87.28,
 			"usage_perc_a": 0.5,
 			"keywords": "webstorage,local storage",
-			"required": {
-				"ie": 8,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"sql-storage": {
@@ -6074,13 +6074,13 @@
 			"usage_perc_y": 34.35,
 			"usage_perc_a": 0,
 			"keywords": "db-storage,websql",
-			"required": {
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"indexeddb": {
@@ -6180,10 +6180,10 @@
 			"usage_perc_y": 42.57,
 			"usage_perc_a": 0,
 			"keywords": "indexdb",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 11
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "11"
 			}
 		},
 		"eventsource": {
@@ -6286,13 +6286,13 @@
 			"usage_perc_y": 49.09,
 			"usage_perc_a": 0.11,
 			"keywords": "serversent,s-sent-events",
-			"required": {
-				"firefox": 6,
-				"chrome": 6,
-				"safari": 5,
-				"opera": 11,
-				"ios_saf": 4,
-				"op_mob": 11.1
+			"supported": {
+				"firefox": "6",
+				"chrome": "6",
+				"safari": "5",
+				"opera": "11",
+				"ios_saf": "4.0",
+				"op_mob": "11.1"
 			}
 		},
 		"x-doc-messaging": {
@@ -6397,15 +6397,15 @@
 			"notes": "Partial support in IE refers to only working in frames\/iframes (not other tabs\/windows).",
 			"usage_perc_y": 59.42,
 			"usage_perc_a": 30.23,
-			"required": {
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 9.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "9.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"datauri": {
@@ -6511,15 +6511,15 @@
 			"usage_perc_y": 59.53,
 			"usage_perc_a": 30.23,
 			"keywords": "datauris,data uri,dataurl,dataurls",
-			"required": {
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"mathml": {
@@ -6630,10 +6630,10 @@
 			"notes": "Opera's support is limited to a CSS profile of MathML. Expected to be supported in an upcoming version of Chrome, as support is available in Webkit builds.",
 			"usage_perc_y": 26.2,
 			"usage_perc_a": 1.77,
-			"required": {
-				"firefox": 2,
-				"safari": 5.1,
-				"ios_saf": 5
+			"supported": {
+				"firefox": "2",
+				"safari": "5.1",
+				"ios_saf": "5"
 			}
 		},
 		"xhtml": {
@@ -6736,16 +6736,16 @@
 			"usage_perc_y": 69.41,
 			"usage_perc_a": 0,
 			"keywords": "xhtml+xml",
-			"required": {
-				"ie": 9,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"xhtmlsmil": {
@@ -6848,7 +6848,7 @@
 			"usage_perc_y": 0,
 			"usage_perc_a": 25.66,
 			"parent": "xhtml",
-			"required": []
+			"supported": []
 		},
 		"wai-aria": {
 			"title": "WAI-ARIA Accessibility features",
@@ -6959,9 +6959,9 @@
 			"usage_perc_y": 53.35,
 			"usage_perc_a": 34.76,
 			"keywords": "wai,aria",
-			"required": {
-				"ie": 8,
-				"firefox": 3
+			"supported": {
+				"ie": "8",
+				"firefox": "3"
 			}
 		},
 		"geolocation": {
@@ -7057,15 +7057,15 @@
 			"notes": "",
 			"usage_perc_y": 66.67,
 			"usage_perc_a": 0.07,
-			"required": {
-				"ie": 9,
-				"firefox": 3.5,
-				"chrome": 5,
-				"safari": 5,
-				"opera": 10.6,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.5",
+				"chrome": "5",
+				"safari": "5",
+				"opera": "10.6",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"flexbox": {
@@ -7174,13 +7174,13 @@
 			"usage_perc_y": 55.81,
 			"usage_perc_a": 0,
 			"keywords": "flex",
-			"required": {
-				"ie": 10,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"webgl": {
@@ -7293,7 +7293,7 @@
 			"usage_perc_a": 45.57,
 			"parent": "canvas",
 			"keywords": "web gl",
-			"required": []
+			"supported": []
 		},
 		"fileapi": {
 			"title": "File API",
@@ -7392,8 +7392,8 @@
 			"usage_perc_y": 23.93,
 			"usage_perc_a": 27.59,
 			"keywords": "FileReader",
-			"required": {
-				"chrome": 13
+			"supported": {
+				"chrome": "13"
 			}
 		},
 		"websockets": {
@@ -7499,10 +7499,10 @@
 			"usage_perc_y": 40.55,
 			"usage_perc_a": 9.95,
 			"ucprefix": 1,
-			"required": {
-				"ie": 10,
-				"firefox": 6,
-				"chrome": 14
+			"supported": {
+				"ie": "10",
+				"firefox": "6",
+				"chrome": "14"
 			}
 		},
 		"script-async": {
@@ -7604,13 +7604,13 @@
 			"notes": "",
 			"usage_perc_y": 51.32,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 10,
-				"firefox": 3.6,
-				"chrome": 8,
-				"safari": 5,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "3.6",
+				"chrome": "8",
+				"safari": "5",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		},
 		"cors": {
@@ -7715,14 +7715,14 @@
 			"notes": "Supported somewhat in IE8 and IE9 using the XDomainRequest object",
 			"usage_perc_y": 55.32,
 			"usage_perc_a": 30.22,
-			"required": {
-				"ie": 10,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 12,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"ie": "10",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "12",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"calc": {
@@ -7821,9 +7821,9 @@
 			"notes": "Support can be somewhat emulated in older versions of IE using the non-standard expression() syntax.",
 			"usage_perc_y": 28.09,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 9,
-				"firefox": 4
+			"supported": {
+				"ie": "9",
+				"firefox": "4"
 			}
 		},
 		"ruby": {
@@ -7925,7 +7925,7 @@
 			"notes": "Browsers without native support can still simulate support using CSS. Partial support refers to only supporting basic ruby, may still be missing writing-mode, Complex ruby and CSS3 Ruby",
 			"usage_perc_y": 0,
 			"usage_perc_a": 64.82,
-			"required": []
+			"supported": []
 		},
 		"css-opacity": {
 			"title": "CSS3 Opacity",
@@ -8024,16 +8024,16 @@
 			"usage_perc_y": 69.41,
 			"usage_perc_a": 25.67,
 			"keywords": "transparent,transparency,alpha",
-			"required": {
-				"ie": 9,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"form-validation": {
@@ -8130,12 +8130,12 @@
 			"usage_perc_y": 44.52,
 			"usage_perc_a": 3.95,
 			"parent": "forms",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 10,
-				"opera": 10,
-				"op_mob": 10
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "10",
+				"opera": "10.0",
+				"op_mob": "10"
 			}
 		},
 		"history": {
@@ -8244,14 +8244,14 @@
 			"usage_perc_y": 46.51,
 			"usage_perc_a": 5.24,
 			"keywords": "onpushstate,onreplacestate",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 5,
-				"opera": 11.5,
-				"ios_saf": 5,
-				"op_mob": 11.1,
-				"android": 2.2
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "5",
+				"opera": "11.5",
+				"ios_saf": "5",
+				"op_mob": "11.1",
+				"android": "2.2"
 			}
 		},
 		"json": {
@@ -8353,16 +8353,16 @@
 			"notes": "Requires document to be in IE8+ <a href=\"http:\/\/msdn.microsoft.com\/en-us\/library\/cc288325(VS.85).aspx\">standards mode<\/a> to work in IE8.",
 			"usage_perc_y": 89.1,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 8,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 10.5,
-				"ios_saf": 4,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "10.5",
+				"ios_saf": "4.0",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"classlist": {
@@ -8464,14 +8464,14 @@
 			"notes": "",
 			"usage_perc_y": 51.61,
 			"usage_perc_a": 0,
-			"required": {
-				"firefox": 3.6,
-				"chrome": 8,
-				"safari": 5.1,
-				"opera": 11.5,
-				"ios_saf": 5,
-				"op_mob": 11.1,
-				"android": 3
+			"supported": {
+				"firefox": "3.6",
+				"chrome": "8",
+				"safari": "5.1",
+				"opera": "11.5",
+				"ios_saf": "5",
+				"op_mob": "11.1",
+				"android": "3"
 			}
 		},
 		"text-overflow": {
@@ -8577,16 +8577,16 @@
 			"usage_perc_y": 87.93,
 			"usage_perc_a": 0,
 			"keywords": "textoverflow,ellipsis",
-			"required": {
-				"ie": 6,
-				"firefox": 7,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "6",
+				"firefox": "7",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"webm": {
@@ -8693,12 +8693,12 @@
 			"usage_perc_a": 0,
 			"parent": "video",
 			"keywords": "matroska",
-			"required": {
-				"firefox": 4,
-				"chrome": 6,
-				"opera": 10.6,
-				"op_mob": 11,
-				"android": 2.3
+			"supported": {
+				"firefox": "4",
+				"chrome": "6",
+				"opera": "10.6",
+				"op_mob": "11",
+				"android": "2.3"
 			}
 		},
 		"mpeg4": {
@@ -8802,11 +8802,11 @@
 			"usage_perc_a": 1.63,
 			"parent": "video",
 			"keywords": "avc,mp4,mpv,mov,aac",
-			"required": {
-				"ie": 9,
-				"chrome": 4,
-				"safari": 3.2,
-				"ios_saf": 3.2
+			"supported": {
+				"ie": "9",
+				"chrome": "4",
+				"safari": "3.2",
+				"ios_saf": "3.2"
 			}
 		},
 		"ogv": {
@@ -8907,11 +8907,11 @@
 			"usage_perc_a": 0,
 			"parent": "video",
 			"keywords": "xiph",
-			"required": {
-				"firefox": 3.5,
-				"chrome": 4,
-				"opera": 10.5,
-				"op_mob": 11
+			"supported": {
+				"firefox": "3.5",
+				"chrome": "4",
+				"opera": "10.5",
+				"op_mob": "11"
 			}
 		},
 		"wordwrap": {
@@ -9013,16 +9013,16 @@
 			"notes": "",
 			"usage_perc_y": 94.54,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 5.5,
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10.5,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "5.5",
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.5",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"progressmeter": {
@@ -9128,10 +9128,10 @@
 			"usage_perc_y": 26.38,
 			"usage_perc_a": 16.87,
 			"parent": "forms",
-			"required": {
-				"chrome": 8,
-				"opera": 11,
-				"op_mob": 11
+			"supported": {
+				"chrome": "8",
+				"opera": "11",
+				"op_mob": "11"
 			}
 		},
 		"object-fit": {
@@ -9231,9 +9231,9 @@
 			"usage_perc_y": 1.74,
 			"usage_perc_a": 0,
 			"keywords": "objectfit,objectposition",
-			"required": {
-				"opera": 10.6,
-				"op_mob": 11
+			"supported": {
+				"opera": "10.6",
+				"op_mob": "11"
 			}
 		},
 		"xhr2": {
@@ -9336,13 +9336,13 @@
 			"usage_perc_y": 47.29,
 			"usage_perc_a": 4.51,
 			"keywords": "formdata",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 7,
-				"safari": 5,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "7",
+				"safari": "5",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		},
 		"minmaxwh": {
@@ -9445,16 +9445,16 @@
 			"usage_perc_y": 93.43,
 			"usage_perc_a": 0,
 			"keywords": "min-width,min-height,max-width,max-height",
-			"required": {
-				"ie": 7,
-				"firefox": 2,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "7",
+				"firefox": "2",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"details": {
@@ -9559,9 +9559,9 @@
 			"notes": "",
 			"usage_perc_y": 24.18,
 			"usage_perc_a": 0,
-			"required": {
-				"chrome": 12,
-				"android": 4
+			"supported": {
+				"chrome": "12",
+				"android": "4"
 			}
 		},
 		"text-stroke": {
@@ -9664,11 +9664,11 @@
 			"usage_perc_y": 32.46,
 			"usage_perc_a": 0.09,
 			"keywords": "textstroke,stroke-color,stroke-width,fill-color",
-			"required": {
-				"chrome": 4,
-				"safari": 3.1,
-				"ios_saf": 4,
-				"android": 2.1
+			"supported": {
+				"chrome": "4",
+				"safari": "3.1",
+				"ios_saf": "4.0",
+				"android": "2.1"
 			}
 		},
 		"inline-block": {
@@ -9771,16 +9771,16 @@
 			"usage_perc_y": 89.66,
 			"usage_perc_a": 5.42,
 			"keywords": "inlineblock",
-			"required": {
-				"ie": 8,
-				"firefox": 3,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 9,
-				"ios_saf": 3.2,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 2.1
+			"supported": {
+				"ie": "8",
+				"firefox": "3",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "9",
+				"ios_saf": "3.2",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "2.1"
 			}
 		},
 		"notifications": {
@@ -9882,8 +9882,8 @@
 			"notes": "Supported in Chrome through the webkitNotifications property and in Firefox nightlies through the mozNotifications property. May slip to a later version in Firefox.",
 			"usage_perc_y": 24.94,
 			"usage_perc_a": 0,
-			"required": {
-				"chrome": 5
+			"supported": {
+				"chrome": "5"
 			}
 		},
 		"stream": {
@@ -9983,8 +9983,8 @@
 			"usage_perc_y": 0.02,
 			"usage_perc_a": 0,
 			"keywords": "camera,device,getUserMedia",
-			"required": {
-				"opera": 12
+			"supported": {
+				"opera": "12"
 			}
 		},
 		"svg-img": {
@@ -10087,16 +10087,16 @@
 			"usage_perc_y": 62.72,
 			"usage_perc_a": 0.1,
 			"keywords": "svg-as-img,svg-in-img",
-			"required": {
-				"ie": 9,
-				"firefox": 4,
-				"chrome": 4,
-				"safari": 4,
-				"opera": 9,
-				"ios_saf": 4,
-				"op_mini": 5,
-				"op_mob": 10,
-				"android": 3
+			"supported": {
+				"ie": "9",
+				"firefox": "4",
+				"chrome": "4",
+				"safari": "4",
+				"opera": "9",
+				"ios_saf": "4.0",
+				"op_mini": "5.0",
+				"op_mob": "10",
+				"android": "3"
 			}
 		},
 		"datalist": {
@@ -10203,11 +10203,11 @@
 			"usage_perc_a": 0,
 			"parent": "forms",
 			"keywords": "list attribute",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"opera": 9,
-				"op_mob": 10
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"opera": "9",
+				"op_mob": "10"
 			}
 		},
 		"dataset": {
@@ -10313,14 +10313,14 @@
 			"usage_perc_y": 46.29,
 			"usage_perc_a": 48.79,
 			"keywords": "DOMStringMap",
-			"required": {
-				"firefox": 6,
-				"chrome": 7,
-				"safari": 5.1,
-				"opera": 11.1,
-				"ios_saf": 5,
-				"op_mob": 11.1,
-				"android": 3
+			"supported": {
+				"firefox": "6",
+				"chrome": "7",
+				"safari": "5.1",
+				"opera": "11.1",
+				"ios_saf": "5",
+				"op_mob": "11.1",
+				"android": "3"
 			}
 		},
 		"css-grid": {
@@ -10417,8 +10417,8 @@
 			"usage_perc_y": 0.01,
 			"usage_perc_a": 0,
 			"keywords": "grids,grid-row,grid-column",
-			"required": {
-				"ie": 10
+			"supported": {
+				"ie": "10"
 			}
 		},
 		"menu": {
@@ -10521,8 +10521,8 @@
 			"usage_perc_y": 14.96,
 			"usage_perc_a": 0,
 			"keywords": "contextmenu",
-			"required": {
-				"firefox": 8
+			"supported": {
+				"firefox": "8"
 			}
 		},
 		"rem": {
@@ -10621,14 +10621,14 @@
 			"notes": "",
 			"usage_perc_y": 65.29,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 9,
-				"firefox": 3.6,
-				"chrome": 6,
-				"safari": 5,
-				"opera": 11.6,
-				"ios_saf": 4,
-				"android": 2.1
+			"supported": {
+				"ie": "9",
+				"firefox": "3.6",
+				"chrome": "6",
+				"safari": "5",
+				"opera": "11.6",
+				"ios_saf": "4.0",
+				"android": "2.1"
 			}
 		},
 		"ttf": {
@@ -10725,14 +10725,14 @@
 			"usage_perc_y": 56.74,
 			"usage_perc_a": 9.89,
 			"parent": "fontface",
-			"required": {
-				"firefox": 3.5,
-				"chrome": 4,
-				"safari": 3.1,
-				"opera": 10,
-				"ios_saf": 4.2,
-				"op_mob": 10,
-				"android": 2.2
+			"supported": {
+				"firefox": "3.5",
+				"chrome": "4",
+				"safari": "3.1",
+				"opera": "10.0",
+				"ios_saf": "4.2",
+				"op_mob": "10",
+				"android": "2.2"
 			}
 		},
 		"touch": {
@@ -10838,11 +10838,11 @@
 			"usage_perc_y": 20.32,
 			"usage_perc_a": 1.36,
 			"keywords": "touchstart,touchend,touchmove,touchenter,touchleave,touchcancel",
-			"required": {
-				"firefox": 6,
-				"ios_saf": 3.2,
-				"op_mob": 11,
-				"android": 2.1
+			"supported": {
+				"firefox": "6",
+				"ios_saf": "3.2",
+				"op_mob": "11",
+				"android": "2.1"
 			}
 		},
 		"matchesselector": {
@@ -10941,15 +10941,15 @@
 			"notes": "",
 			"usage_perc_y": 65.94,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 9,
-				"firefox": 3.6,
-				"chrome": 4,
-				"safari": 5,
-				"opera": 11.5,
-				"ios_saf": 4,
-				"op_mob": 11.1,
-				"android": 2.2
+			"supported": {
+				"ie": "9",
+				"firefox": "3.6",
+				"chrome": "4",
+				"safari": "5",
+				"opera": "11.5",
+				"ios_saf": "4.0",
+				"op_mob": "11.1",
+				"android": "2.2"
 			}
 		},
 		"pointer-events": {
@@ -11049,12 +11049,12 @@
 			"usage_perc_y": 54.88,
 			"usage_perc_a": 0,
 			"keywords": "pointerevents",
-			"required": {
-				"firefox": 3.6,
-				"chrome": 4,
-				"safari": 4,
-				"ios_saf": 3.2,
-				"android": 2.1
+			"supported": {
+				"firefox": "3.6",
+				"chrome": "4",
+				"safari": "4",
+				"ios_saf": "3.2",
+				"android": "2.1"
 			}
 		},
 		"blobbuilder": {
@@ -11155,11 +11155,11 @@
 			"usage_perc_a": 0,
 			"ucprefix": 1,
 			"parent": "fileapi",
-			"required": {
-				"ie": 10,
-				"firefox": 6,
-				"chrome": 8,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "6",
+				"chrome": "8",
+				"android": "3"
 			}
 		},
 		"filereader": {
@@ -11259,13 +11259,13 @@
 			"usage_perc_y": 48.86,
 			"usage_perc_a": 0,
 			"parent": "fileapi",
-			"required": {
-				"ie": 10,
-				"firefox": 3.6,
-				"chrome": 6,
-				"opera": 11.1,
-				"op_mob": 11.1,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "3.6",
+				"chrome": "6",
+				"opera": "11.1",
+				"op_mob": "11.1",
+				"android": "3"
 			}
 		},
 		"filesystem": {
@@ -11366,8 +11366,8 @@
 			"usage_perc_a": 0.75,
 			"parent": "fileapi",
 			"keywords": "filewriter",
-			"required": {
-				"chrome": 13
+			"supported": {
+				"chrome": "13"
 			}
 		},
 		"bloburls": {
@@ -11468,11 +11468,11 @@
 			"usage_perc_a": 0,
 			"parent": "fileapi",
 			"keywords": "createobjecturl",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 8,
-				"android": 4
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "8",
+				"android": "4"
 			}
 		},
 		"typedarrays": {
@@ -11572,14 +11572,14 @@
 			"usage_perc_y": 48.19,
 			"usage_perc_a": 0,
 			"keywords": "float64array,dataview,uint8array",
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 7,
-				"safari": 5.1,
-				"opera": 11.6,
-				"ios_saf": 4.2,
-				"android": 4
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "7",
+				"safari": "5.1",
+				"opera": "11.6",
+				"ios_saf": "4.2",
+				"android": "4"
 			}
 		},
 		"deviceorientation": {
@@ -11678,10 +11678,10 @@
 			"notes": "Firefox 3.6, 4 and 5 support the non-standard <a href=\"https:\/\/developer.mozilla.org\/en\/DOM\/MozOrientation\">MozOrientation<\/a> event. Firefox 6+ claims support, but does not appear to work where Chrome does (tested on macbook pro).",
 			"usage_perc_y": 26.4,
 			"usage_perc_a": 22.3,
-			"required": {
-				"chrome": 7,
-				"ios_saf": 4.2,
-				"android": 3
+			"supported": {
+				"chrome": "7",
+				"ios_saf": "4.2",
+				"android": "3"
 			}
 		},
 		"script-defer": {
@@ -11780,13 +11780,13 @@
 			"notes": "",
 			"usage_perc_y": 87.27,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 5.5,
-				"firefox": 3.5,
-				"chrome": 8,
-				"safari": 5,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "5.5",
+				"firefox": "3.5",
+				"chrome": "8",
+				"safari": "5",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		},
 		"nav-timing": {
@@ -11889,11 +11889,11 @@
 			"usage_perc_y": 50.82,
 			"usage_perc_a": 0,
 			"keywords": "performance,performance.timing",
-			"required": {
-				"ie": 9,
-				"firefox": 7,
-				"chrome": 6,
-				"android": 4
+			"supported": {
+				"ie": "9",
+				"firefox": "7",
+				"chrome": "6",
+				"android": "4"
 			}
 		},
 		"audio-api": {
@@ -11998,7 +11998,7 @@
 			"notes": "Current support in Gecko\/WebKit is based on two different proposals.",
 			"usage_perc_y": 0,
 			"usage_perc_a": 42.72,
-			"required": []
+			"supported": []
 		},
 		"css-regions": {
 			"title": "CSS Regions",
@@ -12099,7 +12099,7 @@
 			"notes": "Currently supported in WebKit using -webkit-flow: \"flow_name\"; and content: -webkit-from-flow(\"flow_name\"); Supported in IE10 using an iframe with -ms-flow-into: flow_name; and -ms-flow-from: flow_name;",
 			"usage_perc_y": 0,
 			"usage_perc_a": 23.27,
-			"required": []
+			"supported": []
 		},
 		"fullscreen": {
 			"title": "Full Screen API",
@@ -12201,7 +12201,7 @@
 			"usage_perc_y": 0,
 			"usage_perc_a": 25.99,
 			"keywords": "full-screen",
-			"required": []
+			"supported": []
 		},
 		"requestanimationframe": {
 			"title": "requestAnimationFrame",
@@ -12302,10 +12302,10 @@
 			"notes": "",
 			"usage_perc_y": 42.73,
 			"usage_perc_a": 0,
-			"required": {
-				"ie": 10,
-				"firefox": 4,
-				"chrome": 10
+			"supported": {
+				"ie": "10",
+				"firefox": "4",
+				"chrome": "10"
 			}
 		},
 		"matchmedia": {
@@ -12411,13 +12411,13 @@
 			"usage_perc_y": 44.48,
 			"usage_perc_a": 0,
 			"keywords": "mediaquerylist",
-			"required": {
-				"ie": 10,
-				"firefox": 6,
-				"chrome": 9,
-				"safari": 5.1,
-				"ios_saf": 5,
-				"android": 3
+			"supported": {
+				"ie": "10",
+				"firefox": "6",
+				"chrome": "9",
+				"safari": "5.1",
+				"ios_saf": "5",
+				"android": "3"
 			}
 		}
 	},
