@@ -81,7 +81,8 @@ function filter_supported($supported_array = array(), $agents_array = array(), $
 		$filtered_agent_array = array(
 			'id' => $browser_id,
 			'name' => $agents_array[$browser_id]['browser'],
-			'version' => $supported_array[$browser_id]
+			'version' => $supported_array[$browser_id],
+			'url' => $agents_array[$browser_id]['url']
 		);
 
 		if ($browser_id === $ua_array['id']) {
@@ -89,6 +90,7 @@ function filter_supported($supported_array = array(), $agents_array = array(), $
 
 			if (!$client_array['supported']) {
 				$client_array['supported_version'] = $filtered_agent_array['version'];
+				$client_array['url'] = $filtered_agent_array['url'];
 			}
 		}
 
