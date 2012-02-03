@@ -184,9 +184,8 @@ function caniuse_icon($browser_id, $browser_name, $icon_size = 'normal') {
 
 function html_encode($supported_array = array(), $actions = array()) {
 	$icon_size = first_set(@$actions['size'], 'normal');
-	$text      = first_set(@$actions['text'], false);
-	$icon      = first_set(@$actions['icon'], false);
-	$texticon  = first_set(@$actions['texticon'], true);
+	$text      = isset($actions['text']);
+	$icon      = isset($actions['icon']);
 	$method    = $text ? 'text' : ($icon ? 'icon' : 'texticon');
 
 	$requested_feature_names                = array();

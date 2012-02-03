@@ -27,7 +27,7 @@ $return = '';
 
 // if format is html
 if ($format === 'html') {
-	$return = html_encode($filtered_supported_array);
+	$return = html_encode($filtered_supported_array, $actions);
 
 	if ($callback) {
 		$return_json = json_encode(array_merge_recursive($filtered_supported_array, array('html' => json_escape_html($return))));

@@ -1,8 +1,27 @@
 <div class="caniuse">
 	<p class="caniuse-message">
-		<%= message %>
+		<% supported %>
+		Congratulations! Your browser supports the requested features.
+		<% /supported %>
+
+		<% supported_with_upgrade %>
+		Almost there! Please update your browser to support the requested features.
+		<% /supported_with_upgrade %>
+
+		<% unsupported %>
+		Oh no! Please use another browser to use the requested features.
+		<% /unsupported %>
 	</p>
+
+	<% supported_with_upgrade %>
+	<p class="caniuse-browser">
+		<%= updated_browser_icon %>
+	</p>
+	<% /supported_with_upgrade %>
+
+	<% unsupported %>
 	<p class="caniuse-browser">
 		<%= supported_browser_icons %>
 	</p>
+	<% /unsupported %>
 </div>
