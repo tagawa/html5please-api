@@ -77,6 +77,7 @@ function filter_supported($supported_array = array(), $agents_array = array(), $
 	$browsers_array = array();
 	$client_array   = array_merge_recursive($ua_array, array('supported' => false));
 
+	// loop through the supported browsers list 
 	foreach ($supported_array as $browser_id => $browser_version) {
 		$filtered_agent_array = array(
 			'id' => $browser_id,
@@ -85,9 +86,12 @@ function filter_supported($supported_array = array(), $agents_array = array(), $
 			'url' => $agents_array[$browser_id]['url']
 		);
 
+		// if the current browser id is the client browser id 
 		if ($browser_id === $ua_array['id']) {
+			// set whether the client browser is supported
 			$client_array['supported'] = version_compare($ua_array['version'], $filtered_agent_array['version']) > 0;
 
+			// if the client browser is supported
 			if (!$client_array['supported']) {
 				$client_array['supported_version'] = $filtered_agent_array['version'];
 				$client_array['url'] = $filtered_agent_array['url'];
@@ -97,6 +101,7 @@ function filter_supported($supported_array = array(), $agents_array = array(), $
 		array_push($browsers_array, $filtered_agent_array);
 	}
 
+	// return
 	return array('client' => $client_array, 'browsers' => $browsers_array);
 }
 
