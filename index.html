@@ -16,6 +16,7 @@
 		var { background: #EEE; border: 1px solid #DDD; border-radius: 0.25em; font-style: italic; padding: 0.125em 0.25em; }
 		code { font-family: monospace, monospace; }
 		strong { font-weight: bold; }
+		a { color: #55D; text-decoration: none; }
 		</style>
 	</head>
 	<body>
@@ -30,7 +31,7 @@
 				How to use
 			</h2>
 			<p>
-				url: <code>[ features ].[ format ][ ? [ actions ] ]</code>
+				url: <code>[ features ].[ format ][ ? [ options ] ]</code>
 			</p>
 			<h3>
 				features
@@ -45,10 +46,10 @@
 				The format the output will be returned as, like <var>json</var> or <var>xml</var>.
 			</p>
 			<h3>
-				actions
+				options
 			</h3>
 			<p>
-				The actions to be applied to the data, like <var>callback=myFunction</var> or <var>fail=1</var>.
+				The options to be applied to the data, like <var>callback=myFunction</var> or <var>nostyle</var>.
 			</p>
 		</section>
 		<section>
@@ -56,30 +57,53 @@
 				Examples
 			</h2>
 			<p>
-				<code><a href="canvas+json.js?callback=myFunction">canvas+json.js?callback=myFunction</a></code>: detect browsers supporting both the 'canvas' and 'json' features and output the results as JavaScript wrapped it in a 'myFunction' callback.
+				<code><a href="svg.html">svg.html</a></code>: displays the results of an <var>svg</var> feature test as a button in HTML.
 			</p>
 			<p>
-				<code><a href="apng.html?fail=1">apng.html?fail=1</a></code>: detect browsers supporting 'apng' feature and output the results as HTML as though the client browser had failed the test.
+				<code><a href="canvas+json.js?callback=myFunction">canvas+json.js?callback=myFunction</a></code>: displays the results of a <var>canvas+json</var> feature test in JavaScript, wrapped in a JSONP <var>myFunction</var> callback.
+			</p>
+			<p>
+				<code><a href="apng.html?texticon">apng.html?texticon</a></code>: displays the results of a <var>apng</var> feature test as text with icons in HTML.
 			</p>
 		</section>
 		<section>
 			<h2>
-				Actions
+				Formats
 			</h2>
 			<p>
-				<code><strong>callback=[ functionName ]</strong></code>: the JavaScript output will be wrapped in this function name.
+				<code><strong>html</strong></code>: the output will be valid HTML with the mimetype of <var>text/html</var>.
 			</p>
 			<p>
-				<code><strong>size=[ large | small | regular ]</strong></code>: the HTML output will use this size for the browser icons.
+				<code><strong>js</strong></code>: the output will be valid JavaScript with the mimetype of <var>text/javascript</var>.
 			</p>
 			<p>
-				<code><strong>text</strong></code>: the HTML output will include text about the browsers.
+				<code><strong>json</strong></code>: the output will be valid JSON with the mimetype of <var>text/json</var>.
 			</p>
 			<p>
-				<code><strong>icon</strong></code>: the HTML output will include the browser icons.
+				<code><strong>xml</strong></code>: the output will be valid XML with the mimetype of <var>text/xml</var>.
+			</p>
+		</section>
+		<section>
+			<h2>
+				Options
+			</h2>
+			<p>
+				<code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.
 			</p>
 			<p>
-				<code><strong>texticon</strong></code>: the HTML output will include text about browsers and icons.
+				<code><strong>button</strong></code>: the default, the HTML will be optimized for button output.
+			</p>
+			<p>
+				<code><strong>text</strong></code>: the HTML will be optimized for text output.
+			</p>
+			<p>
+				<code><strong>icon</strong></code>: the HTML will be optimized for icon output.
+			</p>
+			<p>
+				<code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.
+			</p>
+			<p>
+				<code><strong>nostyle</strong></code>: the HTML will not include the stylesheet.
 			</p>
 		</section>
 	</body>

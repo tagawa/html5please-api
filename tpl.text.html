@@ -1,27 +1,30 @@
 <div class="caniuse">
-	<p class="caniuse-message">
+	<div class="caniuse-msg">
 		<% supported %>
-		Congratulations! Your browser supports the requested features.
+		<h6>Congratulations!</h6>
+		<p>Your browser supports the requested features.</p>
 		<% /supported %>
 
 		<% supported_with_upgrade %>
-		Almost there! Please update your browser to support the requested features.
+		<h6>This demo is not fully supported.</h6>
+		<p><a class="caniuse-url" href="<%= browserurl %>" rel="external" target="_blank">Please update to the latest version of your browser.</a></p>
 		<% /supported_with_upgrade %>
 
 		<% unsupported %>
-		Oh no! Please use another browser to use the requested features.
+		<h6>This demo is not fully supported.</h6>
+		<p>Please upgrade to one of the following browsers.</p>
 		<% /unsupported %>
-	</p>
+	</div>
 
 	<% supported_with_upgrade %>
-	<p class="caniuse-browser">
-		<%= updated_browser_name %>
-	</p>
+	<div class="caniuse-agts">
+		<%= alternatives %>
+	</div>
 	<% /supported_with_upgrade %>
 
 	<% unsupported %>
-	<p class="caniuse-browser">
-		<%= supported_browser_names %>
+	<p class="caniuse-agts">
+		<%= alternatives %>
 	</p>
 	<% /unsupported %>
 </div>

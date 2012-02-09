@@ -1,0 +1,45 @@
+<div class="caniuse">
+	<% supported %>
+	<div class="caniuse-ico caniuse-ico-<%= browserid %>"></div>
+	<div class="caniuse-msg">
+		<h6>Congratulations!</h6>
+		<p>Your browser supports the requested features.</p>
+	</div>
+	<% /supported %>
+
+	<% supported_with_upgrade %>
+	<div class="caniuse-ico caniuse-ico-<%= browserid %>"></div>
+	<div class="caniuse-msg">
+		<h6>This demo is not fully supported.</h6>
+		<p><a class="caniuse-url" href="<%= browserurl %>" rel="external" target="_blank">Please update to the latest version of your browser.</a></p>
+	</div>
+	<% /supported_with_upgrade %>
+
+	<% unsupported %>
+	<div class="caniuse-ico"></div>
+	<div class="caniuse-msg">
+		<h6>This demo is not fully supported.</h6>
+		<p>Please upgrade to one of the following browsers.</p>
+	</div>
+	<% /unsupported %>
+
+	<div class="caniuse-nfo">
+		<% unsupported %>
+		<div class="caniuse-browsers">
+			<%= alternatives %>
+		</div>
+		<% /unsupported %>
+		<% supported_with_upgrade %>
+		<div class="caniuse-browsers">
+			<%= alternatives %>
+		</div>
+		<% /supported_with_upgrade %>
+		<div class="caniuse-features">
+			<h6>
+				Requested features
+			</h6>
+
+			<%= features %>
+		</div>
+	</div>
+</div>

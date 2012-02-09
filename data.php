@@ -2,53 +2,110 @@
 
 require_once 'data.methods.php';
 
-// caniuse/[ features ].[ format ][ ? [ actions ] ]
+/* =============================================================================
+   Main
+   ========================================================================== */
 
-$features = explode(' ', first_set(@$_GET['features'], '')); unset($_GET['features']);
-$method   = first_set(@$_GET['method'], 'display'); unset($_GET['method']);
-$callback = first_set(@$_GET['callback']); unset($_GET['callback']);
-$format   = first_set(@$_GET['format'], 'js'); unset($_GET['format']);
-$required = isset($_GET['required']); unset($_GET['required']);
-$actions  = $_GET;
-$mime     = mime_type($callback ? 'js' : $format);
-$ua       = ua_detect();
+// Get Format String
+$format_string            = first_match('/(html|js|json|xml)/', @$_GET['format'], 'js');
 
-header('Content-Type: ' . $mime);
+// Get Callback String
+$callback_string          = @$_GET['callback'];
 
-$ua_array = ua_detect();
+// Get Requested Features List
+$requested_features_array = explode(' ', @$_GET['features']);
 
-$data_array = get_file_json('data.json');
+// Get Requested Style String
+$requested_style_string   = (
+	isset($_GET['texticon']) ? 'texticon' : (
+		isset($_GET['text']) ? 'text' : (
+			isset($_GET['icon']) ? 'icon' : 'button'
+		)
+	)
+);
 
-$filtered_data_array = filter_data($features, $data_array['data']);
+// Get Requested CSS Boolean
+$requested_style_boolean    = !isset($_GET['nostyle']);
 
-$filtered_supported_array = filter_supported($filtered_data_array['supported'], $data_array['agents'], $ua_array);
+// Get JSON Arrays
+$agents_array       = get_cached_array('agents',    $requested_features_array);
+$support_array      = get_cached_array('support',   $requested_features_array);
+$features_array     = get_cached_array('features',  $requested_features_array);
 
-$return = '';
+// Get User Agent Array
+$user_agent_array   = get_user_agent_array($agents_array);
 
-// if format is html
-if ($format === 'html') {
-	$return = html_encode($filtered_supported_array, $actions);
+// Get Extended Arrays
+$alternatives_array = get_alternatives_array($agents_array, $support_array, $user_agent_array);
+$upgradable_array   = get_upgradable_array($support_array, $user_agent_array);
+$unsupported_array  = get_unsupported_array($support_array, $user_agent_array);
 
-	if ($callback) {
-		$return_json = json_encode(array_merge_recursive($filtered_supported_array, array('html' => json_escape_html($return))));
-		$return = $callback . '(' . $return_json . ')';
+// Get Supporting Variables
+$supported_string   = @$support_array['agents'][$user_agent_array['id']];
+$supported_boolean  = $supported_string && version_compare($supported_string, $user_agent_array['version']) < 1;
+$error_boolean      = isset($support_array['error']);
+
+// Set Return Array
+if (!$error_boolean) {
+	$return_array   = array('current' => $user_agent_array, 'features' => $features_array, 'supported' => $supported_boolean);
+} else {
+	$return_array   = $support_array;
+}
+
+// Extend Return Array
+if ($supported_boolean) {
+	$return_array['alternatives'] = $alternatives_array;
+} else if (!$error_boolean) {
+	if (isset($upgradable_array)) {
+		$return_array['upgradable'] = $upgradable_array;
 	}
+
+	$return_array['unsupported'] = $unsupported_array;
+	$return_array['alternatives'] = $alternatives_array;
 }
 
-// if format is js or json
-if ($format === 'js' || $format === 'json') {
-	$return = json_encode($filtered_supported_array);
+// Ouput
+if ($format_string === 'js' && $callback_string) {
+	$return_string = json_encode($return_array);
 
-	if ($callback) {
-		$return = $callback . '(' . $return . ')';
-	}
+	header('Content-Type: text/javascript');
+
+	exit($callback_string . '(' . $return_string . ')');
+} elseif ($format_string === 'js') {
+	$return_string = json_encode($return_array);
+
+	header('Content-Type: text/javascript');
+
+	exit($return_string);
+} elseif ($format_string === 'html' && $callback_string) {
+	$html = html_encode($return_array, $requested_style_string);
+
+	$return_array['html'] = $html;
+
+	$return_string = json_encode($return_array);
+
+	header('Content-Type: text/javascript');
+
+	exit($callback_string . '(' . $return_string . ')');
+} elseif ($format_string === 'html') {
+
+	$html = html_encode($return_array, $requested_style_string, $requested_style_boolean);
+
+	$html_container = file_get_contents('tpl.html.html');
+
+	$html_container = preg_replace('/<%= title %>/', 'Can I Use API', $html_container);
+	$html_container = preg_replace('/<%= content %>/', $html, $html_container);
+
+	header('Content-Type: text/html');
+
+	print($html_container);
+	exit();
+} elseif ($format_string === 'xml') {
+	header('Content-Type: text/xml');
+
+	$xml = xml_encode($return_array);
+
+	exit($xml);
 }
-
-// if format is xml
-if ($format === 'xml') {
-	$return = xml_encode($filtered_supported_array);
-}
-
-exit($return);
 
 ?>

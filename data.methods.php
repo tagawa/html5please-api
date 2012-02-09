@@ -1,284 +1,382 @@
 <?php
 
-/* --------------------------------------------------------------------------
+/* =============================================================================
    Helper Methods
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 function is_set($val = undefined) {
 	return isset($val);
-}
-
-function is_empty($val = undefined) {
-	return !isset($val) || (strcmp(trim((string) $val), '') == 0);
-}
-
-function is_filled($val = undefined) {
-	return !is_empty($val);
 }
 
 function first_set() {
 	return reset(array_filter(func_get_args(), 'is_set'));
 }
 
-function first_filled() {
-	return reset(array_filter(func_get_args(), 'is_filled'));
+function first_set_in_array($array = array()) {
+	return reset(array_filter($array, 'first_set'));
 }
 
-function first_exists() {
-	return reset(array_filter(func_get_args(), 'file_exists'));
+function first_match($pattern = '', $subject = '', $else_string = null) {
+	preg_match($pattern, $subject, $matches);
+
+	array_shift($matches);
+	array_push($matches, $else_string);
+
+	return first_set_in_array($matches);
 }
 
 function get_file_json($filename = '', $assoc = true) {
 	return json_decode(file_get_contents($filename), $assoc);
 }
 
-/* --------------------------------------------------------------------------
-   Specific Methods
-   -------------------------------------------------------------------------- */
+function get_cached_array($array_string = '', $requested_features_array = array()) {
+	$json_filename  = 'data.json';
+	if ($array_string === 'support') {
+		$array_filename = 'cache/' . $array_string . '-' . implode('_', $requested_features_array) . '.php';
+	} elseif ($array_string === 'features') {
+		$array_filename = 'cache/' . $array_string . '-' . implode('_', $requested_features_array) . '.php';
+	} else {
+		$array_filename = 'cache/' . $array_string . '.php';
+	}
 
-function filter_data($features_array = array(), $data_array = array()) {
-	// create a return array
-	$return = array('data' => array(), 'supported' => array());
+	$json_filetime  = @filemtime($json_filename);
+	$array_filetime = @filemtime($array_filename);
 
-	// loop through the features
-	foreach ($features_array as $index => $feature_name) {
-		// if feature does exist in data
-		if (isset($data_array[$feature_name])) {
-			// set feature data and supported
-			$feature_data    =& $data_array[$feature_name];
-			$feature_supported  =& $feature_data['supported'];
+	$array_function = 'get_' . $array_string . '_array';
 
-			// add to return these feature data
-			$return['data'][$feature_name] = $feature_data;
+	if ($json_filetime != $array_filetime) {
+		$json_array = get_file_json($json_filename);
 
-			// loop through the feature supported
-			foreach ($feature_supported as $browser_id => &$browser_version) {
-				// if return does not have a supported section then add it
-				if (empty($return['supported'])) {
-					$return['supported'] = $feature_supported;
-				}
+		$array_array = $array_function($json_array, $requested_features_array);
 
-				// if return already has a supported section for this browser
-				if (isset($data_array_new['supported'][$browser_id])) {
-					// compare browser versions between the return and the feature supported and use the newest
-					$current_version = $data_array_new['supported'][$browser_id];
-					$return_version  = $return['supported'][$browser_id];
-					$return['supported'][$browser_id] = version_compare($current_version, $return_version) ? $return_version : $current_version;
-				}
+		file_put_contents($array_filename, '<?php $array_array = ' . var_export($array_array, true) . '; ?>');
+
+		touch($array_filename, $json_filetime);
+	} else {
+		include $array_filename;
+	}
+
+	return $array_array;
+}
+
+
+
+/* =============================================================================
+   Get Agents Array
+   ========================================================================== */
+
+function get_agents_array(&$json_array = array()) {
+	$return_array = array();
+	$agents_array = &$json_array['agents'];
+
+	foreach ($agents_array as $agentid_string => &$agent_array) {
+		$return_array[$agentid_string] = $agent_array;
+
+		unset($return_array[$agentid_string]['abbr']);
+		unset($return_array[$agentid_string]['versions']);
+	}
+
+	return $return_array;
+}
+
+
+
+/* =============================================================================
+   Get Features Array
+   ========================================================================== */
+
+function get_features_array(&$json_array = array(), &$requested_features_array = array()) {
+	$return_array = array();
+	$data_array   = &$json_array['data'];
+
+	if ($requested_features_array) {
+		foreach ($requested_features_array as $feature_string) {
+			if (isset($data_array[$feature_string])) {
+				$return_array[$feature_string] = $data_array[$feature_string]['title'];
+			} else {
+				return;
 			}
 		}
 	}
 
-	// return
-	return $return;
+	return $return_array;
 }
 
-function filter_supported($supported_array = array(), $agents_array = array(), $ua_array = array()) {
-	$browsers_array = array();
-	$client_array   = array_merge_recursive($ua_array, array('supported' => false));
 
-	// loop through the supported browsers list 
-	foreach ($supported_array as $browser_id => $browser_version) {
-		$filtered_agent_array = array(
-			'id' => $browser_id,
-			'name' => $agents_array[$browser_id]['browser'],
-			'version' => $supported_array[$browser_id],
-			'url' => $agents_array[$browser_id]['url']
-		);
 
-		// if the current browser id is the client browser id 
-		if ($browser_id === $ua_array['id']) {
-			// set whether the client browser is supported
-			$client_array['supported'] = version_compare($ua_array['version'], $filtered_agent_array['version']) > 0;
+/* =============================================================================
+   Get Support Array
+   ========================================================================== */
 
-			// if the client browser is supported
-			if (!$client_array['supported']) {
-				$client_array['supported_version'] = $filtered_agent_array['version'];
-				$client_array['url'] = $filtered_agent_array['url'];
-			}
-		}
+function get_support_array($json_array = array(), &$requested_features_array = array()) {
+	$data_array = &$json_array['data'];
 
-		array_push($browsers_array, $filtered_agent_array);
-	}
-
-	// return
-	return array('client' => $client_array, 'browsers' => $browsers_array);
-}
-
-function ua_array($id, $name, $version) {
-	return array('id' => $id, 'name' => $name, 'version' => $version);
-}
-
-function ua_detect($ua = null) {
-	$ua = isset($ua) ? $ua : $_SERVER['HTTP_USER_AGENT'];
-
-	$ua_chrome  = '/chrome\/([\d\.]+)/i';
-	$ua_firefox = '/firefox\/([\d\.]+)/i';
-	$ua_ie      = '/msie[\W\w]*?([\d\.]+)/i';
-	$ua_safari  = '/version\/([\d\.]+)[\W\w]*?safari/i';
-	$ua_opera   = '/opera[\W\w]*?version\/([\d\.]+)/i';
-	$ua_oopera  = '/opera[\W\w]*?([\d\.]+)/i';
-
-	$ua_mobile  = '/blackberry|mobile|tablet/i';
-
-	$is_chrome  = preg_match($ua_chrome, $ua, $vs_chrome);
-	$is_firefox = preg_match($ua_firefox, $ua, $vs_firefox);
-	$is_ie      = preg_match($ua_ie, $ua, $vs_ie);
-	$is_safari  = preg_match($ua_safari, $ua, $vs_safari);
-	$is_opera   = preg_match($ua_opera, $ua, $vs_opera);
-	$is_oopera  = preg_match($ua_oopera, $ua, $vs_oopera);
-
-	$is_mobile  = !!preg_match($ua_mobile, $ua);
-
-	$ua_array   = $is_chrome ? ua_array('chrome', 'Chrome', $vs_chrome[1]) : (
-		$is_firefox ? ua_array('firefox', 'Firefox', $vs_firefox[1]) : (
-			$is_ie ? ua_array('ie', 'Internet Explorer', $vs_ie[1]) : (
-				$is_safari ? ua_array('safari', 'Safari', $vs_safari[1]) : (
-					$is_opera ? ua_array('opera', 'Opera', $vs_opera[1]) : (
-						$is_oopera ? ua_array('opera', 'Opera', $vs_oopera[1]) : ua_array('unknown', 'Unknown', '0')
-					)
-				)
-			)
-		)
+	$agentslist_array = array(
+		'ie' => true,
+		'firefox' => true,
+		'chrome' => true,
+		'safari' => true,
+		'opera' => true,
+		'ios_saf' => true,
+		'op_mini' => true,
+		'op_mob' => true,
+		'android' => true
 	);
 
-	return array_merge_recursive($ua_array, array('mobile' => $is_mobile));
+	$return_array = array(
+		'by_feature' => array(),
+		'by_agent' => array(),
+		'agents' => array()
+	);
+
+	$error_array = array();
+
+	$return_by_feature_array =& $return_array['by_feature'];
+	$return_by_agent_array   =& $return_array['by_agent'];
+	$return_agents_array     =& $return_array['agents'];
+
+	foreach ($requested_features_array as &$feature_string) {
+		$feature_array = @$data_array[$feature_string];
+		$stats_array   = @$feature_array['stats'];
+
+		if ($stats_array) {
+			$return_by_feature_array[$feature_string] = array();
+
+			foreach ($stats_array as $agentid_string => $agentstats_array) {
+				$version = get_agent_support_array($agentstats_array);
+
+				if ($version) {
+					$return_by_feature_array[$feature_string][$agentid_string] = $version;
+					$return_by_agent_array[$agentid_string][$feature_string] = $version;
+
+					if ($agentslist_array[$agentid_string]) {
+						$return_agents_array[$agentid_string] = version_compare(
+							@$return_agents_array[$agentid_string],
+							$version
+						) ? $version : @$return_agents_array[$agentid_string];
+					}
+				} else {
+					$agentslist_array[$agentid_string] = false;
+					unset($return_agents_array[$agentid_string]);
+				}
+			}
+		} else {
+			array_push($error_array, $feature_string);
+		}
+	}
+
+	if (!empty($error_array)) {
+		return array('supported' => false, 'error' => $error_array);
+	} else {
+		return $return_array;
+	}
 }
 
-function mime_type($extension = null) {
-	if ($extension == 'html') {
-		return 'text/html';
+function get_agent_support_array($agent_stats_array = array()) {
+	foreach ($agent_stats_array as $version => $supported) {
+		if (preg_match('/y/', $supported)) {
+			return $version;
+		}
 	}
-	if ($extension == 'js') {
-		return 'text/javascript';
+
+	return false;
+}
+
+
+
+/* =============================================================================
+   Get Unsupported Array
+   ========================================================================== */
+
+function get_unsupported_array(&$support_array = array(), &$user_agent_array = array()) {
+	$return_array = array();
+
+	if ($support_array && @$support_array['by_feature']) {
+		foreach($support_array['by_feature'] as $feature_string => &$feature_array) {
+			if (
+				!isset($feature_array[$user_agent_array['id']]) ||
+				version_compare(@$feature_array[$user_agent_array['id']], @$user_agent_array['version']) > -1
+			) {
+				array_push($return_array, $feature_string);
+			}
+		}
+	} else {
+		return;
 	}
-	if ($extension == 'json') {
-		return 'text/json';
-	}
-	if ($extension == 'xml') {
-		return 'text/xml';
+
+	return $return_array;
+}
+
+
+
+/* =============================================================================
+   Get User Agent Array
+   ========================================================================== */
+
+function get_user_agent_array($agents_array) {
+	$user_agent_string = $_SERVER['HTTP_USER_AGENT'];
+
+	foreach($agents_array as $agent_string => &$agent_array) {
+		$agent_sniffer = $agent_array['sniffer'];
+
+		$agent_boolean = preg_match($agent_sniffer, $user_agent_string, $agent_matches);
+
+		if ($agent_boolean) {
+			$return_array = $agent_array;
+			$return_array['version'] = first_set(@$agent_matches[1], @$agent_matches[2]);
+			$return_array['id'] = $agent_string;
+
+			unset($return_array['prefix']);
+			unset($return_array['sniffer']);
+
+			return $return_array;
+		}
 	}
 }
 
-/* --------------------------------------------------------------------------
-   JSON Methods
-   -------------------------------------------------------------------------- */
 
-function json_escape_html($html = '') {
-	$html = preg_replace('/\n/', '\\n', $html);
-	$html = preg_replace('/\r/', '\\r', $html);
-	$html = preg_replace('/\t/', '\\t', $html);
-	$html = preg_replace('/"/', '\\"', $html);
+
+/* =============================================================================
+   Get Alternatives Array
+   ========================================================================== */
+
+function get_alternatives_array(&$agents_array = array(), &$support_array = array(), &$user_agent_array = array()) {
+	$return_array = array();
+	$user_agent_id_string   = $user_agent_array['id'];
+	$user_agent_type_string = $user_agent_array['type'];
+
+	if (isset($support_array['agents'])) {
+		foreach ($support_array['agents'] as $agent_string => &$agent_version) {
+			if ($user_agent_id_string !== $agent_string && $user_agent_type_string === $agents_array[$agent_string]['type']) {
+				$return_array[$agent_string] = $agents_array[$agent_string];
+
+				unset($return_array[$agent_string]['prefix']);
+				unset($return_array[$agent_string]['sniffer']);
+				unset($return_array[$agent_string]['type']);
+			}
+		}
+	} else {
+		return;
+	}
+
+	return $return_array;
+}
+
+
+
+/* =============================================================================
+   Get Upgradable Array
+   ========================================================================== */
+
+function get_upgradable_array(&$support_array = array(), $user_agent_array = array()) {
+	$return_array = $user_agent_array;
+
+	unset($return_array['type']);
+	unset($return_array['version']);
+
+	return !!@$support_array['agents'][$user_agent_array['id']] ? $return_array : false;
+}
+
+
+
+/* =============================================================================
+   HTML Encode
+   ========================================================================== */
+
+function html_encode_agents(&$agents_array, $requested_style_string = '') {
+	$html = '';
+
+	if ($agents_array) {
+		foreach ($agents_array as $agent_string => &$agent_array) {
+			$html .= html_encode_agent($agent_string, $agent_array, $requested_style_string);
+		}
+	}
 
 	return $html;
 }
 
-/* --------------------------------------------------------------------------
-   HTML Methods
-   -------------------------------------------------------------------------- */
+function html_encode_agent(&$agent_string = '', &$agent_array, $requested_style_string = '') {
+	$html = '';
+	$html .= '<a class="caniuse-agt" href="' . @$agent_array['url'] . '" rel="external" target="_blank">';
 
-function caniuse_link($browser_name, $browser_url) {
-	return '<a class="caniuse-link" href="' . $browser_url . '" rel="external" target="_blank">' . $browser_name . '</a>';
-}
-
-function caniuse_icon($browser_id, $browser_name, $icon_size = 'normal') {
-	$icon_size = $icon_size === 'large' ? '64' : $icon_size === 'small' ? '16' : '32';
-
-	return '<img class="caniuse-image" alt="' . $browser_name . '" src="i/' . $browser_id . '-' . $icon_size . '.png" width="' . $icon_size . '" height="' . $icon_size . '">';
-}
-
-function html_encode($supported_array = array(), $actions = array()) {
-	$icon_size = first_set(@$actions['size'], 'normal');
-	$text      = isset($actions['text']);
-	$icon      = isset($actions['icon']);
-	$method    = $text ? 'text' : ($icon ? 'icon' : 'texticon');
-
-	$requested_feature_names                = array();
-	$supported_browser_names                = array();
-	$supported_browser_names_versions       = array();
-	$supported_browser_icons                = array();
-	$supported_browser_icons_names          = array();
-	$supported_browser_icons_names_versions = array();
-
-	$client_array  = $supported_array['client'];
-	$browser_array = $supported_array['browsers'];
-
-	$supported               = !!@$client_array['supported'];
-	$supported_with_upgrade  = !!@$client_array['supported_version'];
-	$unsupported             = !$supported && !$supported_with_upgrade;
-
-	$client_id      = $client_array['id'];
-	$client_name    = $client_array['name'];
-	$client_version = @$client_array['supported_version'];
-	$client_url     = @$client_array['url'];
-	$client_icon = caniuse_icon($client_id, $client_name, $icon_size);
-	$client_name_version = $client_name . ' ' . $client_version;
-
-	$updated_browser_name = caniuse_link($client_name, $client_url);
-	$updated_browser_name_version = caniuse_link($client_name_version, $client_url);
-	$updated_browser_icon = caniuse_link($client_icon, $client_url);
-	$updated_browser_icon_name = caniuse_link($client_icon . '<br><span class="caniuse-text">' . $client_name . '</span>', $client_url);
-	$updated_browser_icon_name_version = caniuse_link($client_icon . '<br><span class="caniuse-text">' . $client_name_version . '</span>', $client_url);
-
-	foreach ($browser_array as &$browser) {
-		$browser_id      = $browser['id'];
-		$browser_name    = $browser['name'];
-		$browser_url     = @$browser['url'];
-		$browser_version = $browser['version'];
-		$browser_name_version = $browser_name . ' ' . $browser_version;
-		$browser_icon = caniuse_icon($browser_id, $browser_name, $icon_size);
-
-		$link_browser_name = caniuse_link($browser_name, $browser_url);
-		$link_browser_name_version = caniuse_link($browser_name_version, $browser_url);
-		$link_browser_icon = caniuse_link($browser_icon, $browser_url);
-		$link_browser_icon_name = caniuse_link($browser_icon . '<br><span class="caniuse-text">' . $browser_name . '</span>', $browser_url);
-		$link_browser_icon_name_version = caniuse_link($browser_icon . '<br><span class="caniuse-text">' . $browser_name_version . '</span>', $browser_url);
-
-		array_push($supported_browser_names, $link_browser_name);
-		array_push($supported_browser_names_versions, $link_browser_name_version);
-		array_push($supported_browser_icons, $link_browser_icon);
-		array_push($supported_browser_icons_names, $link_browser_icon_name);
-		array_push($supported_browser_icons_names_versions, $link_browser_icon_name_version);
+	if ($requested_style_string !== 'text') {
+		$html .= '<span class="caniuse-agt-ico caniuse-ico-' . @$agent_string . '"></span>';
 	}
 
-	$html = preg_replace('/[\n\r\t]/', '', file_get_contents('tpl.' . $method . '.html'));
-
-	if ($supported) {
-		$html = preg_replace('/<% supported %>|<% \/supported %>/', '', $html);
-		$html = preg_replace('/<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
-		$html = preg_replace('/<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+	if ($requested_style_string !== 'icon') {
+		$html .= '<span class="caniuse-agt-ttl">' . @$agent_array['name'] . '</span>';
 	}
-	else if ($supported_with_upgrade) {
-		$html = preg_replace('/<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
-		$html = preg_replace('/<% supported_with_upgrade %>|<% \/supported_with_upgrade %>/', '', $html);
-		$html = preg_replace('/<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+
+	$html .= '</a>';
+
+	return $html;
+}
+
+function html_encode_feature($feature_string = '', $feature_name_string = '', $supported = true) {
+	$html = '';
+	$html .= '<a class="' . ($supported ? 'caniuse-yes' : 'caniuse-no') . '" href="http://caniuse.com/#search=' . $feature_string .'" rel="external" target="_blank">';
+	$html .= $feature_name_string;
+	$html .= '</a>';
+
+	return $html;
+}
+
+function html_encode_features(&$return_array) {
+	$features_array     = $return_array['features'];
+	$unsupported_string = @implode(' ', $return_array['unsupported']);
+
+	$html_array = array();
+
+	foreach($features_array as $feature_string => &$feature_name_string) {
+		array_push($html_array, html_encode_feature($feature_string, $feature_name_string, !preg_match('/' . $feature_string . '/', $unsupported_string)));
+	}
+
+	return implode(', ', $html_array);
+}
+
+function html_encode(&$return_array = array(), $requested_style_string = '', $requested_style_boolean = true) {
+	$html = '';
+
+	if (isset($return_array['error'])) {
+		return $html;
+	}
+
+	if ($requested_style_boolean) {
+		$html .= '<style>' . preg_replace('/[\s]+/', ' ', @file_get_contents('style.' . $requested_style_string . '.css')) . '</style>';
+	}
+
+	$html .= file_get_contents('tpl.' . $requested_style_string . '.html');
+
+	if ($return_array['supported']) {
+		$html = preg_replace('/\s*<% supported %>|<% \/supported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
+		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+	} elseif ($return_array['upgradable']) {
+		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported_with_upgrade %>|<% \/supported_with_upgrade %>/', '', $html);
+		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
 	}
 	else {
-		$html = preg_replace('/<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
-		$html = preg_replace('/<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
-		$html = preg_replace('/<% unsupported %>|<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
+		$html = preg_replace('/\s*<% unsupported %>|<% \/unsupported %>/', '', $html);
 	}
 
-	$html = preg_replace('/<%= requested_feature_names %>/', implode(' &amp; ', $requested_feature_names), $html);
+	$html = preg_replace('/<%= browserid %>/', $return_array['current']['id'], $html);
+	$html = preg_replace('/<%= browserurl %>/', $return_array['current']['url'], $html);
+	$html = preg_replace('/<%= alternatives %>/', html_encode_agents($return_array['alternatives'], $requested_style_string), $html);
+	$html = preg_replace('/<%= features %>/', html_encode_features($return_array), $html);
 
-	$html = preg_replace('/<%= updated_browser_name %>/', $updated_browser_name, $html);
-	$html = preg_replace('/<%= updated_browser_name_version %>/', $updated_browser_name_version, $html);
-	$html = preg_replace('/<%= updated_browser_icon %>/', $updated_browser_icon, $html);
-	$html = preg_replace('/<%= updated_browser_icon_name %>/', $updated_browser_icon_name, $html);
-	$html = preg_replace('/<%= updated_browser_icon_name_version %>/', $updated_browser_icon_name_version, $html);
-
-	$html = preg_replace('/<%= supported_browser_names %>/', implode(' or ', $supported_browser_names), $html);
-	$html = preg_replace('/<%= supported_browser_names_versions %>/', implode(' or ', $supported_browser_names_versions), $html);
-	$html = preg_replace('/<%= supported_browser_icons %>/', implode('', $supported_browser_icons), $html);
-	$html = preg_replace('/<%= supported_browser_icons_names %>/', implode('', $supported_browser_icons_names), $html);
-	$html = preg_replace('/<%= supported_browser_icons_names_versions %>/', implode('', $supported_browser_icons_names_versions), $html);
+	$html = preg_replace('/[\s]+/', ' ', $html);
 
 	return $html;
 }
 
-/* --------------------------------------------------------------------------
-   XML Methods
-   -------------------------------------------------------------------------- */
+
+
+/* =============================================================================
+   XML Encode
+   ========================================================================== */
 
 function is_assoc($array) {
 	return is_array($array) && (count( $array )==0 || 0 !== count(array_diff_key($array, array_keys(array_keys($array)))));

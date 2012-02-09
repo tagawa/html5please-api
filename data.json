@@ -18,76 +18,85 @@
 	},
 	"agents": {
 		"ie": {
-			"browser": "Internet Explorer",
+			"name": "Internet Explorer",
 			"abbr": "IE",
 			"prefix": "ms",
 			"type": "desktop",
 			"versions": [null, null, null, null, null, null, null, null, "5.5", "6", "7", "8", "9", "10", null],
-			"url": "http:\/\/www.microsoft.com\/windows\/internet-explorer\/"
+			"url": "http:\/\/www.microsoft.com\/windows\/internet-explorer\/",
+			"sniffer": "/msie[\\W\\w]*?([\\d\\.]+)/i"
 		},
 		"firefox": {
-			"browser": "Firefox",
+			"name": "Firefox",
 			"abbr": "FF",
 			"prefix": "moz",
 			"type": "desktop",
 			"versions": [null, null, null, "2", "3", "3.5", "3.6", "4", "5", "6", "7", "8", "9", "10", "11"],
-			"url": "http:\/\/www.firefox.com\/"
+			"url": "http:\/\/www.firefox.com\/",
+			"sniffer": "/firefox\\/([\\d\\.]+)/i"
 		},
 		"chrome": {
-			"browser": "Chrome",
+			"name": "Chrome",
 			"abbr": "Chr.",
 			"prefix": "webkit",
 			"type": "desktop",
 			"versions": ["4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
-			"url": "http:\/\/www.google.com\/chrome"
+			"url": "http:\/\/www.google.com\/chrome",
+			"sniffer": "/chrome\\/([\\d\\.]+)/i"
 		},
 		"safari": {
-			"browser": "Safari",
+			"name": "Safari",
 			"abbr": "Saf.",
 			"prefix": "webkit",
 			"type": "desktop",
 			"versions": [null, null, null, null, null, null, null, null, "3.1", "3.2", "4", "5", "5.1", "6", null],
-			"url": "http:\/\/www.apple.com\/safari\/"
+			"url": "http:\/\/www.apple.com\/safari\/",
+			"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i"
 		},
 		"opera": {
-			"browser": "Opera",
+			"name": "Opera",
 			"abbr": "Op.",
 			"prefix": "o",
 			"type": "desktop",
 			"versions": [null, null, null, null, "9", "9.5-9.6", "10.0-10.1", "10.5", "10.6", "11", "11.1", "11.5", "11.6", "12", null],
-			"url": "http:\/\/www.opera.com\/"
+			"url": "http:\/\/www.opera.com\/",
+			"sniffer": "/opera[\\W\\w]*?version\\/([\\d\\.]+)|opera[\\W\\w]*?([\\d\\.]+)/i"
 		},
 		"ios_saf": {
-			"browser": "iOS Safari",
+			"name": "iOS Safari",
 			"abbr": "iOS",
 			"prefix": "webkit",
 			"type": "mobile",
 			"versions": [null, null, null, null, null, null, null, null, null, "3.2", "4.0-4.1", "4.2-4.3", "5", null, null],
-			"url": "http:\/\/www.apple.com\/iphone\/"
+			"url": "http:\/\/www.apple.com\/iphone\/",
+			"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i"
 		},
 		"op_mini": {
-			"browser": "Opera Mini",
+			"name": "Opera Mini",
 			"abbr": "O.Mini",
 			"prefix": "o",
 			"type": "mobile",
 			"versions": [null, null, null, null, null, null, null, null, null, null, null, null, "5.0-6.0", null, null],
-			"url": "http:\/\/www.opera.com\/mobile\/"
+			"url": "http:\/\/www.opera.com\/mobile\/",
+			"sniffer": "/opera\\s*mobi[\\W\\w]*?version\\/([\\d\\.]+)/i"
 		},
 		"op_mob": {
-			"browser": "Opera Mobile",
+			"name": "Opera Mobile",
 			"abbr": "O.Mob",
 			"prefix": "o",
 			"type": "mobile",
 			"versions": [null, null, null, null, null, null, null, null, null, "10", "11", "11.1", "11.5", null, null],
-			"url": "http:\/\/www.opera.com\/mobile\/"
+			"url": "http:\/\/www.opera.com\/mobile\/",
+			"sniffer": "/opera\\s*mini[\\W\\w]*?version\\/([\\d\\.]+)/i"
 		},
 		"android": {
-			"browser": "Android Browser",
+			"name": "Android Browser",
 			"abbr": "And.",
 			"prefix": "webkit",
 			"type": "mobile",
 			"versions": [null, null, null, null, null, null, null, null, null, "2.1", "2.2", ["2.3", "3"], "4", null, null],
-			"url": "http:\/\/www.android.com\/"
+			"url": "http:\/\/www.android.com\/",
+			"sniffer": "/android\\s*([\\d\\.]+)/i"
 		}
 	},
 	"statuses": {
@@ -197,18 +206,7 @@
 			},
 			"notes": "IE6 does support full transparency in 8-bit PNGs, which can sometimes be an alternative to 32-bit PNGs.",
 			"usage_perc_y": 93.43,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "7",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"apng": {
 			"title": "Animated PNG (APNG)",
@@ -311,12 +309,7 @@
 			},
 			"notes": "Where support for APNG is missing, only the first frame is displayed",
 			"usage_perc_y": 24.93,
-			"usage_perc_a": 0,
-			"supported": {
-				"firefox": "3",
-				"opera": "9.5",
-				"op_mob": "10"
-			}
+			"usage_perc_a": 0
 		},
 		"video": {
 			"title": "Video element",
@@ -423,17 +416,7 @@
 			"notes": "Different browsers have support for different video formats, see sub-features for details. \r\n\r\nThe Android browser (before 2.3) requires <a href=\"http:\/\/www.broken-links.com\/2010\/07\/08\/making-html5-video-work-on-android-phones\/\">specific handling<\/a> to run the video element.",
 			"usage_perc_y": 66.19,
 			"usage_perc_a": 0.75,
-			"keywords": "<video>",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.3"
-			}
+			"keywords": "<video>"
 		},
 		"audio": {
 			"title": "Audio element",
@@ -545,17 +528,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 66.1,
-			"usage_perc_a": 0.05,
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.5",
-				"ios_saf": "4.0",
-				"op_mob": "11",
-				"android": "2.3"
-			}
+			"usage_perc_a": 0.05
 		},
 		"contenteditable": {
 			"title": "contenteditable attribute (basic support)",
@@ -658,16 +631,7 @@
 			},
 			"notes": "This support is only refers to very basic editing capability, implementations vary significantly on how certain elements can be edited.",
 			"usage_perc_y": 89.57,
-			"usage_perc_a": 0.4,
-			"supported": {
-				"ie": "5.5",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"usage_perc_a": 0.4
 		},
 		"dragndrop": {
 			"title": "Drag and Drop",
@@ -771,13 +735,7 @@
 			"notes": "",
 			"usage_perc_y": 87.43,
 			"usage_perc_a": 0,
-			"keywords": "draganddrop",
-			"supported": {
-				"ie": "5.5",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1"
-			}
+			"keywords": "draganddrop"
 		},
 		"queryselector": {
 			"title": "querySelector\/querySelectorAll",
@@ -875,18 +833,7 @@
 			"notes": "Only works for the CSS selectors available. Thus the IE8 implementation is limited to the CSS 2.1 selectors",
 			"usage_perc_y": 89.23,
 			"usage_perc_a": 0,
-			"keywords": "query,selectors,selectors api",
-			"supported": {
-				"ie": "8",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.0",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "query,selectors,selectors api"
 		},
 		"getelementsbyclassname": {
 			"title": "getElementsByClassName",
@@ -984,18 +931,7 @@
 			"notes": "",
 			"usage_perc_y": 69.32,
 			"usage_perc_a": 0,
-			"keywords": "byclassname",
-			"supported": {
-				"ie": "9",
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "byclassname"
 		},
 		"forms": {
 			"title": "HTML5 form features",
@@ -1096,12 +1032,7 @@
 			"notes": "Opera <= 11.50 has almost complete support, but does not support placeholder on textarea fields. Currently file uploading is not possible on iOS Safari.\r\n",
 			"usage_perc_y": 2.14,
 			"usage_perc_a": 48.75,
-			"keywords": "input,range,datepicker",
-			"supported": {
-				"opera": "9",
-				"ios_saf": "5",
-				"op_mob": "10"
-			}
+			"keywords": "input,range,datepicker"
 		},
 		"html5semantic": {
 			"title": "New semantic elements",
@@ -1204,17 +1135,7 @@
 			},
 			"notes": "Partial support refers to missing the default styling. This is easily taken care of by using display:block for all new elements (except time and mark, these should be display:inline anyway).",
 			"usage_perc_y": 61.74,
-			"usage_perc_a": 7.58,
-			"supported": {
-				"ie": "9",
-				"firefox": "4",
-				"chrome": "6",
-				"safari": "5",
-				"opera": "11.1",
-				"ios_saf": "4.0",
-				"op_mob": "11",
-				"android": "2.2"
-			}
+			"usage_perc_a": 7.58
 		},
 		"offline-apps": {
 			"title": "Offline web applications",
@@ -1318,17 +1239,7 @@
 			"notes": "Currently not supported in some versions of Chrome on Linux.",
 			"usage_perc_y": 57.04,
 			"usage_perc_a": 0.4,
-			"keywords": "appcache,app cache,application cache,online",
-			"supported": {
-				"ie": "10",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.6",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "appcache,app cache,application cache,online"
 		},
 		"webworkers": {
 			"title": "Web Workers",
@@ -1428,17 +1339,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 54.09,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "10",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.6",
-				"ios_saf": "5",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"fontface": {
 			"title": "@font-face Web fonts",
@@ -1545,17 +1446,7 @@
 			"notes": "Partial support before IE9 refers to only supporting EOT fonts. Safari for iOS 4.1 and below only supports SVG fonts.",
 			"usage_perc_y": 65.15,
 			"usage_perc_a": 27.32,
-			"keywords": "font face",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.2",
-				"opera": "10.0",
-				"ios_saf": "4.2",
-				"op_mob": "10",
-				"android": "4"
-			}
+			"keywords": "font face"
 		},
 		"eot": {
 			"title": "EOT - Embedded OpenType fonts",
@@ -1656,10 +1547,7 @@
 			"notes": "Proposal by Microsoft, being considered for W3C standardization.",
 			"usage_perc_y": 35.54,
 			"usage_perc_a": 0,
-			"parent": "fontface",
-			"supported": {
-				"ie": "6"
-			}
+			"parent": "fontface"
 		},
 		"woff": {
 			"title": "WOFF - Web Open Font Format",
@@ -1757,16 +1645,7 @@
 			"notes": "",
 			"usage_perc_y": 61.77,
 			"usage_perc_a": 0,
-			"parent": "fontface",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.6",
-				"chrome": "5",
-				"safari": "5.1",
-				"opera": "11.1",
-				"ios_saf": "5",
-				"op_mob": "11"
-			}
+			"parent": "fontface"
 		},
 		"multibackgrounds": {
 			"title": "CSS3 Multiple backgrounds",
@@ -1866,18 +1745,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 68.46,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "9",
-				"firefox": "3.6",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"border-image": {
 			"title": "CSS3 Border images",
@@ -1974,10 +1842,7 @@
 			},
 			"notes": "Partial support refers to supporting the shorthand syntax, but not the individual properties (border-image-source, border-image-slice, etc)",
 			"usage_perc_y": 23.26,
-			"usage_perc_a": 33.81,
-			"supported": {
-				"chrome": "15"
-			}
+			"usage_perc_a": 33.81
 		},
 		"background-img-opts": {
 			"title": "CSS3 Background-image options",
@@ -2077,18 +1942,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 64.08,
-			"usage_perc_a": 4.39,
-			"supported": {
-				"ie": "9",
-				"firefox": "4",
-				"chrome": "4",
-				"safari": "5",
-				"opera": "10.5",
-				"ios_saf": "4.0",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 4.39
 		},
 		"css-table": {
 			"title": "CSS Table display",
@@ -2189,18 +2043,7 @@
 			"notes": "",
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
-			"keywords": "display:table, display: table,table-cell,table-row,table-layout",
-			"supported": {
-				"ie": "8",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "display:table, display: table,table-cell,table-row,table-layout"
 		},
 		"css-gencontent": {
 			"title": "CSS Generated content",
@@ -2301,18 +2144,7 @@
 			"notes": "",
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
-			"keywords": "before,after",
-			"supported": {
-				"ie": "8",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "before,after"
 		},
 		"css-fixed": {
 			"title": "CSS position:fixed",
@@ -2412,17 +2244,7 @@
 			},
 			"notes": "Only works in Android 2.2+ by using the following meta tag: &lt;meta name=\"viewport\" content=\"width=device-width, user-scalable=no\">",
 			"usage_perc_y": 88.46,
-			"usage_perc_a": 1.59,
-			"supported": {
-				"ie": "7",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "5",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"usage_perc_a": 1.59
 		},
 		"hashchange": {
 			"title": "Hashchange event",
@@ -2526,17 +2348,7 @@
 			"notes": "",
 			"usage_perc_y": 86.34,
 			"usage_perc_a": 0,
-			"keywords": "onhashchange,HashChangeEvent",
-			"supported": {
-				"ie": "8",
-				"firefox": "3.6",
-				"chrome": "5",
-				"safari": "5",
-				"opera": "10.6",
-				"ios_saf": "4.0",
-				"op_mob": "11",
-				"android": "2.2"
-			}
+			"keywords": "onhashchange,HashChangeEvent"
 		},
 		"css-sel2": {
 			"title": "CSS 2.1 selectors",
@@ -2640,18 +2452,7 @@
 			"notes": "",
 			"usage_perc_y": 93.43,
 			"usage_perc_a": 0,
-			"keywords": "child selector,:hover",
-			"supported": {
-				"ie": "7",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "child selector,:hover"
 		},
 		"css-sel3": {
 			"title": "CSS3 selectors",
@@ -2755,18 +2556,7 @@
 			"notes": "",
 			"usage_perc_y": 68.91,
 			"usage_perc_a": 0,
-			"keywords": ":target,:not",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.2",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": ":target,:not"
 		},
 		"css-textshadow": {
 			"title": "CSS3 Text-shadow",
@@ -2869,17 +2659,7 @@
 			},
 			"notes": "Opera Mini ignores the blur-radius set, so no blur effect is visible. Text-shadow behavior can be somewhat emulated in older IE versions using the non-standard \"dropshadow\" or \"glow\" filters. ",
 			"usage_perc_y": 57.11,
-			"usage_perc_a": 1.93,
-			"supported": {
-				"ie": "10",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 1.93
 		},
 		"css-boxshadow": {
 			"title": "CSS3 Box-shadow",
@@ -2989,17 +2769,7 @@
 			"notes": "Can be partially emulated in older IE versions using the non-standard \"shadow\" filter.",
 			"usage_perc_y": 66.95,
 			"usage_perc_a": 0,
-			"keywords": "box-shadows,boxshadows,box shadow,shaow",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "box-shadows,boxshadows,box shadow,shadow"
 		},
 		"css3-colors": {
 			"title": "CSS3 Colors",
@@ -3106,18 +2876,7 @@
 			"notes": "",
 			"usage_perc_y": 69.29,
 			"usage_perc_a": 0.12,
-			"keywords": "rgb,hsl,rgba,hsla",
-			"supported": {
-				"ie": "9",
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.0",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "rgb,hsl,rgba,hsla"
 		},
 		"css3-boxsizing": {
 			"title": "CSS3 Box-sizing",
@@ -3218,18 +2977,7 @@
 			"notes": "",
 			"usage_perc_y": 89.75,
 			"usage_perc_a": 0,
-			"keywords": "border-box,content-box",
-			"supported": {
-				"ie": "8",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "border-box,content-box"
 		},
 		"css-mediaqueries": {
 			"title": "CSS3 Media Queries",
@@ -3330,18 +3078,7 @@
 			"notes": "Incomplete support by older webkit browsers refers to only acknowledging different media rules on page reload",
 			"usage_perc_y": 68.9,
 			"usage_perc_a": 0.02,
-			"keywords": "@media",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "@media"
 		},
 		"multicolumn": {
 			"title": "CSS3 Multiple column layout",
@@ -3442,17 +3179,7 @@
 			"notes": "",
 			"usage_perc_y": 57.47,
 			"usage_perc_a": 0,
-			"keywords": "column-count",
-			"supported": {
-				"ie": "10",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "11.1",
-				"ios_saf": "3.2",
-				"op_mob": "11.1",
-				"android": "2.1"
-			}
+			"keywords": "column-count"
 		},
 		"border-radius": {
 			"title": "CSS3 Border-radius (rounded corners)",
@@ -3556,17 +3283,7 @@
 			"notes": "",
 			"usage_perc_y": 67.36,
 			"usage_perc_a": 0.09,
-			"keywords": "roundedcorners, border radius,-moz-border-radius",
-			"supported": {
-				"ie": "9",
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "roundedcorners, border radius,-moz-border-radius"
 		},
 		"transforms2d": {
 			"title": "CSS3 Transforms",
@@ -3676,17 +3393,7 @@
 			"notes": "The scale transform can be emulated in IE &lt; 9 using Microsoft's \"zoom\" extension, others are (not easily) possible using the MS Matrix filter",
 			"usage_perc_y": 66.95,
 			"usage_perc_a": 0,
-			"keywords": "transformation,rotation,rotate,scale,css-transforms",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "transformation,rotation,rotate,scale,css-transforms"
 		},
 		"use-strict": {
 			"title": "ECMAScript 5 Strict Mode",
@@ -3783,16 +3490,7 @@
 			},
 			"notes": "Partial support in Safari refers to strict mode still accepting a lot of JS that should be considered invalid.",
 			"usage_perc_y": 43.48,
-			"usage_perc_a": 3.95,
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "13",
-				"opera": "11.6",
-				"ios_saf": "5",
-				"op_mob": "11.5",
-				"android": "3"
-			}
+			"usage_perc_a": 3.95
 		},
 		"transforms3d": {
 			"title": "CSS3 3D Transforms",
@@ -3893,15 +3591,7 @@
 			"notes": "",
 			"usage_perc_y": 30.24,
 			"usage_perc_a": 0,
-			"keywords": "css 3d,3dtransforms",
-			"supported": {
-				"ie": "10",
-				"firefox": "10",
-				"chrome": "12",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "3"
-			}
+			"keywords": "css 3d,3dtransforms"
 		},
 		"sharedworkers": {
 			"title": "Shared Web Workers",
@@ -4003,14 +3693,7 @@
 			"usage_perc_y": 31.04,
 			"usage_perc_a": 0,
 			"parent": "webworkers",
-			"keywords": "shared worker",
-			"supported": {
-				"chrome": "4",
-				"safari": "5",
-				"opera": "10.6",
-				"ios_saf": "5",
-				"op_mob": "11"
-			}
+			"keywords": "shared worker"
 		},
 		"css-hyphens": {
 			"title": "CSS Hyphenation",
@@ -4111,13 +3794,7 @@
 			"notes": "Chrome and Android 4.0 Browser support \"-webkit-hyphens: none\", but not the \"auto\" property.",
 			"usage_perc_y": 21.14,
 			"usage_perc_a": 0,
-			"keywords": "hyphen,shy",
-			"supported": {
-				"ie": "10",
-				"firefox": "6",
-				"safari": "5.1",
-				"ios_saf": "4.2"
-			}
+			"keywords": "hyphen,shy"
 		},
 		"css-transitions": {
 			"title": "CSS3 Transitions",
@@ -4221,17 +3898,7 @@
 			"notes": "",
 			"usage_perc_y": 52.58,
 			"usage_perc_a": 0,
-			"keywords": "css transition",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "css transition"
 		},
 		"font-feature": {
 			"title": "Font feature settings",
@@ -4332,10 +3999,7 @@
 			"notes": "Partial support in Firefox refers to using an older syntax. Partial support in Chrome refers to lacking support in Mac OS X. ",
 			"usage_perc_y": 0.01,
 			"usage_perc_a": 29.2,
-			"keywords": "font-feature,font-feature-settings,kern,kerning,font-variant-alternates,ligatures,font-variant-ligatures",
-			"supported": {
-				"ie": "10"
-			}
+			"keywords": "font-feature,font-feature-settings,kern,kerning,font-variant-alternates,ligatures,font-variant-ligatures"
 		},
 		"css-animation": {
 			"title": "CSS3 Animation",
@@ -4436,15 +4100,7 @@
 			"notes": "Partial support in Android browser refers to buggy behavior in different scenarios.",
 			"usage_perc_y": 48.43,
 			"usage_perc_a": 1.63,
-			"keywords": "animations,css-animations,keyframe",
-			"supported": {
-				"ie": "10",
-				"firefox": "5",
-				"chrome": "4",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "4"
-			}
+			"keywords": "animations,css-animations,keyframe"
 		},
 		"css-gradients": {
 			"title": "CSS Gradients",
@@ -4545,16 +4201,7 @@
 			"notes": "Partial support in Safari\/Chrome refers to requiring an outdated gradient syntax to work. Partial support in Opera 11.10 refers to only having support for linear gradients. Support can be somewhat emulated in older IE versions using the non-standard \"gradient\" filter.",
 			"usage_perc_y": 50.76,
 			"usage_perc_a": 5.78,
-			"keywords": "linear,linear-gradient,gradiant",
-			"supported": {
-				"ie": "10",
-				"firefox": "3.6",
-				"chrome": "10",
-				"safari": "5.1",
-				"opera": "11.6",
-				"ios_saf": "5",
-				"android": "4"
-			}
+			"keywords": "linear,linear-gradient,gradiant"
 		},
 		"css-canvas": {
 			"title": "CSS Canvas Drawings",
@@ -4651,13 +4298,7 @@
 			},
 			"notes": "Proposal by Webkit, being considered for W3C standardization. A similar effect can be achieved in Firefox 4+ using the -moz-element() background property",
 			"usage_perc_y": 32.58,
-			"usage_perc_a": 0,
-			"supported": {
-				"chrome": "4",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"css-reflections": {
 			"title": "CSS Reflections",
@@ -4755,13 +4396,7 @@
 			"notes": "Proposal by Webkit, being considered for W3C standardization. Similar effect can be achieved in Firefox 4+ using the -moz-element() background property",
 			"usage_perc_y": 32.58,
 			"usage_perc_a": 0,
-			"keywords": "box-reflect",
-			"supported": {
-				"chrome": "4",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"keywords": "box-reflect"
 		},
 		"css-masks": {
 			"title": "CSS Masks",
@@ -4858,13 +4493,7 @@
 			},
 			"notes": "Proposal by Webkit, being considered for W3C standardization.",
 			"usage_perc_y": 32.54,
-			"usage_perc_a": 0,
-			"supported": {
-				"chrome": "4",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"svg": {
 			"title": "SVG (basic support)",
@@ -4973,18 +4602,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 67.73,
-			"usage_perc_a": 0.1,
-			"supported": {
-				"ie": "9",
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "3.2",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"usage_perc_a": 0.1
 		},
 		"svg-css": {
 			"title": "SVG in CSS backgrounds",
@@ -5082,17 +4700,7 @@
 			"notes": "",
 			"usage_perc_y": 60.75,
 			"usage_perc_a": 2.07,
-			"keywords": "svg-in-css,svgincss,css-svg",
-			"supported": {
-				"ie": "9",
-				"firefox": "4",
-				"chrome": "5",
-				"safari": "5",
-				"opera": "9.5",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"keywords": "svg-in-css,svgincss,css-svg"
 		},
 		"svg-smil": {
 			"title": "SVG SMIL animation",
@@ -5189,16 +4797,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 49.28,
-			"usage_perc_a": 1.73,
-			"supported": {
-				"firefox": "4",
-				"chrome": "5",
-				"safari": "5",
-				"opera": "9",
-				"ios_saf": "5",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"usage_perc_a": 1.73
 		},
 		"svg-fonts": {
 			"title": "SVG fonts",
@@ -5299,15 +4898,7 @@
 			"notes": "Supported in Opera Mini in SVG images only, not in HTML.",
 			"usage_perc_y": 32.81,
 			"usage_perc_a": 0,
-			"parent": "fontface",
-			"supported": {
-				"chrome": "4",
-				"safari": "3.2",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"parent": "fontface"
 		},
 		"svg-filters": {
 			"title": "SVG filters",
@@ -5407,16 +4998,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 51.53,
-			"usage_perc_a": 0.26,
-			"supported": {
-				"ie": "10",
-				"firefox": "3",
-				"chrome": "8",
-				"safari": "6",
-				"opera": "9",
-				"op_mini": "5.0",
-				"op_mob": "10"
-			}
+			"usage_perc_a": 0.26
 		},
 		"svg-html": {
 			"title": "SVG effects for HTML",
@@ -5519,10 +5101,7 @@
 			},
 			"notes": "Partial support refers to lack of filter support or buggy result from effects. CSS method is a proposal by Mozilla, being considered for W3C standardization (stats, however, are considered based on the foreignObject support).",
 			"usage_perc_y": 22.71,
-			"usage_perc_a": 43.05,
-			"supported": {
-				"firefox": "3.5"
-			}
+			"usage_perc_a": 43.05
 		},
 		"svg-html5": {
 			"title": "Inline SVG in HTML5",
@@ -5622,16 +5201,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 56.82,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "9",
-				"firefox": "4",
-				"chrome": "7",
-				"safari": "5.1",
-				"opera": "11.6",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"usage_perc_a": 0
 		},
 		"canvas": {
 			"title": "Canvas (basic support)",
@@ -5740,17 +5310,7 @@
 			},
 			"notes": "Opera Mini supports the canvas element, but is unable to play animations or run other more complex applications.",
 			"usage_perc_y": 67.5,
-			"usage_perc_a": 1.91,
-			"supported": {
-				"ie": "9",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 1.91
 		},
 		"canvas-text": {
 			"title": "Text API for Canvas",
@@ -5851,17 +5411,7 @@
 			"notes": "",
 			"usage_perc_y": 66.93,
 			"usage_perc_a": 0,
-			"parent": "canvas",
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"parent": "canvas"
 		},
 		"namevalue-storage": {
 			"title": "Web Storage - name\/value pairs",
@@ -5965,17 +5515,7 @@
 			"notes": "",
 			"usage_perc_y": 87.28,
 			"usage_perc_a": 0.5,
-			"keywords": "webstorage,local storage",
-			"supported": {
-				"ie": "8",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "webstorage,local storage"
 		},
 		"sql-storage": {
 			"title": "Web SQL Database",
@@ -6073,15 +5613,7 @@
 			"notes": "The Web SQL Database specification is no longer being maintained and support may be dropped in future versions.",
 			"usage_perc_y": 34.35,
 			"usage_perc_a": 0,
-			"keywords": "db-storage,websql",
-			"supported": {
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "db-storage,websql"
 		},
 		"indexeddb": {
 			"title": "IndexedDB",
@@ -6179,12 +5711,7 @@
 			"notes": "Microsoft is currently <a href=\"http:\/\/html5labs.interoperabilitybridges.com\/html5labs\/prototypes\/indexeddb\/indexeddb\/info\/\">experimenting<\/a> with the technology.",
 			"usage_perc_y": 42.57,
 			"usage_perc_a": 0,
-			"keywords": "indexdb",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "11"
-			}
+			"keywords": "indexdb"
 		},
 		"eventsource": {
 			"title": "Server-sent DOM events",
@@ -6285,15 +5812,7 @@
 			"notes": "Older Opera implementation is based on the original WHATWG specification, using the <event-source> HTML element. ",
 			"usage_perc_y": 49.09,
 			"usage_perc_a": 0.11,
-			"keywords": "serversent,s-sent-events",
-			"supported": {
-				"firefox": "6",
-				"chrome": "6",
-				"safari": "5",
-				"opera": "11",
-				"ios_saf": "4.0",
-				"op_mob": "11.1"
-			}
+			"keywords": "serversent,s-sent-events"
 		},
 		"x-doc-messaging": {
 			"title": "Cross-document messaging",
@@ -6396,17 +5915,7 @@
 			},
 			"notes": "Partial support in IE refers to only working in frames\/iframes (not other tabs\/windows).",
 			"usage_perc_y": 59.42,
-			"usage_perc_a": 30.23,
-			"supported": {
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "9.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 30.23
 		},
 		"datauri": {
 			"title": "Data URLs",
@@ -6510,17 +6019,7 @@
 			"notes": "Support in Internet Explorer 8 is limited to images and linked resources like CSS files, not HTML files. Max URI length is 32KB. In IE9 JavaScript files are supported too and the maximum size limit set to 4GB.",
 			"usage_perc_y": 59.53,
 			"usage_perc_a": 30.23,
-			"keywords": "datauris,data uri,dataurl,dataurls",
-			"supported": {
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "datauris,data uri,dataurl,dataurls"
 		},
 		"mathml": {
 			"title": "MathML",
@@ -6629,12 +6128,7 @@
 			},
 			"notes": "Opera's support is limited to a CSS profile of MathML. Expected to be supported in an upcoming version of Chrome, as support is available in Webkit builds.",
 			"usage_perc_y": 26.2,
-			"usage_perc_a": 1.77,
-			"supported": {
-				"firefox": "2",
-				"safari": "5.1",
-				"ios_saf": "5"
-			}
+			"usage_perc_a": 1.77
 		},
 		"xhtml": {
 			"title": "XHTML served as application\/xhtml+xml",
@@ -6735,18 +6229,7 @@
 			"notes": "The XHTML syntax is very close to HTML, and thus is almost always served as text\/html on the web.",
 			"usage_perc_y": 69.41,
 			"usage_perc_a": 0,
-			"keywords": "xhtml+xml",
-			"supported": {
-				"ie": "9",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "xhtml+xml"
 		},
 		"xhtmlsmil": {
 			"title": "XHTML+SMIL animation",
@@ -6847,8 +6330,7 @@
 			"notes": "Internet Explorer supports the W3C proposal HTML+TIME, which is largely the same as XHTML+SMIL",
 			"usage_perc_y": 0,
 			"usage_perc_a": 25.66,
-			"parent": "xhtml",
-			"supported": []
+			"parent": "xhtml"
 		},
 		"wai-aria": {
 			"title": "WAI-ARIA Accessibility features",
@@ -6958,11 +6440,7 @@
 			"notes": "",
 			"usage_perc_y": 53.35,
 			"usage_perc_a": 34.76,
-			"keywords": "wai,aria",
-			"supported": {
-				"ie": "8",
-				"firefox": "3"
-			}
+			"keywords": "wai,aria"
 		},
 		"geolocation": {
 			"title": "Geolocation",
@@ -7056,17 +6534,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 66.67,
-			"usage_perc_a": 0.07,
-			"supported": {
-				"ie": "9",
-				"firefox": "3.5",
-				"chrome": "5",
-				"safari": "5",
-				"opera": "10.6",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0.07
 		},
 		"flexbox": {
 			"title": "Flexible Box Layout Module",
@@ -7173,15 +6641,7 @@
 			"notes": "While only recently a W3C specification, this system has been in use for some time by Mozilla and Apple for interface purposes.",
 			"usage_perc_y": 55.81,
 			"usage_perc_a": 0,
-			"keywords": "flex",
-			"supported": {
-				"ie": "10",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"keywords": "flex"
 		},
 		"webgl": {
 			"title": "WebGL - 3D Canvas graphics",
@@ -7292,8 +6752,7 @@
 			"usage_perc_y": 0,
 			"usage_perc_a": 45.57,
 			"parent": "canvas",
-			"keywords": "web gl",
-			"supported": []
+			"keywords": "web gl"
 		},
 		"fileapi": {
 			"title": "File API",
@@ -7391,10 +6850,7 @@
 			"notes": "Microsoft is currently <a href=\"http:\/\/html5labs.interoperabilitybridges.com\/html5labs\/prototypes\/fileapi\/fileapi\/info\/\">experimenting<\/a> with the technology. Partial support in Safari refers to lacking FileReader support.",
 			"usage_perc_y": 23.93,
 			"usage_perc_a": 27.59,
-			"keywords": "FileReader",
-			"supported": {
-				"chrome": "13"
-			}
+			"keywords": "FileReader"
 		},
 		"websockets": {
 			"title": "Web Sockets",
@@ -7498,12 +6954,7 @@
 			"notes": "Partial support refers to the websockets implementation using an older version of the protocol and\/or the implementation being disabled by default (due to security issues with the older protocol). \r\nMicrosoft is currently <a href=\"http:\/\/html5labs.interoperabilitybridges.com\/html5labs\/prototypes\/websockets\/websockets\/info\/\">experimenting<\/a> with the technology.",
 			"usage_perc_y": 40.55,
 			"usage_perc_a": 9.95,
-			"ucprefix": 1,
-			"supported": {
-				"ie": "10",
-				"firefox": "6",
-				"chrome": "14"
-			}
+			"ucprefix": 1
 		},
 		"script-async": {
 			"title": "async attribute for external scripts",
@@ -7603,15 +7054,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 51.32,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "10",
-				"firefox": "3.6",
-				"chrome": "8",
-				"safari": "5",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"usage_perc_a": 0
 		},
 		"cors": {
 			"title": "Cross-Origin Resource Sharing",
@@ -7714,16 +7157,7 @@
 			},
 			"notes": "Supported somewhat in IE8 and IE9 using the XDomainRequest object",
 			"usage_perc_y": 55.32,
-			"usage_perc_a": 30.22,
-			"supported": {
-				"ie": "10",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "12",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"usage_perc_a": 30.22
 		},
 		"calc": {
 			"title": "calc() as CSS unit value",
@@ -7820,11 +7254,7 @@
 			},
 			"notes": "Support can be somewhat emulated in older versions of IE using the non-standard expression() syntax.",
 			"usage_perc_y": 28.09,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "9",
-				"firefox": "4"
-			}
+			"usage_perc_a": 0
 		},
 		"ruby": {
 			"title": "Ruby annotation",
@@ -7924,8 +7354,7 @@
 			},
 			"notes": "Browsers without native support can still simulate support using CSS. Partial support refers to only supporting basic ruby, may still be missing writing-mode, Complex ruby and CSS3 Ruby",
 			"usage_perc_y": 0,
-			"usage_perc_a": 64.82,
-			"supported": []
+			"usage_perc_a": 64.82
 		},
 		"css-opacity": {
 			"title": "CSS3 Opacity",
@@ -8023,18 +7452,7 @@
 			"notes": "Transparency for elements in IE8 and older can be achieved using the proprietary \"filter\" property and does not work well with PNG images using alpha transparency.",
 			"usage_perc_y": 69.41,
 			"usage_perc_a": 25.67,
-			"keywords": "transparent,transparency,alpha",
-			"supported": {
-				"ie": "9",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "transparent,transparency,alpha"
 		},
 		"form-validation": {
 			"title": "Form validation",
@@ -8129,14 +7547,7 @@
 			"notes": "Partial support in Safari refers to lack of notice when form with required fields is attempted to be submitted.",
 			"usage_perc_y": 44.52,
 			"usage_perc_a": 3.95,
-			"parent": "forms",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "10",
-				"opera": "10.0",
-				"op_mob": "10"
-			}
+			"parent": "forms"
 		},
 		"history": {
 			"title": "Session history management",
@@ -8243,16 +7654,7 @@
 			"notes": "Older iOS versions claim support, but implementation is too buggy to be useful. Partial support in other Safaris refers to other buggy behavior.",
 			"usage_perc_y": 46.51,
 			"usage_perc_a": 5.24,
-			"keywords": "onpushstate,onreplacestate",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "5",
-				"opera": "11.5",
-				"ios_saf": "5",
-				"op_mob": "11.1",
-				"android": "2.2"
-			}
+			"keywords": "onpushstate,onreplacestate"
 		},
 		"json": {
 			"title": "JSON parsing",
@@ -8352,18 +7754,7 @@
 			},
 			"notes": "Requires document to be in IE8+ <a href=\"http:\/\/msdn.microsoft.com\/en-us\/library\/cc288325(VS.85).aspx\">standards mode<\/a> to work in IE8.",
 			"usage_perc_y": 89.1,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "8",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "10.5",
-				"ios_saf": "4.0",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"classlist": {
 			"title": "classList (DOMTokenList )",
@@ -8463,16 +7854,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 51.61,
-			"usage_perc_a": 0,
-			"supported": {
-				"firefox": "3.6",
-				"chrome": "8",
-				"safari": "5.1",
-				"opera": "11.5",
-				"ios_saf": "5",
-				"op_mob": "11.1",
-				"android": "3"
-			}
+			"usage_perc_a": 0
 		},
 		"text-overflow": {
 			"title": "CSS3 Text-overflow",
@@ -8576,18 +7958,7 @@
 			"notes": "",
 			"usage_perc_y": 87.93,
 			"usage_perc_a": 0,
-			"keywords": "textoverflow,ellipsis",
-			"supported": {
-				"ie": "6",
-				"firefox": "7",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "textoverflow,ellipsis"
 		},
 		"webm": {
 			"title": "WebM\/VP8 video format",
@@ -8692,14 +8063,7 @@
 			"usage_perc_y": 45.68,
 			"usage_perc_a": 0,
 			"parent": "video",
-			"keywords": "matroska",
-			"supported": {
-				"firefox": "4",
-				"chrome": "6",
-				"opera": "10.6",
-				"op_mob": "11",
-				"android": "2.3"
-			}
+			"keywords": "matroska"
 		},
 		"mpeg4": {
 			"title": "MPEG-4\/H.264 video format",
@@ -8801,13 +8165,7 @@
 			"usage_perc_y": 40.64,
 			"usage_perc_a": 1.63,
 			"parent": "video",
-			"keywords": "avc,mp4,mpv,mov,aac",
-			"supported": {
-				"ie": "9",
-				"chrome": "4",
-				"safari": "3.2",
-				"ios_saf": "3.2"
-			}
+			"keywords": "avc,mp4,mpv,mov,aac"
 		},
 		"ogv": {
 			"title": "Ogg\/Theora video format",
@@ -8906,13 +8264,7 @@
 			"usage_perc_y": 49.48,
 			"usage_perc_a": 0,
 			"parent": "video",
-			"keywords": "xiph",
-			"supported": {
-				"firefox": "3.5",
-				"chrome": "4",
-				"opera": "10.5",
-				"op_mob": "11"
-			}
+			"keywords": "xiph"
 		},
 		"wordwrap": {
 			"title": "CSS3 Word-wrap",
@@ -9012,18 +8364,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 94.54,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "5.5",
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.5",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"progressmeter": {
 			"title": "Progress & Meter",
@@ -9127,12 +8468,7 @@
 			"notes": "Partial support in Firefox 6+ and IE10 refers to supporting the progress element, but not the meter element.",
 			"usage_perc_y": 26.38,
 			"usage_perc_a": 16.87,
-			"parent": "forms",
-			"supported": {
-				"chrome": "8",
-				"opera": "11",
-				"op_mob": "11"
-			}
+			"parent": "forms"
 		},
 		"object-fit": {
 			"title": "CSS3 object-fit\/object-position",
@@ -9230,11 +8566,7 @@
 			"notes": "",
 			"usage_perc_y": 1.74,
 			"usage_perc_a": 0,
-			"keywords": "objectfit,objectposition",
-			"supported": {
-				"opera": "10.6",
-				"op_mob": "11"
-			}
+			"keywords": "objectfit,objectposition"
 		},
 		"xhr2": {
 			"title": "XMLHttpRequest 2",
@@ -9335,15 +8667,7 @@
 			"notes": "Firefox 3.5 and 3.6 partial support refers to only including support for the progress event. IE8 has support for an alternative type of progress event.",
 			"usage_perc_y": 47.29,
 			"usage_perc_a": 4.51,
-			"keywords": "formdata",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "7",
-				"safari": "5",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"keywords": "formdata"
 		},
 		"minmaxwh": {
 			"title": "CSS min\/max-width\/height",
@@ -9444,18 +8768,7 @@
 			"notes": "IE7 does not support \"inherit\" as a value on any of these properties. IE8 has some bugs with max-width\/height combined with overflow: auto\/scroll.",
 			"usage_perc_y": 93.43,
 			"usage_perc_a": 0,
-			"keywords": "min-width,min-height,max-width,max-height",
-			"supported": {
-				"ie": "7",
-				"firefox": "2",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "min-width,min-height,max-width,max-height"
 		},
 		"details": {
 			"title": "Details & Summary elements",
@@ -9558,11 +8871,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 24.18,
-			"usage_perc_a": 0,
-			"supported": {
-				"chrome": "12",
-				"android": "4"
-			}
+			"usage_perc_a": 0
 		},
 		"text-stroke": {
 			"title": "CSS text-stroke",
@@ -9663,13 +8972,7 @@
 			"notes": "Does not yet appear in any W3C specification. Works in Android 3 emulator, but not the tested device.",
 			"usage_perc_y": 32.46,
 			"usage_perc_a": 0.09,
-			"keywords": "textstroke,stroke-color,stroke-width,fill-color",
-			"supported": {
-				"chrome": "4",
-				"safari": "3.1",
-				"ios_saf": "4.0",
-				"android": "2.1"
-			}
+			"keywords": "textstroke,stroke-color,stroke-width,fill-color"
 		},
 		"inline-block": {
 			"title": "CSS inline-block",
@@ -9770,18 +9073,7 @@
 			"notes": "Only supported in IE6 and IE7 on elements with a display of \"inline\" by default. <a href=\"http:\/\/blog.mozilla.com\/webdev\/2009\/02\/20\/cross-browser-inline-block\/\">Alternative properties<\/a> are available to provide complete cross-browser support.",
 			"usage_perc_y": 89.66,
 			"usage_perc_a": 5.42,
-			"keywords": "inlineblock",
-			"supported": {
-				"ie": "8",
-				"firefox": "3",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "9",
-				"ios_saf": "3.2",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "2.1"
-			}
+			"keywords": "inlineblock"
 		},
 		"notifications": {
 			"title": "Web Notifications",
@@ -9881,10 +9173,7 @@
 			},
 			"notes": "Supported in Chrome through the webkitNotifications property and in Firefox nightlies through the mozNotifications property. May slip to a later version in Firefox.",
 			"usage_perc_y": 24.94,
-			"usage_perc_a": 0,
-			"supported": {
-				"chrome": "5"
-			}
+			"usage_perc_a": 0
 		},
 		"stream": {
 			"title": "Stream API",
@@ -9982,10 +9271,7 @@
 			"notes": "Expected to be in Opera 12, but may not make it.",
 			"usage_perc_y": 0.02,
 			"usage_perc_a": 0,
-			"keywords": "camera,device,getUserMedia",
-			"supported": {
-				"opera": "12"
-			}
+			"keywords": "camera,device,getUserMedia"
 		},
 		"svg-img": {
 			"title": "SVG in HTML img element",
@@ -10086,18 +9372,7 @@
 			"notes": "Partial support in Safari 3.2 refers to buggy behavior with certain SVG images.",
 			"usage_perc_y": 62.72,
 			"usage_perc_a": 0.1,
-			"keywords": "svg-as-img,svg-in-img",
-			"supported": {
-				"ie": "9",
-				"firefox": "4",
-				"chrome": "4",
-				"safari": "4",
-				"opera": "9",
-				"ios_saf": "4.0",
-				"op_mini": "5.0",
-				"op_mob": "10",
-				"android": "3"
-			}
+			"keywords": "svg-as-img,svg-in-img"
 		},
 		"datalist": {
 			"title": "Datalist element",
@@ -10202,13 +9477,7 @@
 			"usage_perc_y": 20.03,
 			"usage_perc_a": 0,
 			"parent": "forms",
-			"keywords": "list attribute",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"opera": "9",
-				"op_mob": "10"
-			}
+			"keywords": "list attribute"
 		},
 		"dataset": {
 			"title": "dataset & data-* attributes",
@@ -10312,16 +9581,7 @@
 			"notes": "All browsers can already use data-* attributes and access them using getAttribute. \"Supported\" refers to accessing the values using the dataset property.",
 			"usage_perc_y": 46.29,
 			"usage_perc_a": 48.79,
-			"keywords": "DOMStringMap",
-			"supported": {
-				"firefox": "6",
-				"chrome": "7",
-				"safari": "5.1",
-				"opera": "11.1",
-				"ios_saf": "5",
-				"op_mob": "11.1",
-				"android": "3"
-			}
+			"keywords": "DOMStringMap"
 		},
 		"css-grid": {
 			"title": "CSS Grid Layout",
@@ -10416,10 +9676,7 @@
 			"notes": "",
 			"usage_perc_y": 0.01,
 			"usage_perc_a": 0,
-			"keywords": "grids,grid-row,grid-column",
-			"supported": {
-				"ie": "10"
-			}
+			"keywords": "grids,grid-row,grid-column"
 		},
 		"menu": {
 			"title": "Toolbar\/context menu",
@@ -10520,10 +9777,7 @@
 			"notes": "",
 			"usage_perc_y": 14.96,
 			"usage_perc_a": 0,
-			"keywords": "contextmenu",
-			"supported": {
-				"firefox": "8"
-			}
+			"keywords": "contextmenu"
 		},
 		"rem": {
 			"title": "rem (root em) units",
@@ -10620,16 +9874,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 65.29,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "9",
-				"firefox": "3.6",
-				"chrome": "6",
-				"safari": "5",
-				"opera": "11.6",
-				"ios_saf": "4.0",
-				"android": "2.1"
-			}
+			"usage_perc_a": 0
 		},
 		"ttf": {
 			"title": "TTF\/OTF - TrueType and OpenType font support",
@@ -10724,16 +9969,7 @@
 			"notes": "Partial support in IE9 refers to the fonts only working <a href=\"http:\/\/blogs.msdn.com\/b\/ie\/archive\/2010\/07\/15\/the-css-corner-better-web-typography-for-better-design.aspx\">when set to be \"installable\"<\/a>.",
 			"usage_perc_y": 56.74,
 			"usage_perc_a": 9.89,
-			"parent": "fontface",
-			"supported": {
-				"firefox": "3.5",
-				"chrome": "4",
-				"safari": "3.1",
-				"opera": "10.0",
-				"ios_saf": "4.2",
-				"op_mob": "10",
-				"android": "2.2"
-			}
+			"parent": "fontface"
 		},
 		"touch": {
 			"title": "Touch events",
@@ -10837,13 +10073,7 @@
 			"notes": "Partial support in Firefox 4 & 5 refers to a <a href=\"https:\/\/hacks.mozilla.org\/2010\/08\/firefox4-beta3\/\">non-standard<\/a> implementation to achieve the same. Partial support in IE10 refers to using \"<a href=\"http:\/\/msdn.microsoft.com\/en-us\/ie\/hh272903.aspx#_DOMTouch\">Pointer events<\/a>\".",
 			"usage_perc_y": 20.32,
 			"usage_perc_a": 1.36,
-			"keywords": "touchstart,touchend,touchmove,touchenter,touchleave,touchcancel",
-			"supported": {
-				"firefox": "6",
-				"ios_saf": "3.2",
-				"op_mob": "11",
-				"android": "2.1"
-			}
+			"keywords": "touchstart,touchend,touchmove,touchenter,touchleave,touchcancel"
 		},
 		"matchesselector": {
 			"title": "matchesSelector",
@@ -10940,17 +10170,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 65.94,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "9",
-				"firefox": "3.6",
-				"chrome": "4",
-				"safari": "5",
-				"opera": "11.5",
-				"ios_saf": "4.0",
-				"op_mob": "11.1",
-				"android": "2.2"
-			}
+			"usage_perc_a": 0
 		},
 		"pointer-events": {
 			"title": "pointer-events (for HTML)",
@@ -11048,14 +10268,7 @@
 			"notes": "Already part of the SVG specification, and all SVG-supporting browsers appear to support the property on SVG elements.",
 			"usage_perc_y": 54.88,
 			"usage_perc_a": 0,
-			"keywords": "pointerevents",
-			"supported": {
-				"firefox": "3.6",
-				"chrome": "4",
-				"safari": "4",
-				"ios_saf": "3.2",
-				"android": "2.1"
-			}
+			"keywords": "pointerevents"
 		},
 		"blobbuilder": {
 			"title": "BlobBuilder API",
@@ -11154,13 +10367,7 @@
 			"usage_perc_y": 41.59,
 			"usage_perc_a": 0,
 			"ucprefix": 1,
-			"parent": "fileapi",
-			"supported": {
-				"ie": "10",
-				"firefox": "6",
-				"chrome": "8",
-				"android": "3"
-			}
+			"parent": "fileapi"
 		},
 		"filereader": {
 			"title": "FileReader API",
@@ -11258,15 +10465,7 @@
 			"notes": "",
 			"usage_perc_y": 48.86,
 			"usage_perc_a": 0,
-			"parent": "fileapi",
-			"supported": {
-				"ie": "10",
-				"firefox": "3.6",
-				"chrome": "6",
-				"opera": "11.1",
-				"op_mob": "11.1",
-				"android": "3"
-			}
+			"parent": "fileapi"
 		},
 		"filesystem": {
 			"title": "Filesystem & FileWriter API",
@@ -11365,10 +10564,7 @@
 			"usage_perc_y": 23.93,
 			"usage_perc_a": 0.75,
 			"parent": "fileapi",
-			"keywords": "filewriter",
-			"supported": {
-				"chrome": "13"
-			}
+			"keywords": "filewriter"
 		},
 		"bloburls": {
 			"title": "Blob URLs",
@@ -11467,13 +10663,7 @@
 			"usage_perc_y": 42.9,
 			"usage_perc_a": 0,
 			"parent": "fileapi",
-			"keywords": "createobjecturl",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "8",
-				"android": "4"
-			}
+			"keywords": "createobjecturl"
 		},
 		"typedarrays": {
 			"title": "Typed Arrays",
@@ -11571,16 +10761,7 @@
 			"notes": "",
 			"usage_perc_y": 48.19,
 			"usage_perc_a": 0,
-			"keywords": "float64array,dataview,uint8array",
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "7",
-				"safari": "5.1",
-				"opera": "11.6",
-				"ios_saf": "4.2",
-				"android": "4"
-			}
+			"keywords": "float64array,dataview,uint8array"
 		},
 		"deviceorientation": {
 			"title": "Device Orientation events",
@@ -11677,12 +10858,7 @@
 			},
 			"notes": "Firefox 3.6, 4 and 5 support the non-standard <a href=\"https:\/\/developer.mozilla.org\/en\/DOM\/MozOrientation\">MozOrientation<\/a> event. Firefox 6+ claims support, but does not appear to work where Chrome does (tested on macbook pro).",
 			"usage_perc_y": 26.4,
-			"usage_perc_a": 22.3,
-			"supported": {
-				"chrome": "7",
-				"ios_saf": "4.2",
-				"android": "3"
-			}
+			"usage_perc_a": 22.3
 		},
 		"script-defer": {
 			"title": "defer attribute for external scripts",
@@ -11779,15 +10955,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 87.27,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "5.5",
-				"firefox": "3.5",
-				"chrome": "8",
-				"safari": "5",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"usage_perc_a": 0
 		},
 		"nav-timing": {
 			"title": "Navigation Timing API",
@@ -11888,13 +11056,7 @@
 			"notes": "",
 			"usage_perc_y": 50.82,
 			"usage_perc_a": 0,
-			"keywords": "performance,performance.timing",
-			"supported": {
-				"ie": "9",
-				"firefox": "7",
-				"chrome": "6",
-				"android": "4"
-			}
+			"keywords": "performance,performance.timing"
 		},
 		"audio-api": {
 			"title": "Audio API",
@@ -11997,8 +11159,7 @@
 			},
 			"notes": "Current support in Gecko\/WebKit is based on two different proposals.",
 			"usage_perc_y": 0,
-			"usage_perc_a": 42.72,
-			"supported": []
+			"usage_perc_a": 42.72
 		},
 		"css-regions": {
 			"title": "CSS Regions",
@@ -12098,8 +11259,7 @@
 			},
 			"notes": "Currently supported in WebKit using -webkit-flow: \"flow_name\"; and content: -webkit-from-flow(\"flow_name\"); Supported in IE10 using an iframe with -ms-flow-into: flow_name; and -ms-flow-from: flow_name;",
 			"usage_perc_y": 0,
-			"usage_perc_a": 23.27,
-			"supported": []
+			"usage_perc_a": 23.27
 		},
 		"fullscreen": {
 			"title": "Full Screen API",
@@ -12200,8 +11360,7 @@
 			"notes": "Partial support refers to supporting an earlier draft of the spec. Support can be enabled in Firefox 9 by setting the full-screen-api.enabled flag to true.",
 			"usage_perc_y": 0,
 			"usage_perc_a": 25.99,
-			"keywords": "full-screen",
-			"supported": []
+			"keywords": "full-screen"
 		},
 		"requestanimationframe": {
 			"title": "requestAnimationFrame",
@@ -12301,12 +11460,7 @@
 			},
 			"notes": "",
 			"usage_perc_y": 42.73,
-			"usage_perc_a": 0,
-			"supported": {
-				"ie": "10",
-				"firefox": "4",
-				"chrome": "10"
-			}
+			"usage_perc_a": 0
 		},
 		"matchmedia": {
 			"title": "matchMedia",
@@ -12410,15 +11564,7 @@
 			"notes": "",
 			"usage_perc_y": 44.48,
 			"usage_perc_a": 0,
-			"keywords": "mediaquerylist",
-			"supported": {
-				"ie": "10",
-				"firefox": "6",
-				"chrome": "9",
-				"safari": "5.1",
-				"ios_saf": "5",
-				"android": "3"
-			}
+			"keywords": "mediaquerylist"
 		}
 	},
 	"cats": {
