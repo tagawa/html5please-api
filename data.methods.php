@@ -59,6 +59,54 @@ function get_cached_array($array_string = '', $requested_features_array = array(
 	return $array_array;
 }
 
+function readable_json( $jsonString)
+{
+	$tabcount = 0;
+	$result = '';
+	$inquote = false;
+
+	$tab = "\t";
+	$newline = "\n";
+
+	for ($i = 0; $i < strlen($jsonString); $i++)  {
+		$char = $jsonString[$i];
+
+		if ($char == '"' && $jsonString[ $i-1] != '\\') {
+			$inquote = !$inquote;
+		}
+
+		if ($inquote) {
+			$result .= $char;
+			continue;
+		}
+
+		switch ($char) {
+			case '{':
+				if ($i) $result .= $newline;
+				$result .= str_repeat($tab, $tabcount) . $char . $newline . str_repeat( $tab, ++$tabcount);
+				break;
+
+			case '}':
+				$result .= $newline . str_repeat( $tab, --$tabcount) . $char;
+				break;
+
+			case ',':
+				$result .= $char;
+				if( $jsonString[ $i+1] != '{') $result .= $newline . str_repeat($tab, $tabcount);
+				break;
+
+			case ':':
+				$result .= $char . ' ';
+				break;
+
+			default:
+				$result .= $char;
+		}
+	}
+
+	return $result;
+}
+
 
 
 /* =============================================================================
@@ -124,16 +172,16 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 	);
 
 	$return_array = array(
-		'by_feature' => array(),
-		'by_agent' => array(),
+		'byFeature' => array(),
+		'byAgent' => array(),
 		'agents' => array()
 	);
 
 	$error_array = array();
 
-	$return_by_feature_array =& $return_array['by_feature'];
-	$return_by_agent_array   =& $return_array['by_agent'];
-	$return_agents_array     =& $return_array['agents'];
+	$return_by_feature_array =& $return_array['byFeature'];
+	$return_by_agent_array   =& $return_array['byAgent'];
+	$return_agents_array	 =& $return_array['agents'];
 
 	foreach ($requested_features_array as &$feature_string) {
 		$feature_array = @$data_array[$feature_string];
@@ -191,8 +239,8 @@ function get_agent_support_array($agent_stats_array = array()) {
 function get_unsupported_array(&$support_array = array(), &$user_agent_array = array()) {
 	$return_array = array();
 
-	if ($support_array && @$support_array['by_feature']) {
-		foreach($support_array['by_feature'] as $feature_string => &$feature_array) {
+	if ($support_array && @$support_array['byFeature']) {
+		foreach($support_array['byFeature'] as $feature_string => &$feature_array) {
 			if (
 				!isset($feature_array[$user_agent_array['id']]) ||
 				version_compare(@$feature_array[$user_agent_array['id']], @$user_agent_array['version']) > -1
@@ -249,6 +297,7 @@ function get_alternatives_array(&$agents_array = array(), &$support_array = arra
 		foreach ($support_array['agents'] as $agent_string => &$agent_version) {
 			if ($user_agent_id_string !== $agent_string && $user_agent_type_string === $agents_array[$agent_string]['type']) {
 				$return_array[$agent_string] = $agents_array[$agent_string];
+				$return_array[$agent_string]['version'] = $agent_version;
 
 				unset($return_array[$agent_string]['prefix']);
 				unset($return_array[$agent_string]['sniffer']);
@@ -327,7 +376,7 @@ function html_encode_feature($feature_string = '', $feature_name_string = '', $s
 }
 
 function html_encode_features(&$return_array) {
-	$features_array     = $return_array['features'];
+	$features_array	    = $return_array['features'];
 	$unsupported_string = @implode(' ', $return_array['unsupported']);
 
 	$html_array = array();

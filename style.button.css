@@ -101,6 +101,7 @@
 	   -moz-transition: opacity 200ms linear;
 	    -ms-transition: opacity 200ms linear;
 	     -o-transition: opacity 200ms linear;
+	        transition: opacity 200ms linear;
 	top: 100%;
 	width: 87%;
 	z-index:9999;

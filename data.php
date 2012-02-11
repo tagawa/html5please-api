@@ -3,20 +3,20 @@
 require_once 'data.methods.php';
 
 /* =============================================================================
-   Main
+   Requests
    ========================================================================== */
 
 // Get Format String
-$format_string            = first_match('/(html|js|json|xml)/', @$_GET['format'], 'js');
+$format_string              = first_match('/(html|js|json|php|xml)/', @$_GET['format'], 'js');
 
 // Get Callback String
-$callback_string          = @$_GET['callback'];
+$callback_string            = @$_GET['callback'];
 
 // Get Requested Features List
-$requested_features_array = explode(' ', @$_GET['features']);
+$requested_features_array   = explode(' ', @$_GET['features']);
 
 // Get Requested Style String
-$requested_style_string   = (
+$requested_style_string     = (
 	isset($_GET['texticon']) ? 'texticon' : (
 		isset($_GET['text']) ? 'text' : (
 			isset($_GET['icon']) ? 'icon' : 'button'
@@ -27,52 +27,77 @@ $requested_style_string   = (
 // Get Requested CSS Boolean
 $requested_style_boolean    = !isset($_GET['nostyle']);
 
+// Get Requested Pretty Boolean
+$requested_readable_boolean = isset($_GET['readable']);
+
+// Get Requested Agent Boolean
+$requested_agent_boolean    = !isset($_GET['noagent']);
+
+
+
+/* =============================================================================
+   Main
+   ========================================================================== */
+
 // Get JSON Arrays
 $agents_array       = get_cached_array('agents',    $requested_features_array);
 $support_array      = get_cached_array('support',   $requested_features_array);
 $features_array     = get_cached_array('features',  $requested_features_array);
 
-// Get User Agent Array
-$user_agent_array   = get_user_agent_array($agents_array);
+if ($requested_agent_boolean) {
+	// Get User Agent Array
+	$user_agent_array   = get_user_agent_array($agents_array);
 
-// Get Extended Arrays
-$alternatives_array = get_alternatives_array($agents_array, $support_array, $user_agent_array);
-$upgradable_array   = get_upgradable_array($support_array, $user_agent_array);
-$unsupported_array  = get_unsupported_array($support_array, $user_agent_array);
+	// Get Extended Arrays
+	$alternatives_array = get_alternatives_array($agents_array, $support_array, $user_agent_array);
+	$upgradable_array   = get_upgradable_array($support_array, $user_agent_array);
+	$unsupported_array  = get_unsupported_array($support_array, $user_agent_array);
 
-// Get Supporting Variables
-$supported_string   = @$support_array['agents'][$user_agent_array['id']];
-$supported_boolean  = $supported_string && version_compare($supported_string, $user_agent_array['version']) < 1;
-$error_boolean      = isset($support_array['error']);
+	// Get Supporting Variables
+	$supported_string   = @$support_array['agents'][$user_agent_array['id']];
+	$supported_boolean  = $supported_string && version_compare($supported_string, $user_agent_array['version']) < 1;
+	$error_boolean      = isset($support_array['error']);
 
-// Set Return Array
-if (!$error_boolean) {
-	$return_array   = array('current' => $user_agent_array, 'features' => $features_array, 'supported' => $supported_boolean);
-} else {
-	$return_array   = $support_array;
-}
-
-// Extend Return Array
-if ($supported_boolean) {
-	$return_array['alternatives'] = $alternatives_array;
-} else if (!$error_boolean) {
-	if (isset($upgradable_array)) {
-		$return_array['upgradable'] = $upgradable_array;
+	// Set Return Array
+	if (!$error_boolean) {
+		$return_array   = array('current' => $user_agent_array, 'features' => $features_array, 'supported' => $supported_boolean);
+	} else {
+		$return_array   = $support_array;
 	}
 
-	$return_array['unsupported'] = $unsupported_array;
-	$return_array['alternatives'] = $alternatives_array;
+	// Extend Return Array
+	if ($supported_boolean) {
+		$return_array['alternatives'] = $alternatives_array;
+	} else if (!$error_boolean) {
+		if (isset($upgradable_array)) {
+			$return_array['upgradable'] = $upgradable_array;
+		}
+
+		$return_array['unsupported'] = $unsupported_array;
+		$return_array['alternatives'] = $alternatives_array;
+	}
+} else {
+	$return_array   = array('features' => $features_array, 'support' => $support_array);
 }
+
 
 // Ouput
 if ($format_string === 'js' && $callback_string) {
 	$return_string = json_encode($return_array);
+
+	if ($requested_readable_boolean) {
+		$return_string = readable_json($return_string);
+	}
 
 	header('Content-Type: text/javascript');
 
 	exit($callback_string . '(' . $return_string . ')');
 } elseif ($format_string === 'js') {
 	$return_string = json_encode($return_array);
+
+	if ($requested_readable_boolean) {
+		$return_string = readable_json($return_string);
+	}
 
 	header('Content-Type: text/javascript');
 
@@ -83,6 +108,10 @@ if ($format_string === 'js' && $callback_string) {
 	$return_array['html'] = $html;
 
 	$return_string = json_encode($return_array);
+
+	if ($requested_readable_boolean) {
+		$return_string = readable_json($return_string);
+	}
 
 	header('Content-Type: text/javascript');
 
@@ -100,6 +129,10 @@ if ($format_string === 'js' && $callback_string) {
 
 	print($html_container);
 	exit();
+} elseif ($format_string === 'php') {
+	header('Content-Type: text/plain');
+
+	exit('<?php' . "\n\n" . '$response = ' . var_export($return_array, true) . ';' . "\n\n" . '?>');
 } elseif ($format_string === 'xml') {
 	header('Content-Type: text/xml');
 
