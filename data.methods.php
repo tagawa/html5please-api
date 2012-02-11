@@ -157,7 +157,8 @@ function get_features_array(&$json_array = array(), &$requested_features_array =
    ========================================================================== */
 
 function get_support_array($json_array = array(), &$requested_features_array = array()) {
-	$data_array = &$json_array['data'];
+	$agents_array =& $json_array['agents'];
+	$data_array   =& $json_array['data'];
 
 	$agentslist_array = array(
 		'ie' => true,
@@ -174,14 +175,16 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 	$return_array = array(
 		'byFeature' => array(),
 		'byAgent' => array(),
-		'agents' => array()
+		'agents' => array(),
+		'agentsProper' => array()
 	);
 
 	$error_array = array();
 
-	$return_by_feature_array =& $return_array['byFeature'];
-	$return_by_agent_array   =& $return_array['byAgent'];
-	$return_agents_array	 =& $return_array['agents'];
+	$return_by_feature_array    =& $return_array['byFeature'];
+	$return_by_agent_array      =& $return_array['byAgent'];
+	$return_agents_array	        =& $return_array['agents'];
+	$return_agents_proper_array =& $return_array['agentsProper'];
 
 	foreach ($requested_features_array as &$feature_string) {
 		$feature_array = @$data_array[$feature_string];
@@ -191,6 +194,8 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 			$return_by_feature_array[$feature_string] = array();
 
 			foreach ($stats_array as $agentid_string => $agentstats_array) {
+				$agent_array = $agents_array[$agentid_string];
+				$agent_name_string = $agent_array['name'];
 				$version = get_agent_support_array($agentstats_array);
 
 				if ($version) {
@@ -202,10 +207,12 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 							@$return_agents_array[$agentid_string],
 							$version
 						) ? $version : @$return_agents_array[$agentid_string];
+						$return_agents_proper_array[$agent_name_string] = $return_agents_array[$agentid_string];
 					}
 				} else {
 					$agentslist_array[$agentid_string] = false;
 					unset($return_agents_array[$agentid_string]);
+					unset($return_agents_proper_array[$agent_name_string]);
 				}
 			}
 		} else {
