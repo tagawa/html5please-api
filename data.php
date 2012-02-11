@@ -6,14 +6,23 @@ require_once 'data.methods.php';
    Requests
    ========================================================================== */
 
-// Get Format String
-$format_string              = first_match('/(html|js|json|php|xml)/', @$_GET['format'], 'js');
+// Get Requested Agent Boolean
+$requested_agent_boolean    = !isset($_GET['noagent']);
 
-// Get Callback String
-$callback_string            = @$_GET['callback'];
+// Get Requested Callback String
+$requested_callback_string  = @$_GET['callback'];
 
 // Get Requested Features List
 $requested_features_array   = explode(' ', @$_GET['features']);
+
+// Get Requested Format String
+$requested_format_string    = first_match('/(html|js|json|php|xml)/', @$_GET['format'], 'js');
+
+// Get Requested Pretty Boolean
+$requested_readable_boolean = isset($_GET['readable']);
+
+// Get Requested Style Boolean
+$requested_style_boolean    = !isset($_GET['nostyle']);
 
 // Get Requested Style String
 $requested_style_string     = (
@@ -23,15 +32,6 @@ $requested_style_string     = (
 		)
 	)
 );
-
-// Get Requested CSS Boolean
-$requested_style_boolean    = !isset($_GET['nostyle']);
-
-// Get Requested Pretty Boolean
-$requested_readable_boolean = isset($_GET['readable']);
-
-// Get Requested Agent Boolean
-$requested_agent_boolean    = !isset($_GET['noagent']);
 
 // Get Supported CSS Boolean
 $requested_support_boolean  = isset($_GET['supported']);
@@ -47,6 +47,7 @@ $agents_array       = get_cached_array('agents',    $requested_features_array);
 $support_array      = get_cached_array('support',   $requested_features_array);
 $features_array     = get_cached_array('features',  $requested_features_array);
 
+// If user agent information is requested
 if ($requested_agent_boolean) {
 	// Get User Agent Array
 	$user_agent_array   = get_user_agent_array($agents_array);
@@ -89,7 +90,7 @@ if ($requested_agent_boolean) {
 
 
 // Ouput
-if ($format_string === 'js' && $callback_string) {
+if ($requested_format_string === 'js' && $requested_callback_string) {
 	$return_string = json_encode($return_array);
 
 	if ($requested_readable_boolean) {
@@ -98,8 +99,8 @@ if ($format_string === 'js' && $callback_string) {
 
 	header('Content-Type: text/javascript');
 
-	exit($callback_string . '(' . $return_string . ')');
-} elseif ($format_string === 'js') {
+	exit($requested_callback_string . '(' . $return_string . ')');
+} elseif ($requested_format_string === 'js') {
 	$return_string = json_encode($return_array);
 
 	if ($requested_readable_boolean) {
@@ -109,7 +110,7 @@ if ($format_string === 'js' && $callback_string) {
 	header('Content-Type: text/javascript');
 
 	exit($return_string);
-} elseif ($format_string === 'html' && $callback_string) {
+} elseif ($requested_format_string === 'html' && $requested_callback_string) {
 	$html = html_encode($return_array, $requested_style_string);
 
 	$return_array['html'] = $html;
@@ -122,8 +123,8 @@ if ($format_string === 'js' && $callback_string) {
 
 	header('Content-Type: text/javascript');
 
-	exit($callback_string . '(' . $return_string . ')');
-} elseif ($format_string === 'html') {
+	exit($requested_callback_string . '(' . $return_string . ')');
+} elseif ($requested_format_string === 'html') {
 
 	$html = html_encode($return_array, $requested_style_string, $requested_style_boolean);
 
@@ -136,11 +137,11 @@ if ($format_string === 'js' && $callback_string) {
 
 	print($html_container);
 	exit();
-} elseif ($format_string === 'php') {
+} elseif ($requested_format_string === 'php') {
 	header('Content-Type: text/plain');
 
 	exit('<?php' . "\n\n" . '$response = ' . var_export($return_array, true) . ';' . "\n\n" . '?>');
-} elseif ($format_string === 'xml') {
+} elseif ($requested_format_string === 'xml') {
 	header('Content-Type: text/xml');
 
 	$xml = xml_encode($return_array);
