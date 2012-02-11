@@ -33,6 +33,9 @@ $requested_readable_boolean = isset($_GET['readable']);
 // Get Requested Agent Boolean
 $requested_agent_boolean    = !isset($_GET['noagent']);
 
+// Get Supported CSS Boolean
+$requested_support_boolean  = isset($_GET['supported']);
+
 
 
 /* =============================================================================
@@ -60,15 +63,19 @@ if ($requested_agent_boolean) {
 
 	// Set Return Array
 	if (!$error_boolean) {
-		$return_array   = array('current' => $user_agent_array, 'features' => $features_array, 'supported' => $supported_boolean);
+		if ($requested_support_boolean) {
+			$return_array   = array('supported' => $supported_boolean);
+		} else {
+			$return_array   = array('features' => $features_array, 'current' => $user_agent_array, 'supported' => $supported_boolean);
+		}
 	} else {
 		$return_array   = $support_array;
 	}
 
 	// Extend Return Array
-	if ($supported_boolean) {
+	if ($supported_boolean && !$requested_support_boolean) {
 		$return_array['alternatives'] = $alternatives_array;
-	} else if (!$error_boolean) {
+	} else if (!$error_boolean && !$requested_support_boolean) {
 		if (isset($upgradable_array)) {
 			$return_array['upgradable'] = $upgradable_array;
 		}
