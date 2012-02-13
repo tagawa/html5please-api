@@ -174,7 +174,7 @@
 		"flexbox": "flexbox",
 		"webgl": "webgl",
 		"fileapi": "fileapi",
-		"websockets": "websockets",
+		"websockets": "websocket socket",
 		"script-async": "scriptasync",
 		"cors": "cors",
 		"calc": "calc",
