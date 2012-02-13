@@ -203,10 +203,10 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 					$return_by_agent_array[$agentid_string][$feature_string] = $version;
 
 					if ($agentslist_array[$agentid_string]) {
-						$return_agents_array[$agentid_string] = version_compare(
+						$return_agents_array[$agentid_string] = (version_compare(
 							@$return_agents_array[$agentid_string],
 							$version
-						) ? $version : @$return_agents_array[$agentid_string];
+						) < 1) ? $version : @$return_agents_array[$agentid_string];
 						$return_agents_proper_array[$agent_name_string] = $return_agents_array[$agentid_string];
 					}
 				} else {
