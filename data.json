@@ -136,7 +136,7 @@
 		"css-boxshadow": "cssboxshadow",
 		"css3-colors": "css3colors",
 		"css3-boxsizing": "css3boxsizing",
-		"css-mediaqueries": "cssmediaqueries",
+		"css-mediaqueries": "cssmediaqueries mediaqueries mediaquery",
 		"multicolumn": "multicolumn",
 		"border-radius": "borderradius",
 		"transforms2d": "transforms2d",
