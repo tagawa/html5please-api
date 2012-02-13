@@ -110,12 +110,50 @@ function readable_json( $jsonString)
 
 
 /* =============================================================================
+   Get Keywords Array
+   ========================================================================== */
+
+function get_keywords_array(&$json_array = array()) {
+	$return_array = $json_array['keywords'];
+
+	foreach ($return_array as $keyword_name => &$keyword_words) {
+		$return_array[$keyword_name] = '/^(' . preg_replace('/ /', 's*|', $keyword_words) . 's*)$/';
+	}
+
+	return $return_array;
+}
+
+function filter_features_array(&$requested_features_array, &$keywords_array) {
+	$return_array = array();
+
+	foreach ($requested_features_array as $requested_feature_name) {
+		$requested_feature_name = strtolower($requested_feature_name);
+
+		if (isset($keywords_array[$requested_feature_name])) {
+			array_push($return_array, $requested_feature_name);
+		} else {
+			$requested_feature_name = preg_replace('/[-_]/', '', $requested_feature_name);
+
+			foreach ($keywords_array as $keyword_name =>& $keyword_words) {
+				if (preg_match($keyword_words, $requested_feature_name)) {
+					array_push($return_array, $keyword_name);
+				}
+			}
+		}
+	}
+
+	return $return_array;
+}
+
+
+
+/* =============================================================================
    Get Agents Array
    ========================================================================== */
 
 function get_agents_array(&$json_array = array()) {
 	$return_array = array();
-	$agents_array = &$json_array['agents'];
+	$agents_array =& $json_array['agents'];
 
 	foreach ($agents_array as $agentid_string => &$agent_array) {
 		$return_array[$agentid_string] = $agent_array;

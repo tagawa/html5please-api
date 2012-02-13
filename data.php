@@ -43,6 +43,10 @@ $requested_support_boolean  = isset($_GET['supported']);
    ========================================================================== */
 
 // Get JSON Arrays
+$keywords_array     = get_cached_array('keywords',  $requested_features_array);
+
+$requested_features_array = filter_features_array($requested_features_array, $keywords_array);
+
 $agents_array       = get_cached_array('agents',    $requested_features_array);
 $support_array      = get_cached_array('support',   $requested_features_array);
 $features_array     = get_cached_array('features',  $requested_features_array);
