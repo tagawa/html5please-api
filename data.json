@@ -195,7 +195,7 @@
 		"minmaxwh": "minmaxwh",
 		"details": "details",
 		"text-stroke": "textstroke",
-		"inline-block": "inlineblock",
+		"inline-block": "blockinline inlineblock ib",
 		"notifications": "notifications",
 		"stream": "stream",
 		"svg-img": "svgimg",
