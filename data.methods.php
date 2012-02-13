@@ -142,6 +142,8 @@ function filter_features_array(&$requested_features_array, &$keywords_array) {
 		}
 	}
 
+	$return_array = array_unique($return_array);
+
 	return $return_array;
 }
 
