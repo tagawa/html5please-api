@@ -23,16 +23,20 @@
 		<h1>
 			caniuse api
 		</h1>
+
 		<p>
-			Powered by the services powering <a href="http://caniuse.com/">caniuse.com</a>.
+			The caniuse API seeks to bridge the gap between developers bringing new features to the web in their sites/apps and users who only know browsers. It allows you, as a developer, to specify which features you're using <small>(for example: WebGL and WebRTC)</small> and let the API figure out which browsers will be required to enjoy the demo. You get back some HTML to show the user or a JSON object of the relevant data (with logos and all), so you can customize the view to your liking.	
 		</p>
 		<section>
 			<h2>
 				How to use
 			</h2>
 			<p>
-				url: <code>[ features ].[ format ][ ? [ options ] ]</code>
+				http://api.caniuse.com/<code>[ features ].[ format ][ ? [ options ] ]</code>
 			</p>
+
+			<p>You'll likely use JSON-P to grab this API, but you're welcome to use CORS.</p>
+			
 			<h3>
 				features
 			</h3>
@@ -51,6 +55,7 @@
 			<p>
 				The options to be applied to the data, like <var>callback=myFunction</var> or <var>nostyle</var>.
 			</p>
+
 		</section>
 		<section>
 			<h2>
@@ -120,10 +125,10 @@
 				Contribute
 			</h2>
 			<p>
-				You can <a href="//github.com/jonathantneal/caniuse">help by forking caniuse</a> and making it better.
+				This is a community project. You can <a href="//github.com/jonathantneal/caniuse">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.
 			</p>
 			<p>
-				There is no guaruntee this API will continue to work, but there is hope.
+				There is no guarantee this API will continue to work, but there is hope.
 			</p>
 		</section>
 		<footer>
@@ -131,14 +136,12 @@
 				Credit
 			</h2>
 			<p>
-				This API was made with love by <a href="//twitter.com/jon_neal">Jon Neal</a>.
+				This API was made with love by <a href="//twitter.com/jon_neal">Jon Neal</a>. The project was initiated over at <a href="github.com/paulirish/lazyweb-requests/issues/39">github.com/paulirish/lazyweb-requests#39</a> and corraled by Divya Manian and Paul Irish with input from other lovers of the open web.
 			</p>
 			<p>
-				The original caniuse data was made by the one and only <a href="//twitter.com/fyrd">Alexis Deveria</a>.
+				The original caniuse data was made by the one and only <a href="//twitter.com/fyrd">Alexis Deveria</a> and the glamorous buttons were made by the dapper <a href="//twitter.com/aaronlayton">Aaron Layton</a>. This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a>.
 			</p>
-			<p>
-				The glamorous buttons were made by the dapper <a href="//twitter.com/aaronlayton">Aaron Layton</a>.
-			</p>
+
 		</footer>
 	</body>
 </html>
