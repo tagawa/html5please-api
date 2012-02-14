@@ -17,6 +17,20 @@
 		code { font-family: monospace, monospace; }
 		strong { font-weight: bold; }
 		a { color: #55D; text-decoration: none; }
+		:target {
+			-webkit-animation: glow 1.9s 3;  /* just twice */
+			   -moz-animation: glow 1.9s 3;
+			    -ms-animation: glow 1.9s 3;
+		}
+		@-webkit-keyframes glow { from { -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+		                          55% {  -webkit-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+		                          to {   -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
+		@-moz-keyframes    glow { from {    -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+		                          55% {     -moz-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+		                          to {      -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
+		@-ms-keyframes     glow { from {     -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+		                          55% {      -ms-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+		                          to {       -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
 		</style>
 	</head>
 	<body>
@@ -36,7 +50,7 @@
 			</p>
 
 			<p>You'll likely use JSON-P to grab this API, but you're welcome to use CORS.</p>
-			
+
 			<h3>
 				features
 			</h3>
@@ -143,5 +157,13 @@
 			</p>
 
 		</footer>
+		<script>
+		if ([].forEach && document.querySelectorAll){
+			[].forEach.call( document.querySelectorAll('h2, h3, strong, dt'), function(elem){
+				var text = (elem.textContent || elem.innerText).toLowerCase().trim();
+				elem.id = elem.id || text;
+			});
+		}
+		</script>
 	</body>
 </html>
