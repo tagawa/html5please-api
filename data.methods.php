@@ -269,7 +269,7 @@ function get_support_array($json_array = array(), &$requested_features_array = a
 
 function get_agent_support_array($agent_stats_array = array()) {
 	foreach ($agent_stats_array as $version => $supported) {
-		if (preg_match('/y/', $supported)) {
+		if (preg_match('/[py]/', $supported)) {
 			return $version;
 		}
 	}
