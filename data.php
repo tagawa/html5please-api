@@ -132,7 +132,7 @@ if ($requested_format_string === 'js' && $requested_callback_string) {
 
 	$html = html_encode($return_array, $requested_style_string, $requested_style_boolean);
 
-	$html_container = file_get_contents('tpl.html.html');
+	$html_container = file_get_contents('tpl/html.html');
 
 	$html_container = preg_replace('/<%= title %>/', 'Can I Use API', $html_container);
 	$html_container = preg_replace('/<%= content %>/', $html, $html_container);
