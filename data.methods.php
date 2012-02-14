@@ -443,7 +443,7 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 	}
 
 	if ($requested_style_boolean) {
-		$html .= '<style>' . preg_replace('/[\s]+/', ' ', @file_get_contents('css/' . $requested_style_string . '.css')) . '</style>';
+		$html .= '&shy;<style>' . preg_replace('/[\s]+/', ' ', @file_get_contents('css/' . $requested_style_string . '.css')) . '</style>';
 	}
 
 	$html .= file_get_contents('tpl/' . $requested_style_string . '.html');
