@@ -6,7 +6,7 @@
 		<style>
 		* { font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; }
 		html { background: #F2F2F2; color: #333; font: 100%/1 sans-serif; }
-		body { margin: 0 auto; width: 33em; }
+		body { margin: 0 auto; width: 40em; }
 		h1, section { margin: 2em 0; }
 		h1 { font-size: 2em; font-weight: bold; }
 		h2 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
@@ -17,6 +17,42 @@
 		code { font-family: monospace, monospace; }
 		strong { font-weight: bold; }
 		a { color: #55D; text-decoration: none; }
+
+    #get-api h3 { margin: 1.5em 0 0.25em 0; }
+    #features { display: block; width: 100%; }
+
+    label[for='features'] { font-size: small; font-style: italic; }
+
+    .formats label { text-transform: uppercase; }
+    .formats label + label { padding: 0 1em;  }
+    .formats label:first-of-type { padding-right: 1em; } 
+    input[type="radio"], 
+    input[type="checkbox"] { margin-right: 0.25em; }
+
+
+    [id^='options'] { display: none; }
+
+    [id^='options'].active { display: block; }
+
+    [id^='options'] label, .callback { display: block; padding: 0.5em;  border-bottom: 1px dotted; }
+
+    .api-example {
+      background: #000;
+      color: #fff;
+      border-radius: 0.5em;
+      font-family: monospace;
+      padding: 0.5em 1em;
+    }
+
+    .api-example a {
+      color: inherit;
+      word-wrap: breakword;
+    }
+
+    .api-example a:hover {
+      color: skyblue;
+    }
+
 		:target {
 			-webkit-animation: glow 1.9s 3;  /* just twice */
 			   -moz-animation: glow 1.9s 3;
@@ -35,12 +71,66 @@
 	</head>
 	<body>
 		<h1>
-			caniuse api
+      Support Browsers <b>with Feature Detection</b>
 		</h1>
 
 		<p>
-			The caniuse API seeks to bridge the gap between developers bringing new features to the web in their sites/apps and users who only know browsers. It allows you, as a developer, to specify which features you're using <small>(for example: WebGL and WebRTC)</small> and let the API figure out which browsers will be required to enjoy the demo. You get back some HTML to show the user or a JSON object of the relevant data (with logos and all), so you can customize the view to your liking.	
+      The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. 
+    </p>
+    <p>
+      You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
 		</p>
+    <section>
+    <h2>Show Me</h2>
+      <form id="get-api">
+        <h3>You want data on browsers that support</h3>
+        <label for="features">
+          <input id="features" type="text" required value="json canvas">
+          Separate each feature with a space, look at <a href="http://caniuse.com">caniuse</a> permalinks for feature names to use.
+        </label>
+
+        <div class="formats">
+          <h3>as</h3>
+          <label><input type="radio" name="format" value="json">json</label> or 
+          <label><input type="radio" name="format" value="xml">xml</label> or
+          <label><input type="radio" name="format" value="js">js</label> or
+          <label><input type="radio" checked name="format" value="html">html</label>
+        </div>
+
+        <h3>with</h3>
+        <div class='callback'>
+          <input type="checkbox" id="callback" name="options" value="callback=callback">
+          <input type="text" id="callbackvalue" value="callback">
+        </div>
+        <div id='options-html'>
+          <label><input type="checkbox" name="options" value="nostyle">plain HTML, no styling</label>
+          <label><input type="checkbox" name="options"  value="icon">Show browser logos</label>
+          <label><input type="checkbox" name="options"  value="text">Show browser support information in text</label>
+        </div>
+        <div id='options-json'>
+          <label><input type="checkbox" name="options" value="readable">Make it readable</label>
+          <label><input type="checkbox" name="options" value="supported">Only output info on whether current browser supports these features</label>
+        </div>
+        <div id='options-js'>
+          <label><input type="checkbox" name="options" value="noagent">Show All Supported Browsers</label>
+        </div>
+      </form>
+      <article>
+        <h3>
+          Use
+        </h3>
+        <div class="api-example">
+          <a href="#" id="url" target="_blank"></a>
+        </div>
+
+        <h3>
+          To get
+        </h3>
+        <div id="result">
+        </div> 
+      </article>
+
+    </section>
 		<section>
 			<h2>
 				How to use
@@ -103,7 +193,7 @@
 			</p>
 		</section>
 		<section>
-			<h2>
+			<h2 id=options>
 				Options
 			</h2>
 			<p>
@@ -135,7 +225,7 @@
 			</p>
 		</section>
 		<section>
-			<h2>
+			<h2 id=contribute>
 				Contribute
 			</h2>
 			<p>
@@ -146,7 +236,7 @@
 			</p>
 		</section>
 		<footer>
-			<h2>
+			<h2 id=credit>
 				Credit
 			</h2>
 			<p>
@@ -158,12 +248,124 @@
 
 		</footer>
 		<script>
-		if ([].forEach && document.querySelectorAll){
-			[].forEach.call( document.querySelectorAll('h2, h3, strong, dt'), function(elem){
-				var text = (elem.textContent || elem.innerText).toLowerCase().trim();
-				elem.id = elem.id || text;
-			});
-		}
+      var url = document.getElementById('url'),
+         result = document.getElementById('result'),
+         features = document.getElementById('features'),
+         formats = document.querySelectorAll('input[name="format"]'),
+         options = document.querySelectorAll('input[name="options"]'),
+         callbackvalue = document.getElementById('callbackvalue'),
+         callback = document.getElementById('callback'),
+         cache = {}, lastActive = false;
+
+
+         var api = {
+          'domain': 'http://api.caniuse.com/',
+          'features': '',
+          'format': '',
+          'options': ''
+          } 
+
+      features.onblur = function() {
+         api.features = features.value.split(' ').join('+').trim(); 
+         refreshOutput();
+      };
+
+      callbackvalue.onblur = function() {
+        callback.value = 'callback=' + this.value;
+        if(callback.checked) {
+          refreshOutput();
+        }
+      };
+
+      [].forEach.call(formats, function(format) {
+       format.onclick =  function() {
+         api.format = this.value;
+         showFormatOptions();
+         refreshOutput();
+       };
+      });
+
+      [].forEach.call(options, function(option) {
+        option.onchange =  function() {
+          refreshOutput();
+        };
+      });
+       
+      function showFormatOptions() {
+        if (lastActive.className) { lastActive.className = '' };
+        api.options = '';
+        var formatOptions = document.getElementById('options-'+ api.format);
+        if(formatOptions) { 
+          formatOptions.className = 'active'; 
+          lastActive = formatOptions;
+        }
+      }
+
+      function formattedOptions() {
+        var currentOptions = document.getElementById('options-' + api.format).querySelectorAll('input[name="options"]') || [];
+        currentOptions = [].filter.call(currentOptions, function(option) { return option.checked; }).map(function(option) { return option.value; });
+
+        if(callback.checked) {
+          currentOptions.push(callback.value);
+        }
+
+        return currentOptions.join('&');
+        
+      };
+
+      function refreshOutput() {
+         if(api.features !== '') {
+           api.options = formattedOptions();
+           updateurl();
+           updateresult();
+         }
+      };
+
+      function updateurl() {
+        url.textContent = Object.keys(api).map(function(key) { 
+          var operator = '';
+          if(key === 'format') {
+           operator = '.'; 
+           } else if (key === 'options') {
+              operator = '?';
+            } 
+            return operator + api[key];
+          }).join(''); 
+
+        url.href = url.textContent;
+       
+      };
+
+      function updateresult() {
+        cacheresult = cache[url.textContent];
+        if(cacheresult) {
+          if(api.format == 'html') {
+            result.innerHTML = cacheresult;
+            } else {
+            textarea.value = cacheresult;
+            result.appendChild(textarea);
+
+          }
+          } else {
+          var request = new XMLHttpRequest();
+          request.onreadystatechange = function() {
+            if(request.readyState === 4) {
+              if(request.status === 200) {
+                cache[url.textContent] = request.responseText.toString(); 
+              }
+            }  
+          };
+        
+          request.open('GET', url.textContent);
+          request.send();
+        } 
+      };
+
+      api.features = features.value.split(' ').join('+');
+      api.format = document.querySelector('input[name="format"][checked]').value; 
+      showFormatOptions();
+      refreshOutput();
+
 		</script>
 	</body>
 </html>
