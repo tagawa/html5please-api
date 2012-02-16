@@ -4,6 +4,10 @@
    Helper Methods
    ========================================================================== */
 
+function is_function() {
+	return reset(array_filter(func_get_args(), 'is_callable'));
+}
+
 function is_set($val = undefined) {
 	return isset($val);
 }
@@ -25,117 +29,168 @@ function first_match($pattern = '', $subject = '', $else_string = null) {
 	return first_set_in_array($matches);
 }
 
-function get_file_json($filename = '', $assoc = true) {
-	return json_decode(file_get_contents($filename), $assoc);
+function array_unset(& $array = array(), $propertyList = array()) {
+	foreach ($propertyList as $property) {
+		unset($array[$property]);
+	}
 }
 
-function get_cached_array($array_string = '', $requested_features_array = array()) {
-	$json_filename  = 'data.json';
-	if ($array_string === 'support') {
-		$array_filename = 'cache/' . $array_string . '-' . implode('_', $requested_features_array) . '.php';
-	} elseif ($array_string === 'features') {
-		$array_filename = 'cache/' . $array_string . '-' . implode('_', $requested_features_array) . '.php';
-	} else {
-		$array_filename = 'cache/' . $array_string . '.php';
-	}
-
-	$json_filetime  = @filemtime($json_filename);
-	$array_filetime = @filemtime($array_filename);
-
-	$array_function = 'get_' . $array_string . '_array';
-
-	if ($json_filetime != $array_filetime) {
-		$json_array = get_file_json($json_filename);
-
-		$array_array = $array_function($json_array, $requested_features_array);
-
-		file_put_contents($array_filename, '<?php $array_array = ' . var_export($array_array, true) . '; ?>');
-
-		touch($array_filename, $json_filetime);
-	} else {
-		include $array_filename;
-	}
-
-	return $array_array;
+function file_get_json($filename = '', $associative = true) {
+	return json_decode(file_get_contents($filename), $associative);
 }
 
-function readable_json( $jsonString)
-{
+function file_put_php($filename = '', $php_string = '') {
+	file_put_contents($filename, '<?php' . "\n\n" . $php_string . "\n\n" . '?>');
+}
+
+function file_set_array($filename = '', & $array = array(), $array_name = 'array') {
+	file_put_php($filename, '$' . $array_name . ' = ' . var_export($array, true) . ';');
+}
+
+function file_get_cached_json($json_filename = '', $json_fn = null, $rebuild = false) {
+	$php_filename  = 'cache/' . $json_filename . '.php';
+
+	$json_filetime = @filemtime($json_filename);
+	$php_filetime  = @filemtime($php_filename);
+
+	if ($json_filetime !== $php_filetime || $rebuild) {
+		$json_array = @file_get_json($json_filename);
+
+		if ($json_fn) {
+			$json_array = $json_fn($json_array);
+		}
+
+		file_set_array($php_filename, $json_array, 'json_array');
+
+		touch($php_filename, $json_filetime);
+	} else {
+		include $php_filename;
+	}
+
+	return $json_array;
+}
+
+function json_readable($json = null) {
 	$tabcount = 0;
-	$result = '';
+	$return = '';
 	$inquote = false;
 
 	$tab = "\t";
 	$newline = "\n";
 
-	for ($i = 0; $i < strlen($jsonString); $i++)  {
-		$char = $jsonString[$i];
+	$json = is_string($json) ? $json : json_encode($json);
 
-		if ($char == '"' && $jsonString[ $i-1] != '\\') {
+	for ($i = 0; $i < strlen($json); $i++)  {
+		$char = $json[$i];
+
+		if ($char == '"' && $json[ $i-1] != '\\') {
 			$inquote = !$inquote;
 		}
 
 		if ($inquote) {
-			$result .= $char;
+			$return .= $char;
 			continue;
 		}
 
 		switch ($char) {
 			case '{':
-				if ($i) $result .= $newline;
-				$result .= str_repeat($tab, $tabcount) . $char . $newline . str_repeat( $tab, ++$tabcount);
-				break;
+				if ($i) {
+					$return .= $newline;
+				}
 
+				$return .= str_repeat($tab, $tabcount) . $char . $newline . str_repeat( $tab, ++$tabcount);
+
+				break;
 			case '}':
-				$result .= $newline . str_repeat( $tab, --$tabcount) . $char;
-				break;
+				$return .= $newline . str_repeat( $tab, --$tabcount) . $char;
 
+				break;
 			case ',':
-				$result .= $char;
-				if( $jsonString[ $i+1] != '{') $result .= $newline . str_repeat($tab, $tabcount);
-				break;
+				$return .= $char;
 
+				if ($json[ $i+1] != '{') {
+					$return .= $newline . str_repeat($tab, $tabcount);
+				}
+
+				break;
 			case ':':
-				$result .= $char . ' ';
-				break;
+				$return .= $char . ' ';
 
+				break;
 			default:
-				$result .= $char;
+				$return .= $char;
 		}
 	}
 
-	return $result;
+	return $return;
 }
 
-
-
 /* =============================================================================
-   Get Keywords Array
+   Filters
    ========================================================================== */
 
-function get_keywords_array(&$json_array = array()) {
-	$return_array = $json_array['keywords'];
+// returns filtered data from data.json
 
-	foreach ($return_array as $keyword_name => &$keyword_words) {
-		$return_array[$keyword_name] = '/^(' . preg_replace('/ /', 's*|', $keyword_words) . 's*)$/';
+function filter_datajson(& $json_array) {
+	$array =& $json_array['data'];
+
+	foreach ($array as & $value) {
+		$value['partial'] = filter_datajsonstats($value['stats'], '/[ay]/');
+		$value['supported'] = filter_datajsonstats($value['stats'], '/y/');
+
+		array_unset($value, explode(' ', 'keywords categories description links spec notes stats status usage_perc_y usage_perc_a'));
+	}
+
+	return $array;
+}
+
+// returns filtered stats from data.json stats
+
+function filter_datajsonstats($array = array(), $filter = '') {
+	foreach ($array as $agent_name =>& $agent_array) {
+		foreach ($agent_array as $agent_version =>& $agent_support) {
+			if (preg_match($filter, $agent_support)) {
+				$array[$agent_name] = $agent_version;
+
+				break 1;
+			}
+		}
+
+		if (is_array($array[$agent_name])) {
+			unset($array[$agent_name]);
+		}
+	}
+
+	return $array;
+}
+
+// returns filtered keywords from keywords.json
+
+function filter_keywords(& $json_array) {
+	$return_array = array();
+
+	foreach ($json_array as $keyword_name => &$keyword_words) {
+		$return_array[$keyword_name] = '/^(' . preg_replace('/ /', '[s]*|', $keyword_words) . '[s]*)$/';
 	}
 
 	return $return_array;
 }
 
-function filter_features_array(&$requested_features_array, &$keywords_array) {
+// returns filtered features from successful searches in keywords
+
+function filter_features(& $request_features_array = array(), & $keywords_array = array()) {
 	$return_array = array();
 
-	foreach ($requested_features_array as $requested_feature_name) {
-		$requested_feature_name = strtolower($requested_feature_name);
+	foreach ($request_features_array as $request_feature_name) {
+		$request_feature_name = strtolower($request_feature_name);
 
-		if (isset($keywords_array[$requested_feature_name])) {
-			array_push($return_array, $requested_feature_name);
+		if (isset($keywords_array[$request_feature_name])) {
+			array_push($return_array, $request_feature_name);
 		} else {
-			$requested_feature_name = preg_replace('/[-_]/', '', $requested_feature_name);
+			$request_feature_name = preg_replace('/[^A-z0-9]/', '', $request_feature_name);
 
 			foreach ($keywords_array as $keyword_name =>& $keyword_words) {
-				if (preg_match($keyword_words, $requested_feature_name)) {
+				if (preg_match($keyword_words, $request_feature_name)) {
 					array_push($return_array, $keyword_name);
 				}
 			}
@@ -147,169 +202,80 @@ function filter_features_array(&$requested_features_array, &$keywords_array) {
 	return $return_array;
 }
 
+// returns filtered support metrics from features, agents, and data
 
-
-/* =============================================================================
-   Get Agents Array
-   ========================================================================== */
-
-function get_agents_array(&$json_array = array()) {
-	$return_array = array();
-	$agents_array =& $json_array['agents'];
-
-	foreach ($agents_array as $agentid_string => &$agent_array) {
-		$return_array[$agentid_string] = $agent_array;
-
-		unset($return_array[$agentid_string]['abbr']);
-		unset($return_array[$agentid_string]['versions']);
-	}
-
-	return $return_array;
-}
-
-
-
-/* =============================================================================
-   Get Features Array
-   ========================================================================== */
-
-function get_features_array(&$json_array = array(), &$requested_features_array = array()) {
-	$return_array = array();
-	$data_array   = &$json_array['data'];
-
-	if ($requested_features_array) {
-		foreach ($requested_features_array as $feature_string) {
-			if (isset($data_array[$feature_string])) {
-				$return_array[$feature_string] = $data_array[$feature_string]['title'];
-			} else {
-				return;
-			}
-		}
-	}
-
-	return $return_array;
-}
-
-
-
-/* =============================================================================
-   Get Support Array
-   ========================================================================== */
-
-function get_support_array($json_array = array(), &$requested_features_array = array()) {
-	$agents_array =& $json_array['agents'];
-	$data_array   =& $json_array['data'];
-
-	$agentslist_array = array(
-		'ie' => true,
-		'firefox' => true,
-		'chrome' => true,
-		'safari' => true,
-		'opera' => true,
-		'ios_saf' => true,
-		'op_mini' => true,
-		'op_mob' => true,
-		'android' => true
-	);
-
+function filter_supportmetrics(& $option_features = array(), $agents_array = array(), & $data_array = array()) {
 	$return_array = array(
-		'byFeature' => array(),
-		'byAgent' => array(),
-		'agents' => array(),
-		'agentsProper' => array()
+		'agents' =>& $agents_array,
+		'features' => array(),
+		'results' => array(),
+		'result' => array()
 	);
 
-	$error_array = array();
-
-	$return_by_feature_array    =& $return_array['byFeature'];
-	$return_by_agent_array      =& $return_array['byAgent'];
-	$return_agents_array	        =& $return_array['agents'];
-	$return_agents_proper_array =& $return_array['agentsProper'];
-
-	foreach ($requested_features_array as &$feature_string) {
-		$feature_array = @$data_array[$feature_string];
-		$stats_array   = @$feature_array['stats'];
-
-		if ($stats_array) {
-			$return_by_feature_array[$feature_string] = array();
-
-			foreach ($stats_array as $agentid_string => $agentstats_array) {
-				$agent_array = $agents_array[$agentid_string];
-				$agent_name_string = $agent_array['name'];
-				$version = get_agent_support_array($agentstats_array);
-
-				if ($version) {
-					$return_by_feature_array[$feature_string][$agentid_string] = $version;
-					$return_by_agent_array[$agentid_string][$feature_string] = $version;
-
-					if ($agentslist_array[$agentid_string]) {
-						$return_agents_array[$agentid_string] = (version_compare(
-							@$return_agents_array[$agentid_string],
-							$version
-						) < 1) ? $version : @$return_agents_array[$agentid_string];
-						$return_agents_proper_array[$agent_name_string] = $return_agents_array[$agentid_string];
-					}
-				} else {
-					$agentslist_array[$agentid_string] = false;
-					unset($return_agents_array[$agentid_string]);
-					unset($return_agents_proper_array[$agent_name_string]);
-				}
-			}
-		} else {
-			array_push($error_array, $feature_string);
-		}
+	foreach ($agents_array as & $agent_array) {
+		unset($agent_array['sniffer']);
 	}
 
-	if (!empty($error_array)) {
-		return array('supported' => false, 'error' => $error_array);
-	} else {
-		return $return_array;
-	}
-}
+	foreach ($option_features as $feature_name) {
+		$property_array = first_set(@$data_array[$feature_name]['supported'], array());
 
-function get_agent_support_array($agent_stats_array = array()) {
-	foreach ($agent_stats_array as $version => $supported) {
-		if (preg_match('/[py]/', $supported)) {
-			return $version;
-		}
-	}
+		$return_array['result'][$feature_name] = $property_array;
 
-	return false;
-}
+		$return_array['features'][$feature_name] = $data_array[$feature_name]['title'];
 
+		$all_array =& $return_array['results'];
 
+		foreach ($agents_array as $agent_name =>& $unused_array) {
+			$agent_array = @$property_array[$agent_name];
 
-/* =============================================================================
-   Get Unsupported Array
-   ========================================================================== */
-
-function get_unsupported_array(&$support_array = array(), &$user_agent_array = array()) {
-	$return_array = array();
-
-	if ($support_array && @$support_array['byFeature']) {
-		foreach($support_array['byFeature'] as $feature_string => &$feature_array) {
-			if (
-				!isset($feature_array[$user_agent_array['id']]) ||
-				version_compare(@$feature_array[$user_agent_array['id']], @$user_agent_array['version']) > -1
-			) {
-				array_push($return_array, $feature_string);
+			if ($agent_array) {
+				$all_array[$agent_name] = (version_compare(@$all_array[$agent_name], @$agent_array) < 1) ? $agent_array : $all_array[$agent_name];
+			} else {
+				unset($return_array['agents'][$agent_name]);
+				unset($agents_array[$agent_name]);
+				unset($all_array[$agent_name]);
 			}
 		}
-	} else {
-		return;
 	}
 
 	return $return_array;
 }
 
+// returns filtered options from the get method
 
+function filter_options() {
+	// Set array
+	$array = array();
+	$key = 'option_';
 
-/* =============================================================================
-   Get User Agent Array
-   ========================================================================== */
+	// Set variables
+	$array[$key . 'callback']   = @$_GET['callback'];
+	$array[$key . 'features']   = explode(' ', @$_GET['features']);
+	$array[$key . 'format']     = first_match('/(html|js|json|php|xml)/', @$_GET['format'], 'js');
+	$array[$key . 'readable']   = isset($_GET['readable']);
+	$array[$key . 'noagent']    = isset($_GET['noagent']);
+	$array[$key . 'noagents']   = isset($_GET['noagents']);
+	$array[$key . 'nofeatures'] = isset($_GET['nofeatures']);
+	$array[$key . 'nocss']      = isset($_GET['nocss']);
+	$array[$key . 'noresult']   = isset($_GET['noresult']);
+	$array[$key . 'noresults']  = isset($_GET['noresults']);
+	$array[$key . 'style']      = (
+		isset($_GET['texticon']) || (isset($_GET['text']) && isset($_GET['icon'])) ? 'texticon' : (
+			isset($_GET['icon']) ? 'icon' : (
+				isset($_GET['text']) ? 'text' : 'button'
+			)
+		)
+	);
+	$array[$key . 'barebones'] = isset($_GET['barebones']);
 
-function get_user_agent_array($agents_array) {
+	return $array;
+}
+
+// returns user agent details
+
+function filter_useragent(& $agents_array) {
 	$user_agent_string = $_SERVER['HTTP_USER_AGENT'];
+	$return_array = array();
 
 	foreach($agents_array as $agent_string => &$agent_array) {
 		$agent_sniffer = $agent_array['sniffer'];
@@ -317,60 +283,17 @@ function get_user_agent_array($agents_array) {
 		$agent_boolean = preg_match($agent_sniffer, $user_agent_string, $agent_matches);
 
 		if ($agent_boolean) {
-			$return_array = $agent_array;
-			$return_array['version'] = first_set(@$agent_matches[1], @$agent_matches[2]);
-			$return_array['id'] = $agent_string;
+			unset($agents_array[$agent_string]['sniffer']);
 
-			unset($return_array['prefix']);
-			unset($return_array['sniffer']);
-
-			return $return_array;
+			$return_array = array_merge(
+				array('id' => $agent_string),
+				$agent_array,
+				array('version' => first_set(@$agent_matches[1], @$agent_matches[2]))
+			);
 		}
-	}
-}
-
-
-
-/* =============================================================================
-   Get Alternatives Array
-   ========================================================================== */
-
-function get_alternatives_array(&$agents_array = array(), &$support_array = array(), &$user_agent_array = array()) {
-	$return_array = array();
-	$user_agent_id_string   = $user_agent_array['id'];
-	$user_agent_type_string = $user_agent_array['type'];
-
-	if (isset($support_array['agents'])) {
-		foreach ($support_array['agents'] as $agent_string => &$agent_version) {
-			if ($user_agent_id_string !== $agent_string && $user_agent_type_string === $agents_array[$agent_string]['type']) {
-				$return_array[$agent_string] = $agents_array[$agent_string];
-				$return_array[$agent_string]['version'] = $agent_version;
-
-				unset($return_array[$agent_string]['prefix']);
-				unset($return_array[$agent_string]['sniffer']);
-				unset($return_array[$agent_string]['type']);
-			}
-		}
-	} else {
-		return;
 	}
 
 	return $return_array;
-}
-
-
-
-/* =============================================================================
-   Get Upgradable Array
-   ========================================================================== */
-
-function get_upgradable_array(&$support_array = array(), $user_agent_array = array()) {
-	$return_array = $user_agent_array;
-
-	unset($return_array['type']);
-	unset($return_array['version']);
-
-	return !!@$support_array['agents'][$user_agent_array['id']] ? $return_array : false;
 }
 
 
@@ -463,8 +386,8 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 		$html = preg_replace('/\s*<% unsupported %>|<% \/unsupported %>/', '', $html);
 	}
 
-	$html = preg_replace('/<%= browserid %>/', $return_array['current']['id'], $html);
-	$html = preg_replace('/<%= browserurl %>/', $return_array['current']['url'], $html);
+	$html = preg_replace('/<%= browserid %>/', $return_array['agent']['id'], $html);
+	$html = preg_replace('/<%= browserurl %>/', $return_array['agent']['url'], $html);
 	$html = preg_replace('/<%= alternatives %>/', html_encode_agents($return_array['alternatives'], $requested_style_string), $html);
 	$html = preg_replace('/<%= features %>/', html_encode_features($return_array), $html);
 
