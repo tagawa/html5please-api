@@ -57,7 +57,7 @@ if ($option_format === 'js' || $option_format === 'json' || $option_callback) {
 	}
 
 	if ($option_format === 'html') {
-		$support_array['html'] = '<html></html>';
+		$support_array['html'] = html_encode($support_array, $option_style, !$option_nocss);
 	}
 
 	$string = json_encode($support_array);
@@ -70,11 +70,10 @@ if ($option_format === 'js' || $option_format === 'json' || $option_callback) {
 		$string = $option_callback . '(' . $string . ')';
 	}
 } else if ($option_format === 'html') {
-	print_r($support_array);
-	exit();
 	header('Content-Type: text/html');
 
-	$string = html_encode($support_array, $option_style, !$option_nocss);
+	$string = file_get_contents('tpl/html.html');
+	$string = preg_replace('/<%= content %>/', html_encode($support_array, $option_style, !$option_nocss), $string);
 } else if ($option_format === 'xml') {
 	header('Content-Type: text/xml');
 
