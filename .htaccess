@@ -3,7 +3,7 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(.+?)\.(html|js|json|xml)$ data.php?features=$1&format=$2 [NC,QSA]
+RewriteRule ^(.+?)\.(html|js|json|xml)$ handler.php?features=$1&format=$2 [NC,QSA]
 
 <IfModule mod_expires.c>
   ExpiresActive on
