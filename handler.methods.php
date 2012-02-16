@@ -138,6 +138,7 @@ function filter_datajson(& $json_array) {
 		$value['partial'] = filter_datajsonstats($value['stats'], '/[ay]/');
 		$value['supported'] = filter_datajsonstats($value['stats'], '/y/');
 
+
 		array_unset($value, explode(' ', 'keywords categories description links spec notes stats status usage_perc_y usage_perc_a'));
 	}
 
@@ -147,21 +148,21 @@ function filter_datajson(& $json_array) {
 // returns filtered stats from data.json stats
 
 function filter_datajsonstats($array = array(), $filter = '') {
-	foreach ($array as $agent_name =>& $agent_array) {
+	$return_array = array();
+
+	foreach ($array as $agent_id =>& $agent_array) {
 		foreach ($agent_array as $agent_version =>& $agent_support) {
 			if (preg_match($filter, $agent_support)) {
-				$array[$agent_name] = $agent_version;
-
-				break 1;
+				if (!isset($return_array[$agent_id])) {
+					$return_array[$agent_id] = $agent_version;
+				} else {
+					$return_array[$agent_id] = version_compare($return_array[$agent_id], $agent_version) < 0 ? $return_array[$agent_id] : $agent_version;
+				}
 			}
-		}
-
-		if (is_array($array[$agent_name])) {
-			unset($array[$agent_name]);
 		}
 	}
 
-	return $array;
+	return $return_array;
 }
 
 // returns filtered keywords from keywords.json
