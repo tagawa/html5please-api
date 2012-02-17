@@ -229,10 +229,12 @@ function filter_supportmetrics(& $option_features = array(), $agents_array = arr
 		foreach ($agents_array as $agent_name =>& $unused_array) {
 			$agent_array = @$property_array[$agent_name];
 
-			if ($agent_array) {
-				$all_array[$agent_name] = (version_compare(@$all_array[$agent_name], @$agent_array) < 1) ? $agent_array : $all_array[$agent_name];
+			if ($agent_array && (version_compare($agents_array[$agent_name]['currentVersion'], $agent_array) > -1)) {
+				$all_array[$agent_name] = (version_compare(@$all_array[$agent_name], $agent_array) < 1) ? $agent_array : $all_array[$agent_name];
+
 			} else {
 				unset($return_array['agents'][$agent_name]);
+				unset($return_array['result'][$feature_name][$agent_name]);
 				unset($agents_array[$agent_name]);
 				unset($all_array[$agent_name]);
 			}

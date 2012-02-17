@@ -4,62 +4,71 @@
 		"prefix": "ms",
 		"type": "desktop",
 		"url": "http:\/\/www.microsoft.com\/windows\/internet-explorer\/",
-		"sniffer": "/msie[\\W\\w]*?([\\d\\.]+)/i"
+		"sniffer": "/msie[\\W\\w]*?([\\d\\.]+)/i",
+		"currentVersion": "9"
 	},
 	"firefox": {
 		"name": "Firefox",
 		"prefix": "moz",
 		"type": "desktop",
 		"url": "http:\/\/www.firefox.com\/",
-		"sniffer": "/firefox\\/([\\d\\.]+)/i"
+		"sniffer": "/firefox\\/([\\d\\.]+)/i",
+		"currentVersion": "10"
 	},
 	"chrome": {
 		"name": "Chrome",
 		"prefix": "webkit",
 		"type": "desktop",
 		"url": "http:\/\/www.google.com\/chrome",
-		"sniffer": "/chrome\\/([\\d\\.]+)/i"
+		"sniffer": "/chrome\\/([\\d\\.]+)/i",
+		"currentVersion": "17"
 	},
 	"safari": {
 		"name": "Safari",
 		"prefix": "webkit",
 		"type": "desktop",
 		"url": "http:\/\/www.apple.com\/safari\/",
-		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i"
+		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
+		"currentVersion": "5.1"
 	},
 	"opera": {
 		"name": "Opera",
 		"prefix": "o",
 		"type": "desktop",
 		"url": "http:\/\/www.opera.com\/",
-		"sniffer": "/opera[\\W\\w]*?version\\/([\\d\\.]+)|opera[\\W\\w]*?([\\d\\.]+)/i"
+		"sniffer": "/opera[\\W\\w]*?version\\/([\\d\\.]+)|opera[\\W\\w]*?([\\d\\.]+)/i",
+		"currentVersion": "11.6"
 	},
 	"ios_saf": {
 		"name": "iOS Safari",
 		"prefix": "webkit",
 		"type": "mobile",
 		"url": "http:\/\/www.apple.com\/iphone\/",
-		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i"
+		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
+		"currentVersion": "5"
 	},
 	"op_mini": {
 		"name": "Opera Mini",
 		"prefix": "o",
 		"type": "mobile",
 		"url": "http:\/\/www.opera.com\/mobile\/",
-		"sniffer": "/opera\\s*mobi[\\W\\w]*?version\\/([\\d\\.]+)/i"
+		"sniffer": "/opera\\s*mobi[\\W\\w]*?version\\/([\\d\\.]+)/i",
+		"currentVersion": "5.0-6.0"
 	},
 	"op_mob": {
 		"name": "Opera Mobile",
 		"prefix": "o",
 		"type": "mobile",
 		"url": "http:\/\/www.opera.com\/mobile\/",
-		"sniffer": "/opera\\s*mini[\\W\\w]*?version\\/([\\d\\.]+)/i"
+		"sniffer": "/opera\\s*mini[\\W\\w]*?version\\/([\\d\\.]+)/i",
+		"currentVersion": "11.5"
 	},
 	"android": {
 		"name": "Android Browser",
 		"prefix": "webkit",
 		"type": "mobile",
 		"url": "http:\/\/www.android.com\/",
-		"sniffer": "/android\\s*([\\d\\.]+)/i"
+		"sniffer": "/android\\s*([\\d\\.]+)/i",
+		"currentVersion": "4"
 	}
 }
