@@ -389,7 +389,7 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 
 	$html = preg_replace('/<%= browserid %>/', $return_array['agent']['id'], $html);
 	$html = preg_replace('/<%= browserurl %>/', $return_array['agent']['url'], $html);
-	$html = preg_replace('/<%= alternatives %>/', html_encode_agents($return_array['alternatives'], $requested_style_string), $html);
+	$html = preg_replace('/<%= alternatives %>/', html_encode_agents($return_array['agents'], $requested_style_string), $html);
 	$html = preg_replace('/<%= features %>/', html_encode_features($return_array), $html);
 
 	$html = preg_replace('/[\s]+/', ' ', $html);
