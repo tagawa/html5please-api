@@ -18,6 +18,8 @@
 		strong { font-weight: bold; }
 		a { color: #55D; text-decoration: none; }
 
+    #about { display: none; } 
+
     #get-api h3 { margin: 1.5em 0 0.25em 0; }
     #features { display: block; width: 100%; }
 
@@ -73,15 +75,16 @@
 		<h1>
       Support Browsers <b>with Feature Detection</b>
 		</h1>
-
-		<p>
+    <div id="about">
+      <p>
       The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. 
-    </p>
-    <p>
+      </p>
+      <p>
       You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
-		</p>
+      </p>
+    </div>
+
     <section>
-    <h2>Show Me</h2>
       <form id="get-api">
         <h3>You want data on browsers that support</h3>
         <label for="features">
@@ -247,125 +250,10 @@
 			</p>
 
 		</footer>
-		<script>
-      var url = document.getElementById('url'),
-         result = document.getElementById('result'),
-         features = document.getElementById('features'),
-         formats = document.querySelectorAll('input[name="format"]'),
-         options = document.querySelectorAll('input[name="options"]'),
-         callbackvalue = document.getElementById('callbackvalue'),
-         callback = document.getElementById('callback'),
-         cache = {}, lastActive = false;
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
-
-         var api = {
-          'domain': 'http://api.caniuse.com/',
-          'features': '',
-          'format': '',
-          'options': ''
-          } 
-
-      features.onblur = function() {
-         api.features = features.value.split(' ').join('+').trim(); 
-         refreshOutput();
-      };
-
-      callbackvalue.onblur = function() {
-        callback.value = 'callback=' + this.value;
-        if(callback.checked) {
-          refreshOutput();
-        }
-      };
-
-      [].forEach.call(formats, function(format) {
-       format.onclick =  function() {
-         api.format = this.value;
-         showFormatOptions();
-         refreshOutput();
-       };
-      });
-
-      [].forEach.call(options, function(option) {
-        option.onchange =  function() {
-          refreshOutput();
-        };
-      });
-       
-      function showFormatOptions() {
-        if (lastActive.className) { lastActive.className = '' };
-        api.options = '';
-        var formatOptions = document.getElementById('options-'+ api.format);
-        if(formatOptions) { 
-          formatOptions.className = 'active'; 
-          lastActive = formatOptions;
-        }
-      }
-
-      function formattedOptions() {
-        var currentOptions = document.getElementById('options-' + api.format).querySelectorAll('input[name="options"]') || [];
-        currentOptions = [].filter.call(currentOptions, function(option) { return option.checked; }).map(function(option) { return option.value; });
-
-        if(callback.checked) {
-          currentOptions.push(callback.value);
-        }
-
-        return currentOptions.join('&');
-        
-      };
-
-      function refreshOutput() {
-         if(api.features !== '') {
-           api.options = formattedOptions();
-           updateurl();
-           updateresult();
-         }
-      };
-
-      function updateurl() {
-        url.textContent = Object.keys(api).map(function(key) { 
-          var operator = '';
-          if(key === 'format') {
-           operator = '.'; 
-           } else if (key === 'options') {
-              operator = '?';
-            } 
-            return operator + api[key];
-          }).join(''); 
-
-        url.href = url.textContent;
-       
-      };
-
-      function updateresult() {
-        cacheresult = cache[url.textContent];
-        if(cacheresult) {
-          if(api.format == 'html') {
-            result.innerHTML = cacheresult;
-            } else {
-            textarea.value = cacheresult;
-            result.appendChild(textarea);
-
-          }
-          } else {
-          var request = new XMLHttpRequest();
-          request.onreadystatechange = function() {
-            if(request.readyState === 4) {
-              if(request.status === 200) {
-                cache[url.textContent] = request.responseText.toString(); 
-              }
-            }  
-          };
-        
-          request.open('GET', url.textContent);
-          request.send();
-        } 
-      };
-
-      api.features = features.value.split(' ').join('+');
-      api.format = document.querySelector('input[name="format"][checked]').value; 
-      showFormatOptions();
-      refreshOutput();
-
-		</script>
+    <script src="jquery.tokeninput.js"></script> 
+    <script src="script.js"></script> 
 	</body>
 </html>
