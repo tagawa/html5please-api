@@ -22,6 +22,6 @@ RewriteRule ^(.+?)\.(html|js|json|xml)$ handler.php?features=$1&format=$2 [NC,QS
 
 # CSS and JavaScript
   ExpiresByType text/css                  "access plus 1 day"
-  ExpiresByType application/javascript    "access plus  1 day"
+  ExpiresByType application/javascript    "access plus 1 day"
 
 </IfModule>
