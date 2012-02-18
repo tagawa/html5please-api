@@ -28,13 +28,13 @@ RewriteRule ^(.+?)\.(html|js|json|xml)$ handler.php?features=$1&format=$2 [NC,QS
 
 
 
-----------------------------------------------------------------------
-Cross-domain AJAX requests
-----------------------------------------------------------------------
-
-Serve cross-domain Ajax requests, disabled by default.
-enable-cors.org
-code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
+# ----------------------------------------------------------------------
+# Cross-domain AJAX requests
+# ----------------------------------------------------------------------
+# 
+# Serve cross-domain Ajax requests, disabled by default.
+# enable-cors.org
+# code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 
 <IfModule mod_headers.c>
   Header set Access-Control-Allow-Origin "*"
