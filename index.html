@@ -3,167 +3,129 @@
 	<head>
 		<meta charset="utf-8">
 		<title>caniuse api</title>
-		<style>
-		* { font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; }
-		html { background: #F2F2F2; color: #333; font: 100%/1 sans-serif; }
-		body { margin: 0 auto; width: 33em; }
-		h1, section { margin: 2em 0; }
-		h1 { font-size: 2em; font-weight: bold; }
-		h2 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
-		h3 { font-weight: bold; margin: 1em 0; }
-		p { line-height: 1.5; margin: 0.5em 0; }
-		em { color: #555; font-size: 75%; }
-		var { background: #EEE; border: 1px solid #DDD; border-radius: 0.25em; font-style: italic; padding: 0.125em 0.25em; }
-		code { font-family: monospace, monospace; }
-		strong { font-weight: bold; }
-		a { color: #55D; text-decoration: none; }
-		:target {
-			-webkit-animation: glow 1.9s 3;  /* just twice */
-			   -moz-animation: glow 1.9s 3;
-			    -ms-animation: glow 1.9s 3;
-		}
-		@-webkit-keyframes glow { from { -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
-		                          55% {  -webkit-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
-		                          to {   -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
-		@-moz-keyframes    glow { from {    -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
-		                          55% {     -moz-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
-		                          to {      -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
-		@-ms-keyframes     glow { from {     -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
-		                          55% {      -ms-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
-		                          to {       -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
-		</style>
+    <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Serif:700italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
 	</head>
 	<body>
-		<h1>
-			caniuse api
+		<h1 class="logo">
+      <b>Support Browsers</b> <i>with Feature Detection</i>
 		</h1>
+    <div id="about">
+      <p>
+      The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. 
+      </p>
+      <p>
+      You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
+      </p>
+    </div>
 
-		<p>
-			The caniuse API seeks to bridge the gap between developers bringing new features to the web in their sites/apps and users who only know browsers. It allows you, as a developer, to specify which features you're using <small>(for example: WebGL and WebRTC)</small> and let the API figure out which browsers will be required to enjoy the demo. You get back some HTML to show the user or a JSON object of the relevant data (with logos and all), so you can customize the view to your liking.	
-		</p>
-		<section>
-			<h2>
-				How to use
-			</h2>
-			<p>
-				http://api.caniuse.com/<code>[ features ].[ format ][ ? [ options ] ]</code>
-			</p>
+    <section id="get-api">
+      <form>
+        <label for="features">
+          <input id="features" type="text" required value="json canvas">
+          <span class="help">Type the features you want to test and support for.</span>
+        </label>
 
-			<p>You'll likely use JSON-P to grab this API, but you're welcome to use CORS.</p>
+        <div class="formats">
+          <h3>As</h3>
+          <p><input type="radio" name="format" value="json"><label for="format-json">json</label></p> or 
+          <p><input type="radio" name="format" value="xml"><label for="format-xml">xml</label></p> or
+          <p><input type="radio" name="format" value="js"><label for="format-js">js</label></p> or
+          <p><input type="radio" checked name="format" value="html"><label for="format-html">html</label></p>
+        </div>
 
-			<h3>
-				features
-			</h3>
-			<p>
-				The features <em>(<var>+</var> delimited)</em> to be tested, like <var>apng</var> or <var>canvas+json</var>.
-			</p>
-			<h3>
-				format
-			</h3>
-			<p>
-				The format the output will be returned as, like <var>json</var> or <var>xml</var>.
-			</p>
-			<h3>
-				options
-			</h3>
-			<p>
-				The options to be applied to the data, like <var>callback=myFunction</var> or <var>nostyle</var>.
-			</p>
+        <div class="options">
+          <h3>with</h3>
+          <div class="options-content">
+            <div class='callback'>
+              <p><input type="checkbox" id="callback" name="options" value="callback=callback">
+              <span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
+            </div>
+            <div id='options-html'>
+              <p><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
+              <p><input type="checkbox" name="options"  value="icon"><label>Show browser logos</label></p>
+              <p><input type="checkbox" name="options"  value="text"><label>Show browser support information in text</label></p>
+            </div>
+            <div id='options-json'>
+              <p><input type="checkbox" name="options" value="readable"><label>Make it readable</label></p>
+              <p><input type="checkbox" name="options" value="supported"><label>Only output info on whether current browser supports these features</label></p>
+            </div>
+            <div id='options-js'>
+              <p><input type="checkbox" name="options" value="noagent"><label>Show All Supported Browsers</label></p>
+            </div>
+          </div>
+         </div>
+      </form>
+      <div class="api-example">
+        <h3>Use</h3>
+        <a href="#" id="url" target="_blank"></a>
+        <p class="help">You'll likely use JSON-P to grab this API, but you're welcome to use CORS.</p>
+      </div>
+		</section>
 
-		</section>
-		<section>
-			<h2>
-				Examples
-			</h2>
-			<p>
-				<code><a href="svg.html">svg.html</a></code>: displays the results of an <var>svg</var> feature test as a button in HTML.
-			</p>
-			<p>
-				<code><a href="canvas+json.js?callback=myFunction">canvas+json.js?callback=myFunction</a></code>: displays the results of a <var>canvas+json</var> feature test in JavaScript, wrapped in a JSONP <var>myFunction</var> callback.
-			</p>
-			<p>
-				<code><a href="apng.html?texticon">apng.html?texticon</a></code>: displays the results of a <var>apng</var> feature test as text with icons in HTML.
-			</p>
-		</section>
-		<section>
-			<h2>
-				Formats
-			</h2>
-			<p>
-				<code><strong>html</strong></code>: the output will be valid HTML with the mimetype of <var>text/html</var>.
-			</p>
-			<p>
-				<code><strong>js</strong></code>: the output will be valid JavaScript with the mimetype of <var>text/javascript</var>.
-			</p>
-			<p>
-				<code><strong>json</strong></code>: the output will be valid JSON with the mimetype of <var>text/json</var>.
-			</p>
-			<p>
-				<code><strong>xml</strong></code>: the output will be valid XML with the mimetype of <var>text/xml</var>.
-			</p>
-		</section>
-		<section>
-			<h2>
-				Options
-			</h2>
-			<p>
-				<code><strong>button</strong></code>: the default, the HTML will be optimized for button output.
-			</p>
-			<p>
-				<code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.
-			</p>
-			<p>
-				<code><strong>icon</strong></code>: the HTML will be optimized for icon output.
-			</p>
-			<p>
-				<code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.
-			</p>
-			<p>
-				<code><strong>nostyle</strong></code>: the HTML will not include the stylesheet.
-			</p>
-			<p>
-				<code><strong>readable</strong></code>: the JSON will be formatted for readability.
-			</p>
-			<p>
-				<code><strong>supported</strong></code>: the JSON will only output whether the agent supports the requested features.
-			</p>
-			<p>
-				<code><strong>text</strong></code>: the HTML will be optimized for text output.
-			</p>
-			<p>
-				<code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.
-			</p>
-		</section>
-		<section>
-			<h2>
-				Contribute
-			</h2>
-			<p>
-				This is a community project. You can <a href="//github.com/jonathantneal/caniuse">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.
-			</p>
-			<p>
-				There is no guarantee this API will continue to work, but there is hope.
-			</p>
-		</section>
-		<footer>
-			<h2>
-				Credit
-			</h2>
-			<p>
-				This API was made with love by <a href="//twitter.com/jon_neal">Jon Neal</a>. The project was initiated over at <a href="github.com/paulirish/lazyweb-requests/issues/39">github.com/paulirish/lazyweb-requests#39</a> and corraled by Divya Manian and Paul Irish with input from other lovers of the open web.
-			</p>
-			<p>
-				The original caniuse data was made by the one and only <a href="//twitter.com/fyrd">Alexis Deveria</a> and the glamorous buttons were made by the dapper <a href="//twitter.com/aaronlayton">Aaron Layton</a>. This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a>.
-			</p>
+    <section>
+      <h2>Reference</h2>
+      <article>
+        <h3> Formats </h3>
+        <p> <code><strong>html</strong></code>: the output will be valid HTML with the mimetype of <var>text/html</var>.  </p>
+        <p> <code><strong>js</strong></code>: the output will be valid JavaScript with the mimetype of <var>text/javascript</var>.  </p>
+        <p> <code><strong>json</strong></code>: the output will be valid JSON with the mimetype of <var>text/json</var>.  </p>
+        <p> <code><strong>xml</strong></code>: the output will be valid XML with the mimetype of <var>text/xml</var>.  </p>
+      </article>
+      <article>
+        <h3> Options </h3>
+        <p> <code><strong>button</strong></code>: the default, the HTML will be optimized for button output.  </p>
+        <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
+        <p> <code><strong>icon</strong></code>: the HTML will be optimized for icon output.  </p>
+        <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
+        <p> <code><strong>nocss</strong></code>: the HTML will not include the stylesheet.  </p>
+        <p> <code><strong>readable</strong></code>: the JSON will be formatted for readability.  </p>
+        <p> <code><strong>supported</strong></code>: the JSON will only output whether the agent supports the requested features.  </p>
+        <p> <code><strong>text</strong></code>: the HTML will be optimized for text output.  </p>
+        <p> <code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.  </p>
+      </article>
+    </section>
 
-		</footer>
-		<script>
-		if ([].forEach && document.querySelectorAll){
-			[].forEach.call( document.querySelectorAll('h2, h3, strong, dt'), function(elem){
-				var text = (elem.textContent || elem.innerText).toLowerCase().trim();
-				elem.id = elem.id || text;
-			});
-		}
-		</script>
-	</body>
+    <section>
+        <h2> Contribute </h2>
+        <p> This is a community project. You can <a href="//github.com/jonathantneal/caniuse">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.  </p>
+    </section>
+    <footer>
+    <div class="builders">
+      <h3>Created By</h3>
+      <a href="http://twitter.com/jon_neal">
+        <img src="http://api.twitter.com/1/users/profile_image/jon_neal?size=normal" alt="Jon Neal">
+        <b>Jon</b> Neal 
+      </a>
+    </div>
+    <div class="builders">
+      <h3>With</h3>
+      <a href="http://twitter.com/divya">
+        <img src="http://api.twitter.com/1/users/profile_image/divya?size=normal" alt="Divya Manian">
+        <b>Divya</b> Manian
+      </a>
+      <a href="http://twitter.com/paul_irish">
+        <img src="http://api.twitter.com/1/users/profile_image/paul_irish?size=normal" alt="Paul Irish">
+        <b>Paul</b> Irish 
+      </a>
+      <a href="http://twitter.com/fyrd">
+        <img src="http://api.twitter.com/1/users/profile_image/fyrd?size=normal" alt="Alexis Deveria">
+        <b>Alexis</b> Deveria 
+      </a>
+      <a href="http://twitter.com/aaronlayton">
+        <img src="http://api.twitter.com/1/users/profile_image/aaronlayton?size=normal" alt="Aaron Layton">
+        <b>Aaron</b> Layton 
+      </a>
+
+</div>
+    <p> <a href="https://github.com/h5bp/caniuse/contributors">&amp; collaborators</a> </p>
+    <p>This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a> and was initiated over at <a href="github.com/paulirish/lazyweb-requests/issues/39">github.com/paulirish/lazyweb-requests#39</a>. Much thanks to <a href="//twitter.com/fyrd">Alexis Deveria</a> for the generous sharing of <a href="http://caniuse.com">caniuse</a> data. </p>
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+    <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script src="js/script.js"></script> 
+  </body>
 </html>
