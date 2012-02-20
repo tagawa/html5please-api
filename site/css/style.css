@@ -185,9 +185,10 @@ table {
   .fancy-heading-star::before, h2::before, #get-api h3::before, .api-example h3::before, footer .builders h3::before, .fancy-heading-star::after, h2::after, #get-api h3::after, .api-example h3::after, footer .builders h3::after {
     content: "✶";
     padding: 0 0.25em;
-    color: #dabed1;
+    color: #5c5a72;
     font-size: 16px;
     font-size: 1rem;
+    text-shadow: black 2px 2px 1px, #3c1816 3px 3px 1px;
     vertical-align: 0.2rem; }
 
 * {
@@ -205,7 +206,9 @@ html {
 
 body {
   margin: 0 auto;
-  width: 60em; }
+  min-width: 10em;
+  max-width: 60em;
+  padding: 0 2em; }
 
 section {
   margin: 2em 0 4em 0; }
@@ -342,7 +345,10 @@ input[type="checkbox"] {
     text-align: left;
     color: #5c5a72; }
   .options p {
+    margin: 0;
     position: relative; }
+  .options p + p {
+    margin: 0.5em 0 0 0; }
   .options input[type="checkbox"] {
     position: absolute;
     width: 100%;
@@ -350,6 +356,8 @@ input[type="checkbox"] {
     top: 0;
     left: 0;
     opacity: 0; }
+  .options #callback {
+    width: 1em; }
   .options label::before,
   .options .label::before {
     content: "+";
@@ -377,10 +385,12 @@ input[type="checkbox"] {
     .options input[type="checkbox"]:checked + .label::before {
       background: #a55f8f; }
 
-[id^='options'] {
+.options-content p,
+.options h3 {
   display: none; }
 
-[id^='options'].active {
+.options-content p.active,
+.options h3.active {
   display: block; }
 
 .api-example {
@@ -400,7 +410,7 @@ input[type="checkbox"] {
   font-style: normal;
   font-family: monospace;
   padding: 1em;
-  word-wrap: breakword; }
+  word-wrap: break-word; }
   #url:hover {
     background: #a55f8f;
     outline: 1px dashed #a55f8f; }
@@ -424,3 +434,7 @@ footer {
       footer .builders > a b {
         display: block;
         font-weight: normal; }
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px; } }

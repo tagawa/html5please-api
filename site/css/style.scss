@@ -44,9 +44,9 @@ $minorfocuscolor: hsl(61, 57%, 38%);
   background: -o-linear-gradient(left, $color, $color), url($image); 
 }
 
-@mixin remfallback($fontsize) {
-  font-size: $fontsize * 16px;
-  font-size: #{$fontsize}rem;
+@mixin remfallback($property, $value) {
+  #{$property}: $value * 16px;
+  #{$property}: #{$value}rem;
 }
 
 .clearfix {
@@ -68,18 +68,18 @@ $minorfocuscolor: hsl(61, 57%, 38%);
 }
 
 .banner-font-size {
-  @include remfallback(3);
+  @include remfallback('font-size', 3);
 }
 
 .major-heading-font-size {
-  @include remfallback(2);
+  @include remfallback('font-size', 2);
 }
 
 .minor-heading-font-size {
-  @include remfallback(1.5);
+  @include remfallback('font-size', 1.5);
 }
 .normal-font-size {
-  @include remfallback(1);
+  @include remfallback('font-size', 1);
 }
 
 .align-center {
@@ -111,8 +111,9 @@ $minorfocuscolor: hsl(61, 57%, 38%);
   &::after {
     content: "✶";
     padding: 0 0.25em;
-    color: $textcolor;
-    @include remfallback(1);
+    color: $bgcolorlesscontrast;
+    @include remfallback('font-size', 1);
+    @include textshadows(1 1, #000 hsl(3, 46%, 16%));
     vertical-align: 0.2rem;
   }
 }
@@ -132,7 +133,9 @@ html {
 
 body { 
   margin: 0 auto; 
-  width: 60em; 
+  min-width: 10em;
+  max-width: 60em; 
+  padding: 0 2em;
 }
 
 section { 
@@ -288,6 +291,7 @@ label[for='features'] {
     color: $textcolor;
   }
 
+
 }
 
 .help {
@@ -322,7 +326,14 @@ input[type="text"] { @extend .input-text; }
     color: $bgcolorlesscontrast;
   }
 
-  p { position: relative; }
+  p { 
+    margin: 0; 
+    position: relative;
+  }
+
+  p + p {
+    margin: 0.5em 0 0 0;
+  }
 
   input[type="checkbox"] {
     position: absolute;
@@ -330,6 +341,10 @@ input[type="text"] { @extend .input-text; }
     height: 100%;
     top: 0; left: 0;
     opacity: 0;
+  }
+
+  #callback {
+    width: 1em;
   }
 
   label::before,
@@ -363,8 +378,10 @@ input[type="text"] { @extend .input-text; }
   }
 }
 
-[id^='options'] { display: none; }
-[id^='options'].active { display: block; }
+.options-content p,
+.options h3 { display: none; }
+.options-content p.active,
+.options h3.active{ display: block; }
 
 .api-example {
   @extend .clearfix;
@@ -388,7 +405,7 @@ input[type="text"] { @extend .input-text; }
   font-style: normal;
   font-family: monospace;
   padding: 1em;
-  word-wrap: breakword;
+  word-wrap: break-word;
 
   &:hover {
     background: $mostfocuscolor;
@@ -398,7 +415,7 @@ input[type="text"] { @extend .input-text; }
 }
 
 footer {
-  @include remfallback(0.8);
+  @include remfallback('font-size', 0.8);
   text-align: center;
   margin-bottom: 4rem;
 
@@ -429,8 +446,14 @@ footer {
       }
     
     }
-
-
   }  
 }
 
+@media (max-width: 480px) {
+
+  html {
+    font-size: 12px;
+  }
+
+
+}

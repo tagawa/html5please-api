@@ -1,10 +1,10 @@
-      var url = document.getElementById('url'),
-         result = $('#result'),
+      var url = $('#url'),
          features = document.getElementById('features'),
          formats = document.querySelectorAll('input[name="format"]'),
          options = document.querySelectorAll('input[name="options"]'),
          callbackvalue = document.getElementById('callbackvalue'),
          callback = document.getElementById('callback'),
+         optionsHeading = $('.options h3'),
          cache = {}, lastActive = false;
 
 
@@ -67,13 +67,6 @@
          refreshOutput();
       };
 
-      callbackvalue.onblur = function() {
-        callback.value = 'callback=' + this.value;
-        if(callback.checked) {
-          refreshOutput();
-        }
-      };
-
       [].forEach.call(formats, function(format) {
        format.onclick =  function() {
          api.format = this.value;
@@ -87,35 +80,46 @@
           refreshOutput();
         };
       });
+
+      callbackvalue.onblur = function() {
+        callback.value = 'callback=' + this.value;
+      };
        
       function showFormatOptions() {
-        if (lastActive.className) { lastActive.className = '' };
+        
+        if (lastActive && lastActive.hasClass('active')) { 
+          lastActive.removeClass('active'); 
+          optionsHeading.removeClass('active');
+        };
         api.options = '';
-        var formatOptions = document.getElementById('options-'+ api.format);
-        if(formatOptions) { 
-          formatOptions.className = 'active'; 
+        var formatOptions = $('.js-options-'+ api.format);
+        if(formatOptions.length > 0) { 
+          optionsHeading.addClass('active');
+          formatOptions.addClass('active'); 
           lastActive = formatOptions;
         }
       }
 
-      function formattedOptions(nocallback) {
-        var currentOptions = document.getElementById('options-' + api.format).querySelectorAll('input[name="options"]') || [];
-        currentOptions = [].filter.call(currentOptions, function(option) { return option.checked; }).map(function(option) { return option.value; });
+      function formattedOptions() {
+        var currentOptions = $('.js-options-' + api.format).find('input[name="options"]');
+        currentOptions = currentOptions.filter(function(index) { return this.checked; });
 
-        if(callback.checked && !nocallback) {
-          currentOptions.push(callback.value);
+        if(currentOptions.length > 0) {
+          currentOptions = $.map(currentOptions, function(option) { 
+            return option.value; 
+          });
+          return currentOptions.join('&');
+        } else {
+          return '';
         }
-
-        return currentOptions.join('&');
-        
-      };
+      } 
 
       function refreshOutput() {
          if(api.features !== '') {
            api.options = formattedOptions();
-           url.textContent = createUrl();
-           url.href= url.textContent;
-           updateresult();
+          
+           url.text(createUrl());
+           url.attr('href', url.text());
          }
       };
 
@@ -123,44 +127,20 @@
         return Object.keys(api).map(function(key) { 
           var operator = '';
           if(key === 'format') {
-           operator = '.'; 
-           } else if (key === 'options') {
-              operator = '?';
-            } 
+            operator = '.'; 
+          } else if (key === 'options') {
+            operator = '?';
+          } 
+          if(key === 'format' && callback.checked) {
+            return operator + 'js';
+          } else {
             return operator + api[key];
-          }).join(''); 
-      };
-
-      function updateresult() {
-        cacheresult = cache[url.textContent];
-        if(cacheresult) {
-          showresult(cacheresult);
-        } else {
-            var optns = api.options;
-            if(optns != '') {
-              api.options = formattedOptions(true);
-            }
-            var link = createUrl();
-            $.ajax({
-              url: link,
-              dataType: "jsonp",
-              jsonpCallback: 'showresult'
-            });
-        }
-      };
-
-      function showresult(output) {
-        if(api.format == 'html') {
-            result.innerHTML = output;
-            } else {
-            textarea.value = output;
-            result.appendChild(textarea);
-
           }
-      }
+        }).join(''); 
+      };
 
       api.features = features.value.split(' ').join('+');
-      api.format = document.querySelector('input[name="format"][checked]').value; 
+      api.format = $('input[name="format"][checked]')[0].value; 
       showFormatOptions();
       refreshOutput();
 
