@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<title>caniuse api</title>
     <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Serif:700italic,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="site/css/style.css">
+    <link rel="stylesheet" href="site/css/jquery-ui.css">
 	</head>
 	<body>
 		<h1 class="logo">
@@ -31,29 +31,19 @@
           <h3>As</h3>
           <p><input type="radio" name="format" value="json"><label for="format-json">json</label></p> or 
           <p><input type="radio" name="format" value="xml"><label for="format-xml">xml</label></p> or
-          <p><input type="radio" name="format" value="js"><label for="format-js">js</label></p> or
           <p><input type="radio" checked name="format" value="html"><label for="format-html">html</label></p>
         </div>
 
         <div class="options">
           <h3>with</h3>
           <div class="options-content">
-            <div class='callback'>
-              <p><input type="checkbox" id="callback" name="options" value="callback=callback">
-              <span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
-            </div>
-            <div id='options-html'>
-              <p><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
-              <p><input type="checkbox" name="options"  value="icon"><label>Show browser logos</label></p>
-              <p><input type="checkbox" name="options"  value="text"><label>Show browser support information in text</label></p>
-            </div>
-            <div id='options-json'>
-              <p><input type="checkbox" name="options" value="readable"><label>Make it readable</label></p>
-              <p><input type="checkbox" name="options" value="supported"><label>Only output info on whether current browser supports these features</label></p>
-            </div>
-            <div id='options-js'>
-              <p><input type="checkbox" name="options" value="noagent"><label>Show All Supported Browsers</label></p>
-            </div>
+              <p class="js-options-json"><input type="checkbox" id="callback" name="options" value="callback=callback"><span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
+              <p class="js-options-json"><input type="checkbox" name="options" value="readable"><label>Output JSON in a readable.</label></p>
+              <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Show info on support for these features in current browser.</label></p>
+              <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Show all browsers that support these features (not just the latest version of the current browser).</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options"  value="icon"><label>Show logos of browsers that support these features</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options"  value="text"><label>Show names of browsers that support these features</label></p>
           </div>
          </div>
       </form>
@@ -76,14 +66,14 @@
       <article>
         <h3> Options </h3>
         <p> <code><strong>button</strong></code>: the default, the HTML will be optimized for button output.  </p>
-        <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
-        <p> <code><strong>icon</strong></code>: the HTML will be optimized for icon output.  </p>
-        <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
         <p> <code><strong>nocss</strong></code>: the HTML will not include the stylesheet.  </p>
+        <p> <code><strong>text</strong></code>: the HTML will be optimized for text output.  </p>
+        <p> <code><strong>icon</strong></code>: the HTML will be optimized for icon output.  </p>
+        <p> <code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.  </p>
         <p> <code><strong>readable</strong></code>: the JSON will be formatted for readability.  </p>
         <p> <code><strong>supported</strong></code>: the JSON will only output whether the agent supports the requested features.  </p>
-        <p> <code><strong>text</strong></code>: the HTML will be optimized for text output.  </p>
-        <p> <code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.  </p>
+        <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
+        <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
       </article>
     </section>
 
@@ -123,9 +113,9 @@
     <p>This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a> and was initiated over at <a href="github.com/paulirish/lazyweb-requests/issues/39">github.com/paulirish/lazyweb-requests#39</a>. Much thanks to <a href="//twitter.com/fyrd">Alexis Deveria</a> for the generous sharing of <a href="http://caniuse.com">caniuse</a> data. </p>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="site/js/jquery-1.7.1.min.js"><\/script>')</script>
 
-    <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
-    <script src="js/script.js"></script> 
+    <script src="site/js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script src="site/js/script.js"></script> 
   </body>
 </html>
