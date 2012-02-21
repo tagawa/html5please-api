@@ -1,0 +1,149 @@
+<style>
+.caniuse
+{
+	background: #F5F5F5;
+	background-image: -o-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -moz-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -webkit-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -ms-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	border-radius: 5px;
+	box-shadow: inset 0 1px 0 #FFF;
+  border: solid 1px #CBCBCB;
+	color: #656565;
+  font: 12px/1.5 sans-serif;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 12px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.caniuse .caniuse-msg,
+.caniuse .caniuse-nfo {
+  margin: 12px 0;
+}
+
+.caniuse p {
+  margin: 0;
+}
+
+.caniuse-agt-ico:before
+{
+	background: url(http://sandbox.thewikies.com/caniuse/i/icons-32.png) 0 0 no-repeat;
+  content: "";
+	display: inline-block;
+  vertical-align: middle;
+	height: 32px;
+	width: 32px;
+}
+
+.caniuse a
+{
+	color: #09f;
+  text-decoration: none;
+}
+
+.caniuse a:hover {
+  color: #30a;
+}
+
+.caniuse a:hover .caniuse-agt-ttl {
+  text-decoration: underline;
+}
+
+.caniuse-agt-ico
+{
+	margin: 0 6px 0 0;
+  text-align: left;
+  display: block;
+  padding: 6px 0;
+}
+.caniuse-ico-chrome:before
+{
+	background-position: -32px 0;
+}
+
+.caniuse-ico-firefox:before
+{
+	background-position: -64px 0;
+}
+
+.caniuse-ico-opera:before  
+{
+	background-position: -96px 0;
+}
+
+.caniuse-ico-safari:before 
+{
+	background-position: -128px 0;
+}
+
+.caniuse-ico-ie:before     
+{
+	background-position: -160px 0;
+}
+
+.caniuse-agt-ico p {
+  display: inline;
+}
+
+@media (min-width: 800px) {
+  .caniuse-agt-ico {
+    display: inline-block;
+    padding: 0;
+  }
+}
+</style>
+
+<h3>When no version of the desktop browser supports these features</h3>
+<div class="caniuse">
+  <div class="caniuse-msg">
+    <p>This page uses features that are unavailable in your browser, please view the page in one of these browsers:</p>
+  </div>
+  <div class="caniuse-nfo">
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-firefox" href="http://www.firefox.com/" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">Firefox</span>
+    </a>
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-chrome" href="http://www.google.com/chrome" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">Chrome</span>
+    </a>
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-safari" href="http://www.apple.com/safari/" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">Safari</span>
+    </a>
+  </div>
+</div>
+
+<h3>When no version of the mobile browser supports these features</h3>
+<div class="caniuse">
+  <div class="caniuse-msg">
+    <p>This page uses features that are unavailable in your browser, please view the page in one of these browsers:</p>
+  </div>
+  <div class="caniuse-nfo">
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-ios_saf" href="http://apple.com/iphone/" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">iOS Safari</span>
+    </a>
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-op_mob" href="http://opera.com/mobile" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">Opera Mobile</span>
+    </a>
+    <a class="caniuse-agt caniuse-agt-ico caniuse-ico-android" href="http://android.com" rel="external" target="_blank">
+      <span class="caniuse-agt-ttl">Android Browser</span>
+    </a>
+  </div>
+</div>
+<h3>When latest stable version of current browser supports these features</h3>
+<div class="caniuse">
+	<div class="caniuse-msg caniuse-agt-ico caniuse-ico-opera">
+		<p>This page uses features that are unavailable in your browser, <a class="caniuse-url" href="http://opera.com/" rel="external" target="_blank">please use the latest version of your browser</a>.</p>
+	</div>
+</div>
+
+<h3>When latest dev version of current browser supports these features</h3>
+<div class="caniuse">
+	<div class="caniuse-msg caniuse-agt-ico caniuse-ico-opera">
+		<p>This page uses features that are unavailable in your browser, <a class="caniuse-url" href="http://opera.com/next" rel="external" target="_blank">please use Opera Next</a> to view this page.</p>
+	</div>
+</div>
+
+
+
