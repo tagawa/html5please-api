@@ -9,29 +9,26 @@
 	</head>
 	<body>
 		<h1 class="logo">
-      <b>Support Browsers</b> <i>with Feature Detection</i>
+      <b>Support Browsers</b> <i>with Feature Detection <a class="more-info" href="#about">more</a></i> 
 		</h1>
     <div id="about">
       <p>
-      The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. 
-      </p>
-      <p>
-      You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
+      The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
       </p>
     </div>
 
     <section id="get-api">
       <form>
         <label for="features">
-          <input id="features" type="text" required value="json canvas">
+          <input id="features" type="text" required value="canvas">
           <span class="help">Type the features you want to test and support for.</span>
         </label>
 
         <div class="formats">
-          <h3>As</h3>
+          <h4>As</h4>
+          <p><input type="radio" checked name="format" value="html"><label for="format-html">html</label></p> or
           <p><input type="radio" name="format" value="json"><label for="format-json">json</label></p> or 
-          <p><input type="radio" name="format" value="xml"><label for="format-xml">xml</label></p> or
-          <p><input type="radio" checked name="format" value="html"><label for="format-html">html</label></p>
+          <p><input type="radio" name="format" value="xml"><label for="format-xml">xml</label></p>
         </div>
 
         <div class="options">
@@ -42,8 +39,8 @@
               <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Show info on support for these features in current browser.</label></p>
               <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Show all browsers that support these features (not just the latest version of the current browser).</label></p>
               <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options"  value="icon"><label>Show logos of browsers that support these features</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options"  value="text"><label>Show names of browsers that support these features</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options" value="icon" checked><label>Show logos of browsers that support these features</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options"  value="text" checked><label>Show names of browsers that support these features</label></p>
           </div>
          </div>
       </form>

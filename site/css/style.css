@@ -217,7 +217,7 @@ article {
   margin: 2em 0; }
 
 h1 {
-  margin: 2em 0; }
+  margin: 2em 0 1em 0; }
 
 h2 {
   text-shadow: black 2px 2px 1px, #96982a 3px 3px 1px;
@@ -249,7 +249,21 @@ a {
   text-decoration: none; }
 
 #about {
-  display: none; }
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 12.8px;
+  font-size: 0.8rem;
+  max-width: 640px;
+  max-width: 40rem;
+  margin: 0 auto;
+  -webkit-transition: height 200ms linear;
+  -moz-transition: height 200ms linear;
+  -ms-transition: height 200ms linear;
+  -o-transition: height 200ms linear; }
+  #about.active {
+    height: 5em;
+    opacity: 1; }
 
 .logo b {
   letter-spacing: 4px;
@@ -267,6 +281,12 @@ a {
   text-transform: lowercase;
   letter-spacing: 0;
   color: #dabed1; }
+.logo .more-info {
+  font-size: 12.8px;
+  font-size: 0.8rem;
+  vertical-align: middle; }
+  .logo .more-info::after {
+    content: " \00BB"; }
 
 #features {
   display: block;
@@ -287,7 +307,7 @@ label[for='features'] {
     margin-bottom: 1em; }
   .formats::after {
     margin: 1em 0 0 0; }
-  .formats h3 {
+  .formats h4 {
     display: inline-block;
     vertical-align: middle;
     margin: 0; }
@@ -331,13 +351,19 @@ input[type="checkbox"] {
   margin-right: 0.25em; }
 
 .options {
+  min-height: 176px;
+  min-height: 11rem;
   text-align: center;
   border-bottom: 1px solid #5c5a72;
   padding-bottom: 4px;
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.5em;
+  position: relative; }
   .options::after {
     border-top: 1px dashed #5c5a72;
-    margin-top: 1em;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
     display: block;
     content: ""; }
   .options .options-content {
@@ -421,19 +447,22 @@ footer {
   text-align: center;
   margin-bottom: 4rem; }
   footer .builders {
-    margin: 1em 0; }
+    margin: 1em 0 0 0; }
     footer .builders h3, footer .builders > a {
       display: inline-block;
       vertical-align: middle;
       text-align: left; }
     footer .builders > a {
-      width: 9em; }
+      width: 9em;
+      margin-bottom: 1em; }
       footer .builders > a img {
         float: left;
         margin-right: 0.5em; }
       footer .builders > a b {
         display: block;
         font-weight: normal; }
+  footer p {
+    margin-top: 0; }
 
 @media (max-width: 480px) {
   html {

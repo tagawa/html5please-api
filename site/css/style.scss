@@ -6,6 +6,14 @@ $linkcolor: hsl(355, 38%, 48%);
 $mostfocuscolor: hsl(319, 28%, 51%);
 $minorfocuscolor: hsl(61, 57%, 38%);
 
+@mixin transition($transitionValue) {
+  $transitionValue: unquote($transitionValue);
+  -webkit-transition: $transitionValue;
+  -moz-transition: $transitionValue;
+  -ms-transition: $transitionValue;
+  -o-transition: $transitionValue;
+}
+
 @mixin textshadows($widths, $colors) {
 
   $count: length($colors);
@@ -148,7 +156,7 @@ article {
 
 h1 {
   @extend .align-center;
-  margin: 2em 0;
+  margin: 2em 0 1em 0;
 }
 
 h2 {
@@ -182,7 +190,20 @@ code { font-family: monospace, monospace; color: $minorfocuscolor; }
 
 a { color: $linkcolor; text-decoration: none; }
 
-#about { display: none; } 
+#about { 
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  @include remfallback('font-size', 0.8);
+  @include remfallback('max-width', 40);
+  margin: 0 auto;
+  @include transition('height 200ms linear');
+
+  &.active {
+    height: 5em;
+    opacity: 1;
+ }
+} 
 
 .logo { 
   b {
@@ -212,7 +233,15 @@ a { color: $linkcolor; text-decoration: none; }
     text-transform: lowercase;
     letter-spacing: 0;
     color: $textcolor;
+  }
 
+  .more-info {
+    @include remfallback('font-size', 0.8);
+    vertical-align: middle;
+
+    &::after {
+      content: " \00BB"
+    }
   }
 }
 
@@ -255,7 +284,7 @@ label[for='features'] {
     margin: 1em 0 0 0;
   }
 
-  h3 { 
+  h4 { 
     display: inline-block; 
     vertical-align: middle;
     margin: 0; 
@@ -290,8 +319,6 @@ label[for='features'] {
     background:  $mostfocuscolor;
     color: $textcolor;
   }
-
-
 }
 
 .help {
@@ -307,15 +334,18 @@ input[type="checkbox"] { margin-right: 0.25em; }
 input[type="text"] { @extend .input-text; }
 
 .options {
+  @include remfallback('min-height', 11);
   text-align: center;
   border-bottom: 1px solid $bgcolorlesscontrast;
   padding-bottom: 4px;
   margin-bottom: 1.5em;
+  position: relative;
 
 
   &::after {
     border-top: 1px dashed $bgcolorlesscontrast;
-    margin-top: 1em;
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
     display: block;
     content: "";
   }
@@ -420,7 +450,7 @@ footer {
   margin-bottom: 4rem;
 
   .builders {
-    margin: 1em 0;
+    margin: 1em 0 0 0;
     @extend .clearfix;
 
     h3, & > a {
@@ -435,6 +465,7 @@ footer {
     }
     > a {
       width: 9em;
+      margin-bottom: 1em;
       img {
         float: left;
         margin-right: 0.5em;
@@ -444,9 +475,11 @@ footer {
         display: block;
         font-weight: normal;
       }
-    
     }
-  }  
+  } 
+  p {
+    margin-top: 0;
+  } 
 }
 
 @media (max-width: 480px) {
@@ -454,6 +487,5 @@ footer {
   html {
     font-size: 12px;
   }
-
 
 }

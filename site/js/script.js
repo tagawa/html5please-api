@@ -108,6 +108,11 @@
           currentOptions = $.map(currentOptions, function(option) { 
             return option.value; 
           });
+          if(api.format == 'html' && (currentOptions.indexOf('text') > -1) && (currentOptions.indexOf('icon') > -1)) {
+              currentOptions.splice(currentOptions.indexOf('text'),1);
+              currentOptions.splice(currentOptions.indexOf('icon'), 1);
+              console.log(currentOptions);
+          }
           return currentOptions.join('&');
         } else {
           return '';
@@ -143,5 +148,10 @@
       api.format = $('input[name="format"][checked]')[0].value; 
       showFormatOptions();
       refreshOutput();
+
+      $('.more-info').click(function(e) {
+        $(this.hash).toggleClass('active');
+        e.preventDefault();
+      });
 
 
