@@ -447,19 +447,22 @@ footer {
   text-align: center;
   margin-bottom: 4rem; }
   footer .builders {
-    margin: 1em 0; }
+    margin: 1em 0 0 0; }
     footer .builders h3, footer .builders > a {
       display: inline-block;
       vertical-align: middle;
       text-align: left; }
     footer .builders > a {
-      width: 9em; }
+      width: 9em;
+      margin-bottom: 1em; }
       footer .builders > a img {
         float: left;
         margin-right: 0.5em; }
       footer .builders > a b {
         display: block;
         font-weight: normal; }
+  footer p {
+    margin-top: 0; }
 
 @media (max-width: 480px) {
   html {
