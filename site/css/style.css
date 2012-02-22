@@ -217,7 +217,7 @@ article {
   margin: 2em 0; }
 
 h1 {
-  margin: 2em 0; }
+  margin: 2em 0 1em 0; }
 
 h2 {
   text-shadow: black 2px 2px 1px, #96982a 3px 3px 1px;
@@ -249,7 +249,21 @@ a {
   text-decoration: none; }
 
 #about {
-  display: none; }
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 12.8px;
+  font-size: 0.8rem;
+  max-width: 640px;
+  max-width: 40rem;
+  margin: 0 auto;
+  -webkit-transition: height 200ms linear;
+  -moz-transition: height 200ms linear;
+  -ms-transition: height 200ms linear;
+  -o-transition: height 200ms linear; }
+  #about.active {
+    height: 5em;
+    opacity: 1; }
 
 .logo b {
   letter-spacing: 4px;
@@ -267,6 +281,12 @@ a {
   text-transform: lowercase;
   letter-spacing: 0;
   color: #dabed1; }
+.logo .more-info {
+  font-size: 12.8px;
+  font-size: 0.8rem;
+  vertical-align: middle; }
+  .logo .more-info::after {
+    content: " \00BB"; }
 
 #features {
   display: block;

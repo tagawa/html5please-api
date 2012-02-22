@@ -6,6 +6,14 @@ $linkcolor: hsl(355, 38%, 48%);
 $mostfocuscolor: hsl(319, 28%, 51%);
 $minorfocuscolor: hsl(61, 57%, 38%);
 
+@mixin transition($transitionValue) {
+  $transitionValue: unquote($transitionValue);
+  -webkit-transition: $transitionValue;
+  -moz-transition: $transitionValue;
+  -ms-transition: $transitionValue;
+  -o-transition: $transitionValue;
+}
+
 @mixin textshadows($widths, $colors) {
 
   $count: length($colors);
@@ -148,7 +156,7 @@ article {
 
 h1 {
   @extend .align-center;
-  margin: 2em 0;
+  margin: 2em 0 1em 0;
 }
 
 h2 {
@@ -182,7 +190,20 @@ code { font-family: monospace, monospace; color: $minorfocuscolor; }
 
 a { color: $linkcolor; text-decoration: none; }
 
-#about { display: none; } 
+#about { 
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  @include remfallback('font-size', 0.8);
+  @include remfallback('max-width', 40);
+  margin: 0 auto;
+  @include transition('height 200ms linear');
+
+  &.active {
+    height: 5em;
+    opacity: 1;
+ }
+} 
 
 .logo { 
   b {
@@ -212,7 +233,15 @@ a { color: $linkcolor; text-decoration: none; }
     text-transform: lowercase;
     letter-spacing: 0;
     color: $textcolor;
+  }
 
+  .more-info {
+    @include remfallback('font-size', 0.8);
+    vertical-align: middle;
+
+    &::after {
+      content: " \00BB"
+    }
   }
 }
 

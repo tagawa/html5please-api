@@ -144,4 +144,9 @@
       showFormatOptions();
       refreshOutput();
 
+      $('.more-info').click(function(e) {
+        $(this.hash).toggleClass('active');
+        e.preventDefault();
+      });
+
 
