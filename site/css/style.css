@@ -307,7 +307,7 @@ label[for='features'] {
     margin-bottom: 1em; }
   .formats::after {
     margin: 1em 0 0 0; }
-  .formats h3 {
+  .formats h4 {
     display: inline-block;
     vertical-align: middle;
     margin: 0; }
@@ -351,13 +351,19 @@ input[type="checkbox"] {
   margin-right: 0.25em; }
 
 .options {
+  min-height: 176px;
+  min-height: 11rem;
   text-align: center;
   border-bottom: 1px solid #5c5a72;
   padding-bottom: 4px;
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.5em;
+  position: relative; }
   .options::after {
     border-top: 1px dashed #5c5a72;
-    margin-top: 1em;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
     display: block;
     content: ""; }
   .options .options-content {

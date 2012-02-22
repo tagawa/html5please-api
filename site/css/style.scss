@@ -284,7 +284,7 @@ label[for='features'] {
     margin: 1em 0 0 0;
   }
 
-  h3 { 
+  h4 { 
     display: inline-block; 
     vertical-align: middle;
     margin: 0; 
@@ -319,8 +319,6 @@ label[for='features'] {
     background:  $mostfocuscolor;
     color: $textcolor;
   }
-
-
 }
 
 .help {
@@ -336,15 +334,18 @@ input[type="checkbox"] { margin-right: 0.25em; }
 input[type="text"] { @extend .input-text; }
 
 .options {
+  @include remfallback('min-height', 11);
   text-align: center;
   border-bottom: 1px solid $bgcolorlesscontrast;
   padding-bottom: 4px;
   margin-bottom: 1.5em;
+  position: relative;
 
 
   &::after {
     border-top: 1px dashed $bgcolorlesscontrast;
-    margin-top: 1em;
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
     display: block;
     content: "";
   }
@@ -483,6 +484,5 @@ footer {
   html {
     font-size: 12px;
   }
-
 
 }
