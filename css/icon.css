@@ -1,39 +1,58 @@
-.caniuse-agt
-{
-	margin: 0 0.5em;
-}
-
+/* Icon Specific Styles */
 .caniuse-agt-ico
 {
-	background: url(http://sandbox.thewikies.com/caniuse/i/icons-32.png);
-	display: inline-block;
-	*display: inline;
-	height: 32px;
-	width: 32px;
-	*zoom: 1;
+	margin: 0 6px 6px 0;
+  text-align: left;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  background: #eee;
 }
 
-.caniuse-ico-chrome 
+.caniuse-agt-ico:before
+{
+	background: url(http://sandbox.thewikies.com/caniuse/i/icons-32.png) 0 0 no-repeat;
+  content: "";
+	display: inline-block;
+  vertical-align: middle;
+	height: 32px;
+	width: 32px;
+}
+
+.caniuse-ico-chrome:before
 {
 	background-position: -32px 0;
 }
 
-.caniuse-ico-firefox
+.caniuse-ico-firefox:before
 {
 	background-position: -64px 0;
 }
 
-.caniuse-ico-opera  
+.caniuse-ico-opera:before  
 {
 	background-position: -96px 0;
 }
 
-.caniuse-ico-safari 
+.caniuse-ico-safari:before 
 {
 	background-position: -128px 0;
 }
 
-.caniuse-ico-ie     
+.caniuse-ico-ie:before     
 {
 	background-position: -160px 0;
+}
+
+.caniuse-agt-ico p {
+  display: inline;
+}
+
+@media (min-width: 800px) {
+  .caniuse-agt-ico {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
 }
