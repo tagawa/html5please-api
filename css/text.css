@@ -1,21 +1,45 @@
 .caniuse
 {
-	font: 16px/1.3 sans-serif;
+	background: #F5F5F5;
+	background-image: -o-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -moz-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -webkit-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	background-image: -ms-linear-gradient(bottom, #E0E0E0 0%, #F5F5F5 100%);
+	border-radius: 5px;
+	box-shadow: inset 0 1px 0 #FFF;
+  border: solid 1px #CBCBCB;
+	color: #656565;
+  font: 12px/1.5 sans-serif;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 12px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.caniuse h6,
-.caniuse p
-{
-	font-size: 100%;
-	margin: 0.5em 0;
+.caniuse .caniuse-msg,
+.caniuse .caniuse-nfo {
+  margin: 12px 0;
 }
 
-.caniuse .caniuse-agts
-{
-	font-size: 150%;
+.caniuse p {
+  margin: 0;
 }
 
-.caniuse-agt
+.caniuse a
 {
-	margin: 0 0.5em;
+	color: #09f;
+  text-decoration: none;
 }
+
+.caniuse a:hover {
+  color: #30a;
+}
+
+.caniuse a:hover .caniuse-agt-ttl {
+  text-decoration: underline;
+}
+
+
+
