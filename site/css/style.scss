@@ -122,7 +122,7 @@ $minorfocuscolor: hsl(61, 57%, 38%);
     color: $bgcolorlesscontrast;
     @include remfallback('font-size', 1);
     @include textshadows(1 1, #000 hsl(3, 46%, 16%));
-    vertical-align: 0.2rem;
+    vertical-align: middle;
   }
 }
 
@@ -462,6 +462,7 @@ footer {
     h3 {
       @extend .fancy-heading-star;
       @extend .normal-font-size;
+      vertical-align: 0.5rem;
     }
     > a {
       width: 9em;
@@ -474,12 +475,17 @@ footer {
       b {
         display: block;
         font-weight: normal;
+        margin-top: 0.5rem;
       }
     }
   } 
   p {
     margin-top: 0;
+    &:last-child {
+      margin-top: 3em;
+    }
   } 
+
 }
 
 @media (max-width: 480px) {

@@ -56,6 +56,8 @@
           terms.push(' ');
 					// add placeholder to get the comma-and-space at the end
 					this.value = terms.join( " " );
+          api.features = this.value.trim().split(' ').join('+').trim();
+          refreshOutput();
 					return false;
 				}
 			});
@@ -81,7 +83,18 @@
         };
       });
 
+      callbackvalue.onfocus = function() {
+        if(callbackvalue.value == 'callback') {
+          callbackvalue.value = '';
+          $(callback).prop('checked', true);
+        }
+      };
+
       callbackvalue.onblur = function() {
+        if(callbackvalue.value == '') {
+          callbackvalue.value = 'callback';
+          $(callback).removeProp('checked');
+        }
         callback.value = 'callback=' + this.value;
       };
        
@@ -144,7 +157,8 @@
         }).join(''); 
       };
 
-      api.features = features.value.split(' ').join('+');
+      features.focus();
+      api.features = '';
       api.format = $('input[name="format"][checked]')[0].value; 
       showFormatOptions();
       refreshOutput();

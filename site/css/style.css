@@ -189,7 +189,7 @@ table {
     font-size: 16px;
     font-size: 1rem;
     text-shadow: black 2px 2px 1px, #3c1816 3px 3px 1px;
-    vertical-align: 0.2rem; }
+    vertical-align: middle; }
 
 * {
   -moz-box-sizing: border-box;
@@ -452,6 +452,8 @@ footer {
       display: inline-block;
       vertical-align: middle;
       text-align: left; }
+    footer .builders h3 {
+      vertical-align: 0.5rem; }
     footer .builders > a {
       width: 9em;
       margin-bottom: 1em; }
@@ -460,9 +462,12 @@ footer {
         margin-right: 0.5em; }
       footer .builders > a b {
         display: block;
-        font-weight: normal; }
+        font-weight: normal;
+        margin-top: 0.5rem; }
   footer p {
     margin-top: 0; }
+    footer p:last-child {
+      margin-top: 3em; }
 
 @media (max-width: 480px) {
   html {
