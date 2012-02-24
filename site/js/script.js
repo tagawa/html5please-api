@@ -96,6 +96,7 @@
           $(callback).removeProp('checked');
         }
         callback.value = 'callback=' + this.value;
+        refreshOutput();
       };
        
       function showFormatOptions() {
@@ -121,11 +122,6 @@
           currentOptions = $.map(currentOptions, function(option) { 
             return option.value; 
           });
-          if(api.format == 'html' && (currentOptions.indexOf('text') > -1) && (currentOptions.indexOf('icon') > -1)) {
-              currentOptions.splice(currentOptions.indexOf('text'),1);
-              currentOptions.splice(currentOptions.indexOf('icon'), 1);
-              console.log(currentOptions);
-          }
           return currentOptions.join('&');
         } else {
           return '';
