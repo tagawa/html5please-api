@@ -5,6 +5,7 @@
          callbackvalue = document.getElementById('callbackvalue'),
          callback = document.getElementById('callback'),
          optionsHeading = $('.options h3'),
+         jsonhelp = $('.js-help-json'),
          cache = {}, lastActive = false;
 
 
@@ -134,6 +135,11 @@
           
            url.text(createUrl());
            url.attr('href', url.text());
+           if(api.format == 'json') {
+             jsonhelp.show();
+           } else {
+             jsonhelp.hide();
+           }
          }
       };
 
