@@ -2,21 +2,28 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Support Browsers with Feature Detection</title>
+                <title>HTML5 Please Supported Browsers API</title>
     <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Serif:700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="site/css/style.css">
 	</head>
 	<body>
 		<h1 class="logo">
-      <b>Support Browsers</b> <i>with Feature Detection <a class="more-info" href="#about">more</a></i> 
+      <b>Supported Browsers API</b> <i>via Feature Detection</i>
 		</h1>
-    <div id="about">
+    <div id="about" class="active">
       <p>
-      The caniuse API figures out which browsers are required based on the features you specify <small>(e.g.: WebGL and WebRTC)</small>. You get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.	
+      If you've created a demo that requires WebGL or WebSQL DB, you've been in the awkward situation of telling some of your visitors that their browser isn't good enough. But you can't just recommend they get a browser with those features; for example, "Get a WebRTC capable browser" is pretty much useless to everyone.
+      <p>The HTML5 Please API translates developer language (features) to user language (browsers) and stays updated via <a href="//caniuse.com">caniuse.com</a>'s data so it remains accurate as browsers add support for more things. Call the API and you get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users.
       </p>
     </div>
 
+    <section id="in-action">
+      <h2>In action</h2>
+      <p>a few demos so people can see what it gives you. Thinking maybe screenshot of animatedgif site in Safari..</p>
+    </section>
+
     <section id="get-api">
+      <h2>Build your API call</h2>
       <form>
         <label for="features">
           <input id="features" type="text" required value="">

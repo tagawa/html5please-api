@@ -191,16 +191,16 @@ code { font-family: monospace, monospace; color: $minorfocuscolor; }
 a { color: $linkcolor; text-decoration: none; }
 
 #about { 
-  height: 0;
+  max-height: 0;
   opacity: 0;
   overflow: hidden;
-  @include remfallback('font-size', 0.8);
+  @include remfallback('font-size', 1);
   @include remfallback('max-width', 40);
   margin: 0 auto;
   @include transition('height 200ms linear');
 
   &.active {
-    height: 5em;
+    max-height: 15em;
     opacity: 1;
  }
 } 
