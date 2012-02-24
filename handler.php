@@ -77,6 +77,10 @@ if ($option_format === 'js' || $option_format === 'json' || $option_callback) {
 } else if ($option_format === 'xml') {
 	header('Content-Type: text/xml');
 
+	if ($option_html) {
+		$support_array['html'] = html_encode($support_array, $option_style, !$option_nocss);
+	}
+
 	$string = xml_encode($support_array);
 }
 
