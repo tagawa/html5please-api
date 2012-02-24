@@ -9,17 +9,20 @@
 	<body>
     <header>
       <h1 class="logo">
-        <b>Polyspline</b> <i>Support browsers with Feature Detection</i>
+        <b>HTML5 Please API</b> <i>Support browsers with Feature Detection</i>
       </h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#in-action">In Action</a>
-        <a href="#get-api">Build your API call</a>
-        <a href="#reference">Reference</a>
-      </nav>
+      <div id="nav_container">
+        <nav id="toc">
+          <a href="#in-action">In Action</a>
+          <a href="#get-api">Build your API call</a>
+          <a href="#reference">Reference</a>
+        </nav>
+      </div>
     </header>
     <div id="about" class="active">
-      <p>The HTML5 Please API translates developer language (features) to user language (browsers) and stays updated via <a href="//caniuse.com">caniuse.com</a>'s data so it remains accurate as browsers add support for more things. Call the API and you get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users. <a href="#">Read More about this project</a>
+      <p>The HTML5 Please API translates developer language (features) to user language (browsers). Call the API and you get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users. 
+      </p>
+      <p> The API stays updated thanks to data from <a href="//caniuse.com">caniuse.com</a> so it remains accurate as browsers add support for more features. <a href="#">Read More about this project</a>
       </p>
     </div>
 
@@ -45,7 +48,7 @@
         <div class="options">
           <h3>with</h3>
           <div class="options-content">
-              <p class="js-options-json"><input type="checkbox" checked id="callback" name="options" value="callback=callback"><span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
+              <p class="js-options-json"><input type="checkbox" checked id="callback" name="options" value=""><span class="label"><input type="text" id="callbackvalue" value="browserSupport"></span></p>
               <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Only fetch data on whether current browser supports these features.</label></p>
               <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Fetch data on all browsers that support these features (if current browser doesn't).</label></p>
               <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
