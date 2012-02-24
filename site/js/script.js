@@ -57,6 +57,9 @@
             refreshOutput();
             return false;
           }
+        })
+        .focus(function() {
+          $(this).autocomplete('search', '');
         });
       });
 
