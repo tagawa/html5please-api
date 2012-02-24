@@ -327,6 +327,10 @@ function html_encode_agent(&$agent_string = '', &$agent_array, $requested_style_
 	}
 
 	$html .= '<a class="caniuse-agt' . $anchor_classes. '" href="' . @$agent_array['url'] . '" rel="external" target="_blank">';
+
+  if ($requested_style_string !== 'icon') {
+		$html .= '<span class="caniuse-agt-ttl">' . @$agent_array['name'] . '</span>';
+	}
 	
 	$html .= '</a>';
 
@@ -364,13 +368,10 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 	}
 
 	if ($requested_style_boolean) {
+
     if($request_style_string == 'text') {
 
       $styles = @file_get_contents('css/text.css');
-
-    } else if($request_style_string == 'icon') {
-
-      $styles = @file_get_contents('css/icon.css');
 
     } else {
 
