@@ -26,15 +26,13 @@
         <div class="formats">
           <h4>As</h4>
           <p><input type="radio" checked name="format" value="html"><label for="format-html">html</label></p> or
-          <p><input type="radio" name="format" value="json"><label for="format-json">json</label></p> or 
-          <p><input type="radio" name="format" value="xml"><label for="format-xml">xml</label></p>
+          <p><input type="radio" name="format" value="json"><label for="format-json">json</label></p> 
         </div>
 
         <div class="options">
           <h3>with</h3>
           <div class="options-content">
               <p class="js-options-json"><input type="checkbox" id="callback" name="options" value="callback=callback"><span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
-              <p class="js-options-json"><input type="checkbox" name="options" value="readable"><label>Output JSON in a readable.</label></p>
               <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Show info on support for these features in current browser.</label></p>
               <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Show all browsers that support these features (not just the latest version of the current browser).</label></p>
               <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
@@ -55,18 +53,14 @@
       <article>
         <h3> Formats </h3>
         <p> <code><strong>html</strong></code>: the output will be valid HTML with the mimetype of <var>text/html</var>.  </p>
-        <p> <code><strong>js</strong></code>: the output will be valid JavaScript with the mimetype of <var>text/javascript</var>.  </p>
         <p> <code><strong>json</strong></code>: the output will be valid JSON with the mimetype of <var>text/json</var>.  </p>
         <p> <code><strong>xml</strong></code>: the output will be valid XML with the mimetype of <var>text/xml</var>.  </p>
       </article>
       <article>
         <h3> Options </h3>
-        <p> <code><strong>button</strong></code>: the default, the HTML will be optimized for button output.  </p>
         <p> <code><strong>nocss</strong></code>: the HTML will not include the stylesheet.  </p>
         <p> <code><strong>text</strong></code>: the HTML will be optimized for text output.  </p>
         <p> <code><strong>icon</strong></code>: the HTML will be optimized for icon output.  </p>
-        <p> <code><strong>texticon</strong></code>: the HTML will be optimized for text and icon output.  </p>
-        <p> <code><strong>readable</strong></code>: the JSON will be formatted for readability.  </p>
         <p> <code><strong>supported</strong></code>: the JSON will only output whether the agent supports the requested features.  </p>
         <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
         <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
@@ -75,7 +69,7 @@
 
     <section>
         <h2> Contribute </h2>
-        <p> This is a community project. You can <a href="//github.com/jonathantneal/caniuse">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.  </p>
+        <p> This is a community project. You can <a href="//github.com/h5bp/caniuse">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.  </p>
     </section>
     <footer>
     <div class="builders">

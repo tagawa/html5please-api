@@ -149,11 +149,9 @@
           } else if (key === 'options') {
             operator = '?';
           } 
-          if(key === 'format' && callback.checked) {
-            return operator + 'js';
-          } else {
-            return operator + api[key];
-          }
+
+          return operator + api[key];
+
         }).join(''); 
       };
 
