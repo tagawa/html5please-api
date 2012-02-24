@@ -340,9 +340,7 @@ function html_encode_agent(&$agent_string = '', &$agent_array, $requested_style_
 
 function html_encode_feature($feature_string = '', $feature_name_string = '', $supported = true) {
 	$html = '';
-	$html .= '<a class="' . ($supported ? 'caniuse-yes' : 'caniuse-no') . '" href="http://caniuse.com/#search=' . $feature_string .'" rel="external" target="_blank">';
 	$html .= $feature_name_string;
-	$html .= '</a>';
 
 	return $html;
 }
@@ -368,12 +366,9 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 		return $html;
 	}
 
-	if ($requested_style_boolean) {
-
+	if ($requested_style_boolean && !$return_array['supported']) {
 		if ($requested_style_string == 'text') {
 			$styles = @file_get_contents('css/text.css');
-		} else if ($requested_style_string == 'icon') {
-			$styles = @file_get_contents('css/icon.css');
 		} else {
 			$styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
 		}
@@ -401,6 +396,7 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 	$html = preg_replace('/<%= browserid %>/', $return_array['agent']['id'], $html);
 	$html = preg_replace('/<%= browserurl %>/', $return_array['agent']['url'], $html);
 	$html = preg_replace('/<%= alternatives %>/', html_encode_agents($return_array['agents'], $requested_style_string), $html);
+	$html = preg_replace('/<%= features %>/', html_encode_features($return_array), $html);
 
 	$html = preg_replace('/[\s]+/', ' ', $html);
 
