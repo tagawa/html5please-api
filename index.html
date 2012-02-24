@@ -40,19 +40,19 @@
           <h3>with</h3>
           <div class="options-content">
               <p class="js-options-json"><input type="checkbox" checked id="callback" name="options" value="callback=callback"><span class="label"><input type="text" id="callbackvalue" value="callback"></span></p>
-              <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Show info on support for these features in current browser.</label></p>
-              <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Show all browsers that support these features (not just the latest version of the current browser).</label></p>
+              <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Only fetch data on whether current browser supports these features.</label></p>
+              <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Fetch data on all browsers that support these features (if current browser doesn't).</label></p>
               <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options" value="icon" checked><label>Show logos of browsers that support these features</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options"  value="text" checked><label>Show names of browsers that support these features</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options" value="icon" checked><label>Show browser logos</label></p>
+              <p class="js-options-html"><input type="checkbox" name="options"  value="text" checked><label>Show browser names</label></p>
           </div>
          </div>
       </form>
       <div class="api-example">
         <h3>Use</h3>
-        <a href="#" id="url" target="_blank"></a>
         <p class="js-help-json">To render the HTML data within an element, just use the value of <code>data.html</code> as the content (<a href="#">demo</a>).</p>
-        <p class="help">You can use this API directly or use the callback function for JSONP. <br>You can also use the <a href="https://gist.github.com/1896401">Modernizr Plugin</a> instead if you are already using Modernizr for feature detection. </p>
+        <a href="#" id="url" target="_blank"></a>
+        <p class="help">You can also use this API with CORS. <br>If you are already using Modernizr for feature detection, you can also use the <a href="https://gist.github.com/1896401">Modernizr Plugin</a> instead. </p>
       </div>
 		</section>
 

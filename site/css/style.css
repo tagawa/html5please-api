@@ -162,7 +162,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #get-api h3, .formats {
+.align-center, h1, #get-api h3, .formats, .js-help-json {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -342,6 +342,9 @@ label[for='features'] {
   color: #aba9bc;
   margin-top: 0.5em; }
 
+.js-help-json {
+  margin-bottom: 0.4em; }
+
 input[type="radio"] {
   -webkit-appearance: radio; }
 
@@ -433,6 +436,8 @@ input[type="checkbox"] {
     margin-bottom: 1rem; }
 
 #url {
+  min-height: 51.2px;
+  min-height: 3.2rem;
   display: block;
   width: 100%;
   background: #84853d;

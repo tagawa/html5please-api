@@ -332,6 +332,12 @@ label[for='features'] {
   color: lighten($bgcolorlesscontrast, 30%);
   margin-top: 0.5em;
 }
+
+.js-help-json {
+  @extend .align-center;
+  margin-bottom: 0.4em;
+}
+
 input[type="radio"] { -webkit-appearance: radio; }
 input[type="checkbox"] { -webkit-appearance: checkbox; } 
 input[type="checkbox"] { margin-right: 0.25em; }
@@ -436,6 +442,7 @@ input[type="text"] { @extend .input-text; }
 }
 
 #url {
+  @include remfallback('min-height', 3.2);
   display: block;
   width: 100%;
   background: desaturate($minorfocuscolor, 20%);

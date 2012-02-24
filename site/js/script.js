@@ -87,14 +87,12 @@
       callbackvalue.onfocus = function() {
         if(callbackvalue.value == 'callback') {
           callbackvalue.value = '';
-          $(callback).prop('checked', true);
         }
       };
 
       callbackvalue.onblur = function() {
         if(callbackvalue.value == '') {
           callbackvalue.value = 'callback';
-          $(callback).removeProp('checked');
         }
         callback.value = 'callback=' + this.value;
         refreshOutput();
