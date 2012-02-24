@@ -255,6 +255,7 @@ function filter_options() {
 	$array[$key . 'callback']   = @$_GET['callback'];
 	$array[$key . 'features']   = explode(' ', @$_GET['features']);
 	$array[$key . 'format']     = first_match('/(html|js|json|php|xml)/', @$_GET['format'], 'js');
+	$array[$key . 'html']       = isset($_GET['html']);
 	$array[$key . 'readable']   = isset($_GET['readable']);
 	$array[$key . 'noagent']    = isset($_GET['noagent']);
 	$array[$key . 'noagents']   = isset($_GET['noagents']);
@@ -369,15 +370,13 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 
 	if ($requested_style_boolean) {
 
-    if($request_style_string == 'text') {
-
-      $styles = @file_get_contents('css/text.css');
-
-    } else {
-
-      $styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
-
-    }
+		if ($requested_style_string == 'text') {
+			$styles = @file_get_contents('css/text.css');
+		} else if ($requested_style_string == 'icon') {
+			$styles = @file_get_contents('css/icon.css');
+		} else {
+			$styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
+		}
 
 		$html .= '&shy;<style>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
 	}

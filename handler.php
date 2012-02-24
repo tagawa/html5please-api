@@ -56,7 +56,7 @@ if ($option_format === 'js' || $option_format === 'json' || $option_callback) {
 		header('Content-Type: text/javascript');
 	}
 
-	if ($option_format === 'html') {
+	if ($option_format === 'html' || $option_html) {
 		$support_array['html'] = html_encode($support_array, $option_style, !$option_nocss);
 	}
 
