@@ -65,6 +65,18 @@
         <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
         <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
       </article>
+      <article>
+      <h3> Output </h3>
+      <h4>JSON</h4>
+      <p><code>agents</code>: Each User agent listed as an object with <code>name</code>, <code>prefix</code>, <code>type</code>, <code>url</code>, and <code>currentVersion</code> as keys. </p>
+      <p><code>features</code>: All requested features listed with the key being the unique id for each feature (e.g. 'css-animation') and value being the readable name for that feature (e.g. "CSS Animation")</p>
+      <p><code>results</code>: An object with keys as UAs and values as versions of browsers that support all the requested features. </p>
+      <p><code>result</code>: Contains a list of feature objects, each of which lists UA and minimum version number required to support that feature.</p>
+      <p><code>agent</code>: Contains information about the UA that is used for making this request to the API, with <code>id</code>, <code>name</code>, <code>prefix</code>, <code>type</code>, <code>url</code>, <code>currentVersion</code>, <code>version</code> as keys to this object.</p>
+      <p><code>supported</code>: Indicate if all the requested features are supported or not.</p>
+      <p><code>upgradable</code>: Indicates if a later version of the browser from which the api request was made, would support this feature.</p>
+      <p> <code>html</code>: The content that will be rendered if this request was made with a HTML format.</p>
+      </article>
     </section>
 
     <section>
