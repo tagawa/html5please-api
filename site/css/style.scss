@@ -147,7 +147,7 @@ body {
 }
 
 section { 
-  padding: 2em 0 0 0;
+  padding: 3em 0 0 0;
 }
 
 article {
@@ -175,6 +175,9 @@ h3 {
 
 p { 
   line-height: 1.5; 
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 em { font-size: 75%; }
@@ -274,6 +277,39 @@ a { color: $linkcolor; text-decoration: none; }
     border-bottom: 1px solid $bgcolor;
     box-shadow: 0 1px 4px $bgcolorlesscontrast;
     @include transition('all 0.3s ease-in-out');
+  }
+}
+
+
+#in-action {
+  white-space: nowrap;
+  @extend .align-center;
+
+  figure {
+    width: 50%;
+    display: inline-block;
+    white-space: normal;
+    margin: 1em 0.5em 0 0.5em; padding: 0;
+
+    img {
+      display: block;
+      padding: 0.2em;
+      background: $bgcolor;
+      border: 1px dashed $bgcolorlesscontrast;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    figcaption {
+      display: block;
+      padding: 0.2em 0;
+      @include remfallback('font-size', 0.8);
+    }
+  }
+
+  h3 {
+    @extend .align-center;
+    @include remfallback('margin-top', 2);
   }
 }
 
@@ -461,7 +497,6 @@ input[type="text"] { @extend .input-text; }
 
 .api-example {
   @extend .clearfix;
-  margin: 0.5em 0 2em 0;
   h3 {
     @extend .fancy-heading-star;
     text-align: center;

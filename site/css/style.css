@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #get-api h3, .formats, .js-help-json {
+.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api h3, .formats, .js-help-json {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -211,7 +211,7 @@ body {
   padding: 0 2em; }
 
 section {
-  padding: 2em 0 0 0; }
+  padding: 3em 0 0 0; }
 
 article {
   margin: 2em 0; }
@@ -230,6 +230,8 @@ h3 {
 
 p {
   line-height: 1.5; }
+  p:last-child {
+    margin-bottom: 0; }
 
 em {
   font-size: 75%; }
@@ -317,6 +319,30 @@ a {
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out; }
+
+#in-action {
+  white-space: nowrap; }
+  #in-action figure {
+    width: 50%;
+    display: inline-block;
+    white-space: normal;
+    margin: 1em 0.5em 0 0.5em;
+    padding: 0; }
+    #in-action figure img {
+      display: block;
+      padding: 0.2em;
+      background: #060231;
+      border: 1px dashed #5c5a72;
+      margin: 0 auto;
+      max-width: 100%; }
+    #in-action figure figcaption {
+      display: block;
+      padding: 0.2em 0;
+      font-size: 12.8px;
+      font-size: 0.8rem; }
+  #in-action h3 {
+    margin-top: 32px;
+    margin-top: 2rem; }
 
 #features {
   display: block;
@@ -458,11 +484,9 @@ input[type="checkbox"] {
 .options h3.active {
   display: block; }
 
-.api-example {
-  margin: 0.5em 0 2em 0; }
-  .api-example h3 {
-    text-align: center;
-    margin-bottom: 1rem; }
+.api-example h3 {
+  text-align: center;
+  margin-bottom: 1rem; }
 
 #url {
   min-height: 51.2px;
