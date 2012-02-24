@@ -191,18 +191,11 @@ code { font-family: monospace, monospace; color: $minorfocuscolor; }
 a { color: $linkcolor; text-decoration: none; }
 
 #about { 
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
+  @extend .align-center;
   @include remfallback('font-size', 1);
   @include remfallback('max-width', 40);
-  margin: 0 auto;
-  @include transition('height 200ms linear');
-
-  &.active {
-    max-height: 15em;
-    opacity: 1;
- }
+  margin: 3em auto;
+  overflow: hidden;
 } 
 
 .logo { 
@@ -245,15 +238,31 @@ a { color: $linkcolor; text-decoration: none; }
   }
 }
 
+nav {
+  @extend .align-center;
+  margin: 2em 0 2em 0;
+
+  a {
+    @extend .fancy-heading-star;
+    @include textshadows(1, $bgcolor);
+
+    &:after {
+      padding-left: 0.8em;
+    }
+    + a:before {
+      content: "";
+    }
+  }
+}
+
 #get-api {
   @extend .droid;
-}
 
-#get-api h3 { 
-  @extend .align-center;
-  @extend .fancy-heading-star;
+  h3 {
+    @extend .align-center;
+    @extend .fancy-heading-star;
+  }
 }
-
 
 #features { 
   @extend .normal-font-size;

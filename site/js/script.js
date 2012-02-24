@@ -155,7 +155,6 @@
         }).join(''); 
       };
 
-      features.focus();
       api.features = '';
       api.format = $('input[name="format"][checked]')[0].value; 
       showFormatOptions();
