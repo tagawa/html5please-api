@@ -319,6 +319,10 @@ label[for='features'] {
     background:  $mostfocuscolor;
     color: $textcolor;
   }
+
+  input[type="radio"]:focus + label {
+    background:  $bgcolorlesscontrast;
+  }
 }
 
 .help {
@@ -405,6 +409,13 @@ input[type="text"] { @extend .input-text; }
   input[type="checkbox"]:checked + .label  {
     color: $mostfocuscolor;
     &::before { background: $mostfocuscolor; }
+  }
+
+  input[type="checkbox"]:focus + label,
+  input[type="checkbox"]:focus + lable {
+    color: $textcolor;
+    &::before { background: $textcolor; }
+
   }
 }
 

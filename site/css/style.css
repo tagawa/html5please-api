@@ -333,6 +333,8 @@ label[for='features'] {
   .formats input[type="radio"]:checked + label {
     background: #a55f8f;
     color: #dabed1; }
+  .formats input[type="radio"]:focus + label {
+    background: #5c5a72; }
 
 .help {
   font-size: small;
@@ -410,6 +412,12 @@ input[type="checkbox"] {
     .options input[type="checkbox"]:checked + label::before,
     .options input[type="checkbox"]:checked + .label::before {
       background: #a55f8f; }
+  .options input[type="checkbox"]:focus + label,
+  .options input[type="checkbox"]:focus + lable {
+    color: #dabed1; }
+    .options input[type="checkbox"]:focus + label::before,
+    .options input[type="checkbox"]:focus + lable::before {
+      background: #dabed1; }
 
 .options-content p,
 .options h3 {
