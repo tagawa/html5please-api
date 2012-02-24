@@ -3,14 +3,14 @@
          formats = document.querySelectorAll('input[name="format"]'),
          options = document.querySelectorAll('input[name="options"]'),
          callbackvalue = document.getElementById('callbackvalue'),
+         originalcallbackvalue = '',
          callback = document.getElementById('callback'),
-         optionsHeading = $('.options h3'),
          jsonhelp = $('.js-help-json'),
-         cache = {}, lastActive = false;
+         lastActive = false;
 
 
          var api = {
-          'domain': 'http://sandbox.thewikies.com/caniuse/',
+          'domain': 'http://api.html5please.com/',
           'features': '',
           'format': '',
           'options': '',
@@ -85,14 +85,15 @@
       });
 
       callbackvalue.onfocus = function() {
-        if(callbackvalue.value == 'callback') {
-          callbackvalue.value = '';
+        console.log(originalcallbackvalue, this.value);
+        if(this.value == originalcallbackvalue) {
+          this.value = '';
         }
       };
 
       callbackvalue.onblur = function() {
-        if(callbackvalue.value == '') {
-          callbackvalue.value = 'callback';
+        if(this.value == '') {
+          this.value = originalcallbackvalue;
         }
         callback.value = 'callback=' + this.value;
         refreshOutput();
@@ -102,12 +103,10 @@
         
         if (lastActive && lastActive.hasClass('active')) { 
           lastActive.removeClass('active'); 
-          optionsHeading.removeClass('active');
         };
         api.options = '';
         var formatOptions = $('.js-options-'+ api.format);
         if(formatOptions.length > 0) { 
-          optionsHeading.addClass('active');
           formatOptions.addClass('active'); 
           lastActive = formatOptions;
         }
@@ -157,6 +156,9 @@
 
       api.features = '';
       api.format = $('input[name="format"][checked]')[0].value; 
+      originalcallbackvalue = callbackvalue.value;
+      console.log(originalcallbackvalue);
+      callbackvalue = 'callback=' + originalcallbackvalue;
       showFormatOptions();
       refreshOutput();
 
@@ -164,5 +166,103 @@
         $(this.hash).toggleClass('active');
         e.preventDefault();
       });
+
+      /* Smooth Scrolling */
+      $toc = $('#toc'),
+      $originalnavtop = $toc.position().top;
+			$navheight = $toc.outerHeight(true);
+			$('#nav_container').height($navheight),
+      $stickynavheight = 0;
+
+      $tocLinks = $toc.find('a[href^="#"]'),
+			cache = {}, cacheinline = {};
+			$docEl = $( document.documentElement ),
+			$body = $( document.body ),
+			$window = $( window ),
+			$scrollable = $body
+      
+    // find out what the hell to scroll ( html or body )
+		// its like we can already tell - spooky
+		if ( $docEl.scrollTop() ) {
+			$scrollable = $docEl;
+		} else {
+			var bodyST = $body.scrollTop();
+			// if scrolling the body doesn't do anything
+			if ( $body.scrollTop( bodyST + 1 ).scrollTop() == bodyST) {
+				$scrollable = $docEl;
+			} else {
+				// we actually scrolled, so, er, undo it
+				$body.scrollTop( bodyST - 1 );
+			}
+		}
+
+		// build cache
+		$tocLinks.each(function(i,v) {
+			var href =  $( this ).attr( 'href' ),
+				$target = $( href );
+			if ( $target.length ) {
+				cache[ this.href ] = { link: $(v), target: $target };
+			}
+		});
+
+
+		// handle nav links
+		$toc.delegate( 'a[href^="#"]', 'click', function(e) {
+			e.preventDefault(); // if you expected return false, *sigh*
+			if ( cache[ this.href ] && cache[ this.href ].target ) {
+				$scrollable.animate( { scrollTop: cache[ this.href ].target.position().top - $stickynavheight }, 600, 'swing' );
+			}
+		});
+
+
+		// auto highlight nav links depending on doc position
+		var deferred = false,
+			timeout = false, // so gonna clear this later, you have NO idea
+			last = false, // makes sure the previous link gets un-activated
+			check = function() {
+				var scroll = $scrollable.scrollTop();
+
+				$.each( cache, function( i, v ) {
+					// if we're past the link's section, activate it
+					if ( scroll + $stickynavheight >  (v.target.position().top - $stickynavheight)  ) {
+						last && last.removeClass('active');
+						last = v.link.addClass('active');
+					} else {
+						v.link.removeClass('active');
+						return false; // get outta this $.each
+					}
+				});
+
+
+				// all done
+				clearTimeout( timeout );
+				deferred = false;
+			};
+
+		// work on scroll, but debounced
+		var $document = $(document).scroll( function() {
+
+      if($scrollable.scrollTop() > ($originalnavtop)) {
+        $toc.addClass('sticky').css('top', '0');
+        $stickynavheight = $toc.outerHeight();
+      } else {
+        $toc.removeClass('sticky');
+      }
+
+			// timeout hasn't been created yet
+			if ( !deferred ) {
+				timeout = setTimeout( check , 250 ); // defer this stuff
+				deferred = true;
+			}
+
+			$oldscrolltop = $scrollable.scrollTop();
+
+		});
+
+		// fix any possible failed scroll events and fix the nav automatically
+		(function() {
+			$document.scroll();
+			setTimeout( arguments.callee, 1500 );
+		})();
 
 

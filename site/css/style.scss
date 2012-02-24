@@ -147,7 +147,7 @@ body {
 }
 
 section { 
-  margin: 2em 0 4em 0;
+  padding: 2em 0 0 0;
 }
 
 article {
@@ -194,8 +194,9 @@ a { color: $linkcolor; text-decoration: none; }
   @extend .align-center;
   @include remfallback('font-size', 1);
   @include remfallback('max-width', 40);
-  margin: 3em auto;
   overflow: hidden;
+  margin: 0 auto;
+  padding: 3em 0 0 0;
 } 
 
 .logo { 
@@ -238,13 +239,18 @@ a { color: $linkcolor; text-decoration: none; }
   }
 }
 
-nav {
+#toc {
   @extend .align-center;
-  margin: 2em 0 2em 0;
+  width: 100%;
+  @include colorize('../classy_fabric.png', $bgcolor, 0.2);
 
   a {
     @extend .fancy-heading-star;
     @include textshadows(1, $bgcolor);
+    @include transition('color 0.3s ease-in-out');
+    padding: 1em 0;
+    display: inline-block;
+
 
     &:after {
       padding-left: 0.8em;
@@ -252,6 +258,22 @@ nav {
     + a:before {
       content: "";
     }
+
+    &.active {
+      color: $textcolor;
+
+    }
+  }
+
+  &.sticky {
+    @include colorize('../classy_fabric.png', darken($bgcolor, 10%), 0.2);
+    position: fixed; 
+    left: 0; 
+    z-index: 2; 
+    margin: 0; 
+    border-bottom: 1px solid $bgcolor;
+    box-shadow: 0 1px 4px $bgcolorlesscontrast;
+    @include transition('all 0.3s ease-in-out');
   }
 }
 

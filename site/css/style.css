@@ -141,7 +141,7 @@ table {
   font-family: 'Droid Serif', serif;
   font-style: italic; }
 
-.alfa, .fancy-heading-star, h2, nav a, #get-api h3, .api-example h3, footer .builders h3, .logo b, .formats label {
+.alfa, .fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3, .logo b, .formats label {
   font-family: 'Alfa Slab One', cursive;
   font-weight: normal;
   text-transform: uppercase;
@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, nav, #get-api h3, .formats, .js-help-json {
+.align-center, h1, #about, #toc, #get-api h3, .formats, .js-help-json {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -178,11 +178,11 @@ table {
     background: rgba(5, 2, 39, 0.5);
     outline: none; }
 
-.fancy-heading-star, h2, nav a, #get-api h3, .api-example h3, footer .builders h3 {
+.fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3 {
   color: #96982a;
   letter-spacing: 3px;
   text-shadow: black 2px 2px 1px, #3c1816 3px 3px 1px; }
-  .fancy-heading-star::before, h2::before, nav a::before, #get-api h3::before, .api-example h3::before, footer .builders h3::before, .fancy-heading-star::after, h2::after, nav a::after, #get-api h3::after, .api-example h3::after, footer .builders h3::after {
+  .fancy-heading-star::before, h2::before, #toc a::before, #get-api h3::before, .api-example h3::before, footer .builders h3::before, .fancy-heading-star::after, h2::after, #toc a::after, #get-api h3::after, .api-example h3::after, footer .builders h3::after {
     content: "✶";
     padding: 0 0.25em;
     color: #5c5a72;
@@ -211,7 +211,7 @@ body {
   padding: 0 2em; }
 
 section {
-  margin: 2em 0 4em 0; }
+  padding: 2em 0 0 0; }
 
 article {
   margin: 2em 0; }
@@ -253,8 +253,9 @@ a {
   font-size: 1rem;
   max-width: 640px;
   max-width: 40rem;
-  margin: 3em auto;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 3em 0 0 0; }
 
 .logo b {
   letter-spacing: 4px;
@@ -279,14 +280,43 @@ a {
   .logo .more-info::after {
     content: " \00BB"; }
 
-nav {
-  margin: 2em 0 2em 0; }
-  nav a {
-    text-shadow: #060231 2px 2px 1px; }
-    nav a:after {
+#toc {
+  width: 100%;
+  background: #060231;
+  background: -webkit-linear-gradient(left, rgba(6, 2, 49, 0.2), rgba(6, 2, 49, 0.2)), url("../classy_fabric.png");
+  background: -moz-linear-gradient(left, rgba(6, 2, 49, 0.2), rgba(6, 2, 49, 0.2)), url("../classy_fabric.png");
+  background: -ms-linear-gradient(left, rgba(6, 2, 49, 0.2), rgba(6, 2, 49, 0.2)), url("../classy_fabric.png");
+  background: -o-linear-gradient(left, rgba(6, 2, 49, 0.2), rgba(6, 2, 49, 0.2)), url("../classy_fabric.png"); }
+  #toc a {
+    text-shadow: #060231 2px 2px 1px;
+    -webkit-transition: color 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out;
+    -ms-transition: color 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out;
+    padding: 1em 0;
+    display: inline-block; }
+    #toc a:after {
       padding-left: 0.8em; }
-    nav a + a:before {
+    #toc a + a:before {
       content: ""; }
+    #toc a.active {
+      color: #dabed1; }
+  #toc.sticky {
+    background: black;
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../classy_fabric.png");
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../classy_fabric.png");
+    background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../classy_fabric.png");
+    background: -o-linear-gradient(left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../classy_fabric.png");
+    position: fixed;
+    left: 0;
+    z-index: 2;
+    margin: 0;
+    border-bottom: 1px solid #060231;
+    box-shadow: 0 1px 4px #5c5a72;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
 
 #features {
   display: block;
