@@ -402,10 +402,6 @@ input[type="text"] { @extend .input-text; }
     position: relative;
   }
 
-  p + p {
-    margin: 0.5em 0 0 0;
-  }
-
   input[type="checkbox"] {
     position: absolute;
     width: 100%;
@@ -416,6 +412,12 @@ input[type="text"] { @extend .input-text; }
 
   #callback {
     width: 1em;
+  }
+
+  label,
+  .label {
+    padding: 0.5em;
+    display: block;
   }
 
   label::before,
@@ -434,14 +436,6 @@ input[type="text"] { @extend .input-text; }
       margin-right: 0.5em;
   }
 
-  p:hover {
-    color: $textcolor;
-    label::before,
-    .label::before {
-      background: $textcolor;
-    }
-   }
-
   input[type="checkbox"]:checked + label,
   input[type="checkbox"]:checked + .label  {
     color: $mostfocuscolor;
@@ -449,10 +443,14 @@ input[type="text"] { @extend .input-text; }
   }
 
   input[type="checkbox"]:focus + label,
-  input[type="checkbox"]:focus + lable {
-    color: $textcolor;
-    &::before { background: $textcolor; }
+  input[type="checkbox"]:focus + .label {
+    background: darken($bgcolor, 10%);
 
+    &::before {
+      background: transparentize($textcolor, 0.6);
+      color: $textcolor;
+
+    }
   }
 }
 

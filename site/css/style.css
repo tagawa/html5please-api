@@ -408,8 +408,6 @@ input[type="checkbox"] {
   .options p {
     margin: 0;
     position: relative; }
-  .options p + p {
-    margin: 0.5em 0 0 0; }
   .options input[type="checkbox"] {
     position: absolute;
     width: 100%;
@@ -419,6 +417,10 @@ input[type="checkbox"] {
     opacity: 0; }
   .options #callback {
     width: 1em; }
+  .options label,
+  .options .label {
+    padding: 0.5em;
+    display: block; }
   .options label::before,
   .options .label::before {
     content: "+";
@@ -434,11 +436,6 @@ input[type="checkbox"] {
     height: 1em;
     box-shadow: inset 0 0 5px #000;
     margin-right: 0.5em; }
-  .options p:hover {
-    color: #dabed1; }
-    .options p:hover label::before,
-    .options p:hover .label::before {
-      background: #dabed1; }
   .options input[type="checkbox"]:checked + label,
   .options input[type="checkbox"]:checked + .label {
     color: #a55f8f; }
@@ -446,11 +443,12 @@ input[type="checkbox"] {
     .options input[type="checkbox"]:checked + .label::before {
       background: #a55f8f; }
   .options input[type="checkbox"]:focus + label,
-  .options input[type="checkbox"]:focus + lable {
-    color: #dabed1; }
+  .options input[type="checkbox"]:focus + .label {
+    background: black; }
     .options input[type="checkbox"]:focus + label::before,
-    .options input[type="checkbox"]:focus + lable::before {
-      background: #dabed1; }
+    .options input[type="checkbox"]:focus + .label::before {
+      background: rgba(218, 190, 209, 0.4);
+      color: #dabed1; }
 
 .options-content p,
 .options h3 {
