@@ -19,6 +19,8 @@ $support_array = filter_supportmetrics($option_features, $agents_array, $data_ar
 if (!$option_noagent) {
 	$useragent_array = filter_useragent($agents_array);
 
+	filter_agents($support_array, $useragent_array);
+
 	$support_array['agent'] = $useragent_array;
 
 	$support_array['supported'] = isset($support_array['results'][$useragent_array['id']]) && version_compare($useragent_array['version'], $support_array['results'][$useragent_array['id']]) > -1;
