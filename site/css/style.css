@@ -577,8 +577,9 @@ footer {
     font-size: 19.2px;
     font-size: 1.2rem; }
   #in-action figure {
-    margin: 1em 0 0;
-    padding: 0 .5em; }
+    margin: 0;
+    padding: 1em .5em;
+    vertical-align: top; }
 
   #features,
   #callbackvalue {
