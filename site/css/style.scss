@@ -327,69 +327,12 @@ a { color: $linkcolor; text-decoration: none; }
   display: block; 
   width: 100%;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 
 label[for='features'] { 
   display: block;
-}
-
-.formats {
-  @extend .align-center;
-  margin: 2em 0 1em 0;
-  border-top: 1px solid $bgcolorlesscontrast;
-  padding-top: 4px;
-
-  &::before{
-    content: "";
-    display: block;
-    border-top: 1px dashed $bgcolorlesscontrast;
-    margin-bottom: 1em;
-  }
-
-  &::after {
-    margin: 1em 0 0 0;
-  }
-
-  h4 { 
-    display: inline-block; 
-    vertical-align: middle;
-    margin: 0; 
-  }
-
-  p {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    margin: 0 1em;
-  }
-
-  .help { display: block; }
-
-  label {
-    @extend .alfa;
-    background: transparentize($bgcolor, 0.8);
-    color: $bgcolorlesscontrast; 
-    letter-spacing: 3px;
-    padding: 0.1em 1em 0; 
-    box-shadow: 2px 2px 0px 1px #000;
-  }
-
-  input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%; height: 100%;
-  }
-
-  input[type="radio"]:checked + label {
-    background:  $mostfocuscolor;
-    color: $textcolor;
-  }
-
-  input[type="radio"]:focus + label {
-    background:  $bgcolorlesscontrast;
-  }
 }
 
 .help {
@@ -400,45 +343,31 @@ label[for='features'] {
   margin-top: 0.5em;
 }
 
-.js-help-json {
-  @extend .align-center;
-  margin-bottom: 0.4em;
-}
-
 input[type="radio"] { -webkit-appearance: radio; }
 input[type="checkbox"] { -webkit-appearance: checkbox; } 
 input[type="checkbox"] { margin-right: 0.25em; }
 input[type="text"] { @extend .input-text; }
 
 .options {
-  @include remfallback('min-height', 11);
-  text-align: center;
-  border-bottom: 1px solid $bgcolorlesscontrast;
-  padding-bottom: 4px;
-  margin-bottom: 1.5em;
-  position: relative;
-
-
-  &::after {
-    border-top: 1px dashed $bgcolorlesscontrast;
-    position: absolute;
-    bottom: 4px; left: 0; right: 0;
-    display: block;
-    content: "";
-  }
 
   .options-content {
     display: inline-block; 
-    text-align: left;
-    color: $bgcolorlesscontrast;
+    color: lighten($bgcolorlesscontrast, 10%);
   }
 
   p { 
     margin: 0; 
-    position: relative;
   }
 
-  input[type="checkbox"] {
+
+  b {
+    font-weight: normal;
+    position: relative;
+    display: inline-block;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -446,40 +375,41 @@ input[type="text"] { @extend .input-text; }
     opacity: 0;
   }
 
-  #callback {
-    width: 1em;
-  }
-
-  label,
-  .label {
-    padding: 0.5em;
+  label {
+    padding: 0.5em 0;
     display: block;
   }
 
-  label::before,
-  .label::before {
-      content: "+";
-      text-shadow: none;
-      display: inline-block;
-      font-weight: bold;
-      background: transparentize($bgcolor, 0.9);
-      border-radius: 2px;
-      line-height: 1em;
-      text-align: center;
-      color: #000;
-      width: 1em; height: 1em;
-      box-shadow: inset 0 0 5px #000;
-      margin-right: 0.5em;
+  label::before{
+    text-shadow: none;
+    display: inline-block;
+    font-weight: bold;
+    background: transparentize($bgcolorlesscontrast, 0.3);
+    border-radius: 2px;
+    line-height: 1em;
+    text-align: center;
+    color: #000;
+    width: 1em; height: 1em;
+    box-shadow: inset 0 0 5px #000;
+    margin-right: 0.5em;
+  }
+
+  input[type="checkbox"] + label::before {
+    content: "+";
+  }
+
+  input[type="radio"] + label::before {
+    content: "\00b7";
   }
 
   input[type="checkbox"]:checked + label,
-  input[type="checkbox"]:checked + .label  {
+  input[type="radio"]:checked + label,
+  input[type="radio"]:focus + label {
     color: $mostfocuscolor;
     &::before { background: $mostfocuscolor; }
   }
 
-  input[type="checkbox"]:focus + label,
-  input[type="checkbox"]:focus + .label {
+  input[type="checkbox"]:focus + label{
     background: darken($bgcolor, 10%);
 
     &::before {
@@ -489,11 +419,6 @@ input[type="text"] { @extend .input-text; }
     }
   }
 }
-
-.options-content p,
-.options h3 { display: none; }
-.options-content p.active,
-.options h3.active{ display: block; }
 
 .api-example {
   @extend .clearfix;
@@ -659,8 +584,7 @@ footer {
   }
 
   
-  #features,
-  #callbackvalue {
+  #features{
     font-size: 16px;
   }
 

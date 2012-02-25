@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* normalize.css 2011-07-06T20:20 UTC //github.com/jonathantneal/normalize.css */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
   display: block; }
@@ -140,7 +141,7 @@ table {
   font-family: 'Droid Serif', serif;
   font-style: italic; }
 
-.alfa, .fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3, .logo b, .formats label {
+.alfa, .fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3, .logo b {
   font-family: 'Alfa Slab One', cursive;
   font-weight: normal;
   text-transform: uppercase;
@@ -162,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api h3, .formats, .js-help-json {
+.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api h3 {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -346,50 +347,11 @@ a {
 #features {
   display: block;
   width: 100%;
-  padding: 1rem; }
+  padding: 1rem;
+  margin-bottom: 1rem; }
 
 label[for='features'] {
   display: block; }
-
-.formats {
-  margin: 2em 0 1em 0;
-  border-top: 1px solid #5c5a72;
-  padding-top: 4px; }
-  .formats::before {
-    content: "";
-    display: block;
-    border-top: 1px dashed #5c5a72;
-    margin-bottom: 1em; }
-  .formats::after {
-    margin: 1em 0 0 0; }
-  .formats h4 {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0; }
-  .formats p {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    margin: 0 1em; }
-  .formats .help {
-    display: block; }
-  .formats label {
-    background: rgba(6, 2, 49, 0.2);
-    color: #5c5a72;
-    letter-spacing: 3px;
-    padding: 0.1em 1em 0;
-    box-shadow: 2px 2px 0px 1px #000; }
-  .formats input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%; }
-  .formats input[type="radio"]:checked + label {
-    background: #a55f8f;
-    color: #dabed1; }
-  .formats input[type="radio"]:focus + label {
-    background: #5c5a72; }
 
 .help {
   font-size: small;
@@ -397,9 +359,6 @@ label[for='features'] {
   display: block;
   color: #aba9bc;
   margin-top: 0.5em; }
-
-.js-help-json {
-  margin-bottom: 0.4em; }
 
 input[type="radio"] {
   -webkit-appearance: radio; }
@@ -410,78 +369,56 @@ input[type="checkbox"] {
 input[type="checkbox"] {
   margin-right: 0.25em; }
 
-.options {
-  min-height: 176px;
-  min-height: 11rem;
-  text-align: center;
-  border-bottom: 1px solid #5c5a72;
-  padding-bottom: 4px;
-  margin-bottom: 1.5em;
-  position: relative; }
-  .options::after {
-    border-top: 1px dashed #5c5a72;
-    position: absolute;
-    bottom: 4px;
-    left: 0;
-    right: 0;
-    display: block;
-    content: ""; }
-  .options .options-content {
-    display: inline-block;
-    text-align: left;
-    color: #5c5a72; }
-  .options p {
-    margin: 0;
-    position: relative; }
-  .options input[type="checkbox"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0; }
-  .options #callback {
-    width: 1em; }
-  .options label,
-  .options .label {
-    padding: 0.5em;
-    display: block; }
-  .options label::before,
-  .options .label::before {
-    content: "+";
-    text-shadow: none;
-    display: inline-block;
-    font-weight: bold;
-    background: rgba(6, 2, 49, 0.1);
-    border-radius: 2px;
-    line-height: 1em;
-    text-align: center;
-    color: #000;
-    width: 1em;
-    height: 1em;
-    box-shadow: inset 0 0 5px #000;
-    margin-right: 0.5em; }
-  .options input[type="checkbox"]:checked + label,
-  .options input[type="checkbox"]:checked + .label {
-    color: #a55f8f; }
-    .options input[type="checkbox"]:checked + label::before,
-    .options input[type="checkbox"]:checked + .label::before {
-      background: #a55f8f; }
-  .options input[type="checkbox"]:focus + label,
-  .options input[type="checkbox"]:focus + .label {
-    background: black; }
-    .options input[type="checkbox"]:focus + label::before,
-    .options input[type="checkbox"]:focus + .label::before {
-      background: rgba(218, 190, 209, 0.4);
-      color: #dabed1; }
-
-.options-content p,
-.options h3 {
-  display: none; }
-
-.options-content p.active,
-.options h3.active {
+.options .options-content {
+  display: inline-block;
+  color: #73708f; }
+.options p {
+  margin: 0; }
+.options b {
+  font-weight: normal;
+  position: relative;
+  display: inline-block; }
+.options input[type="checkbox"],
+.options input[type="radio"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0; }
+.options label {
+  padding: 0.5em 0;
   display: block; }
+.options label::before {
+  text-shadow: none;
+  display: inline-block;
+  font-weight: bold;
+  background: rgba(92, 90, 114, 0.7);
+  border-radius: 2px;
+  line-height: 1em;
+  text-align: center;
+  color: #000;
+  width: 1em;
+  height: 1em;
+  box-shadow: inset 0 0 5px #000;
+  margin-right: 0.5em; }
+.options input[type="checkbox"] + label::before {
+  content: "+"; }
+.options input[type="radio"] + label::before {
+  content: "\00b7"; }
+.options input[type="checkbox"]:checked + label,
+.options input[type="radio"]:checked + label,
+.options input[type="radio"]:focus + label {
+  color: #a55f8f; }
+  .options input[type="checkbox"]:checked + label::before,
+  .options input[type="radio"]:checked + label::before,
+  .options input[type="radio"]:focus + label::before {
+    background: #a55f8f; }
+.options input[type="checkbox"]:focus + label {
+  background: black; }
+  .options input[type="checkbox"]:focus + label::before {
+    background: rgba(218, 190, 209, 0.4);
+    color: #dabed1; }
 
 .api-example h3 {
   text-align: center;
@@ -589,8 +526,7 @@ footer {
     padding: 1em .5em;
     vertical-align: top; }
 
-  #features,
-  #callbackvalue {
+  #features {
     font-size: 16px; }
 
   footer .builders h3 {

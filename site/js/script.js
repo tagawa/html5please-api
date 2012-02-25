@@ -1,20 +1,14 @@
       var $url = $('#url'),
          $features = $('#features'),
-         $formats = $('input[name="format"]'),
-         $options = $('input[name="options"]'),
-         $callbackvalue = $('#callbackvalue'),
-         $callback = $('#callback'),
-         $jsonhelp = $('.js-help-json'),
-         originalCallbackValue = '',
-         lastActive = false;
+         $options = $('#get-api').find('input'),
+         $callback = '?callback=caniuse&';
 
 
      var api = {
-          'domain': 'http://sandbox.thewikies.com/caniuse/',
+          'domain': 'http://api.html5please.com/',
           'features': '',
-          'format': '',
+          'format': '.json',
           'options': '',
-          'previewOptions': ''
           } 
 
 
@@ -83,47 +77,12 @@
          refreshOutput();
       });
 
-      $formats.change(function() {
-         api.format = this.value;
-         showFormatOptions();
-         refreshOutput();
-      });
-
       $options.change(function() {
           refreshOutput();
       });
 
-      $callbackvalue.focus(function() {
-        if(this.value == originalCallbackValue) {
-          this.value = '';
-        }
-      });
-
-      $callbackvalue.blur(function() {
-        if(this.value == '') {
-          this.value = originalCallbackValue;
-        }
-        callback.value = 'callback=' + this.value;
-        refreshOutput();
-      });
-       
-      function showFormatOptions() {
-        api.options = '';
-        var $formatOptionsContainer = $('.js-options-'+ api.format);
-
-        if (lastActive && lastActive.hasClass('active')) { 
-          lastActive.removeClass('active'); 
-        };
-
-        if($formatOptionsContainer.length > 0) { 
-          $formatOptionsContainer.addClass('active'); 
-          lastActive = $formatOptionsContainer;
-        }
-      }
-
       function formattedOptions() {
-        var currentOptions = $('.js-options-' + api.format).find('input[name="options"]');
-        currentOptions = currentOptions.filter(function(index) { return this.checked; });
+        var currentOptions = $options.filter(function(index) { return this.checked; });
 
         if(currentOptions.length > 0) {
           currentOptions = $.map(currentOptions, function(option) { 
@@ -137,38 +96,19 @@
 
       function refreshOutput() {
          if(api.features !== '') {
-           api.options = formattedOptions();
+           api.options = $callback + formattedOptions();
           
            $url.text(createUrl());
            $url.attr('href', $url.text());
-
-           if(api.format == 'json') {
-             $jsonhelp.show();
-           } else {
-             $jsonhelp.hide();
-           }
          }
       };
 
       function createUrl() {
         return Object.keys(api).map(function(key) { 
-          var operator = '';
-          if(key === 'format') {
-            operator = '.'; 
-          } else if (key === 'options') {
-            operator = '?';
-          } 
-
-          return operator + api[key];
-
+          return api[key];
         }).join(''); 
       };
 
-      api.features = '';
-      api.format = $('input[name="format"][checked]')[0].value; 
-      originalCallbackValue = $callbackvalue.attr('value');
-      $callback.attr('value', 'callback=' + originalCallbackValue);
-      showFormatOptions();
       refreshOutput();
 
 

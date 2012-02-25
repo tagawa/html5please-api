@@ -54,27 +54,16 @@
           <input id="features" type="text" required value="">
         </label>
 
-        <div class="formats">
-          <h4>As</h4>
-          <p><input type="radio" checked name="format" value="json"><label for="format-json">json</label></p> or 
-          <p><input type="radio" name="format" value="html"><label for="format-html">html</label></p>
-        </div>
-
         <div class="options">
-          <h3>with</h3>
           <div class="options-content">
-              <p class="js-options-json"><input type="checkbox" checked id="callback" name="options" value=""><span class="label"><input type="text" id="callbackvalue" value="browserSupport"></span></p>
-              <p class="js-options-json"><input type="checkbox" name="options" value="supported"><label>Only fetch data on whether current browser supports these features.</label></p>
-              <p class="js-options-json"><input type="checkbox" name="options" value="noagent"><label>Fetch data on all browsers that support these features (if current browser doesn't).</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options" value="nocss"><label>plain HTML, no styling</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options" value="icon" checked><label>Show browser logos</label></p>
-              <p class="js-options-html"><input type="checkbox" name="options"  value="text" checked><label>Show browser names</label></p>
+            <p>Fetch support information for: <b><input type="radio" name="agent" value="supported" checked><label>viewer's browser.</label></b> <b><input type="radio" name="agent" value="noagent"><label>for all browsers.</label></b></p>
+            <p>Show browser: <b><input type="radio" name="skin" value="icon" checked><label>logos</label></b> <b><input type="radio" name="skin"  value="text"><label>names</label></b> <b><input type="radio" name="skin"  value="texticon" checked><label>both</label></b></p>
+            <p><b><input type="checkbox" name="style" value="nocss"><label>Disable Styles</label></b></p>
           </div>
          </div>
       </form>
       <div class="api-example">
         <h3>Use</h3>
-        <p class="js-help-json">To render the HTML data within an element, just use the value of <code>data.html</code> as the content (<a href="http://jsfiddle.net/TS8yS/">demo</a>).</p>
         <a href="#" id="url" target="_blank"></a>
         <p class="help">You can also use this API with CORS. <br>If you are already using Modernizr for feature detection, you can also use the <a href="https://gist.github.com/1896401">Modernizr Plugin</a> instead. </p>
       </div>
