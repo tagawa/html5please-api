@@ -552,7 +552,8 @@ footer {
     .logo b {
       font-size: 40px;
       font-size: 2.5rem; }
-      .logo b::before {
+      .logo b::before, .logo b::after {
+        content: '';
         padding-left: 0.15em; }
     .logo i {
       font-size: 19.2px;

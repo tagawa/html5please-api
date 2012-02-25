@@ -595,7 +595,9 @@ footer {
     b {
       @include remfallback('font-size', 2.5);
       
-      &::before {
+      &::before,
+      &::after {
+        content: '';
         padding-left: 0.15em;
       }
     }
