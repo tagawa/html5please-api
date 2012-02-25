@@ -575,7 +575,9 @@ footer {
 
   #in-action h3 {
     font-size: 19.2px;
-    font-size: 1.2rem; }
+    font-size: 1.2rem;
+    margin-top: 16px;
+    margin-top: 1rem; }
   #in-action figure {
     margin: 0;
     padding: 1em .5em;

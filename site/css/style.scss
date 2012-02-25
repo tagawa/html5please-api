@@ -640,6 +640,7 @@ footer {
   #in-action {
     h3 {
       @include remfallback('font-size', 1.2);
+      @include remfallback('margin-top', 1);
     }
     
     figure {
