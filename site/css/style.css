@@ -579,6 +579,10 @@ footer {
     margin: 1em 0 0;
     padding: 0 .5em; }
 
+  #features,
+  #callbackvalue {
+    font-size: 16px; }
+
   footer .builders h3 {
     display: block;
     text-align: center;

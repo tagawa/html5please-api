@@ -589,6 +589,7 @@ footer {
   }
 
 
+  // Headline
   .logo {
     line-height: 1.1;
 
@@ -608,6 +609,8 @@ footer {
   }
   
   
+  
+  // Naviagtion
   #toc {
     &.sticky {
       position: static;
@@ -643,7 +646,16 @@ footer {
       padding: 0 .5em;
     }
   }
+
   
+  #features,
+  #callbackvalue {
+    font-size: 16px;
+  }
+
+
+
+  // Footer  
   footer {
     .builders {
       h3 {
