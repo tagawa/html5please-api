@@ -300,7 +300,7 @@ function filter_useragent(& $agents_array) {
 	return $return_array;
 }
 
-function filter_agents($support_array = array(), $useragent_array = array()) {
+function filter_agents(&$support_array = array(), &$useragent_array = array()) {
 	foreach ($support_array['agents'] as $agent_id =>& $agent_array) {
 		if ($agent_array['type'] !== $useragent_array['type']) {
 			unset($support_array['agents'][$agent_id]);
