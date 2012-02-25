@@ -565,7 +565,9 @@ footer {
   #toc a {
     padding: .3em 0; }
     #toc a + a:before {
-      content: "*"; }
+      content: "✶"; }
+    #toc a:before {
+      padding-right: .8em; }
 
   #nav_container {
     height: auto !important; }

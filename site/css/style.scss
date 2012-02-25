@@ -621,7 +621,11 @@ footer {
       padding: .3em 0;
       
       + a:before {
-        content: "*";
+        content: "✶";
+      }
+      
+      &:before {
+        padding-right: .8em;
       }
     }
   }
