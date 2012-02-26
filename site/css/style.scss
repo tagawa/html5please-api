@@ -334,6 +334,8 @@ a { color: $linkcolor; text-decoration: none; }
 
 
 label[for='features'] { 
+  @extend .align-center;
+  margin-top: 1em;
   display: block;
 }
 
