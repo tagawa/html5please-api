@@ -129,19 +129,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.clearfix, .api-example, footer .builders {
+.clearfix, footer .builders {
   *zoom: 1; }
-  .clearfix:before, .api-example:before, footer .builders:before, .clearfix:after, .api-example:after, footer .builders:after {
+  .clearfix:before, footer .builders:before, .clearfix:after, footer .builders:after {
     content: "";
     display: table; }
-  .clearfix:after, .api-example:after, footer .builders:after {
+  .clearfix:after, footer .builders:after {
     clear: both; }
 
 .droid, html, .logo i, #get-api {
   font-family: 'Droid Serif', serif;
   font-style: italic; }
 
-.alfa, .fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3, .logo b {
+.alfa, .fancy-heading-star, h2, #toc a, #get-api h3, footer .builders h3, .logo b {
   font-family: 'Alfa Slab One', cursive;
   font-weight: normal;
   text-transform: uppercase;
@@ -178,11 +178,11 @@ table {
     background: rgba(5, 2, 39, 0.5);
     outline: none; }
 
-.fancy-heading-star, h2, #toc a, #get-api h3, .api-example h3, footer .builders h3 {
+.fancy-heading-star, h2, #toc a, #get-api h3, footer .builders h3 {
   color: #96982a;
   letter-spacing: 3px;
   text-shadow: black 2px 2px 1px, #3c1816 3px 3px 1px; }
-  .fancy-heading-star::before, h2::before, #toc a::before, #get-api h3::before, .api-example h3::before, footer .builders h3::before, .fancy-heading-star::after, h2::after, #toc a::after, #get-api h3::after, .api-example h3::after, footer .builders h3::after {
+  .fancy-heading-star::before, h2::before, #toc a::before, #get-api h3::before, footer .builders h3::before, .fancy-heading-star::after, h2::after, #toc a::after, #get-api h3::after, footer .builders h3::after {
     content: "✶";
     padding: 0 0.25em;
     color: #5c5a72;
@@ -344,6 +344,12 @@ a {
     margin-top: 32px;
     margin-top: 2rem; }
 
+#get-api h3 {
+  margin-top: 32px;
+  margin-top: 2rem;
+  margin-bottom: 8px;
+  margin-bottom: 0.5rem; }
+
 #features {
   display: block;
   width: 100%;
@@ -420,9 +426,8 @@ input[type="checkbox"] {
     background: rgba(218, 190, 209, 0.4);
     color: #dabed1; }
 
-.api-example h3 {
-  text-align: center;
-  margin-bottom: 1rem; }
+#h5p-message {
+  text-shadow: none; }
 
 #url {
   min-height: 51.2px;

@@ -1,7 +1,11 @@
       var $url = $('#url'),
          $features = $('#features'),
          $options = $('#get-api').find('input'),
-         $callback = '?callback=caniuse&';
+         $callback = '?callback=h5pCaniuse&',
+         $h5pMessage = $('#h5p-message'),
+         $body = $( document.body ),
+         $lastscript = null,
+         cache = {};
 
 
      var api = {
@@ -54,17 +58,13 @@
             terms.push(' ');
             this.value = terms.join(' ');
             api.features = this.value.trim().split(' ').join('+').trim();
-            refreshOutput();
             // Save the select state for use in the close event, which is called
             // after the menu is closed, and therefore can't be prevented.
             $( this ).data( 'selected', true );
+            refreshOutput();
             return false;
           },
           close: function( event, ui ) {
-            var $this = $( this );
-            if ( $this.data('selected') ) {
-              $this.data( 'selected', false ).focus();
-            }
           }
         })
         .focus(function() {
@@ -96,10 +96,16 @@
 
       function refreshOutput() {
          if(api.features !== '') {
-           api.options = $callback + formattedOptions();
-          
-           $url.text(createUrl());
-           $url.attr('href', $url.text());
+           $script = $('<script>'),
+           api.options = $callback + formattedOptions() + '&html';
+           $url = createUrl(),
+           $lastscript && $lastscript.remove();
+           if(cache[$url]) {
+             $h5pMessage.html(cache[$url].html);
+           } else {
+             $body.append($script.attr('src', createUrl()));
+           }
+           $lastscript = $script;
          }
       };
 
@@ -108,6 +114,15 @@
           return api[key];
         }).join(''); 
       };
+
+      window.h5pCaniuse = function(data) {
+        if(data.supported){
+          $h5pMessage.text('this browser supports these features');
+        } else {
+          $h5pMessage.html(data.html);
+        }
+        cache[createUrl()] = data;
+      }
 
       refreshOutput();
 
@@ -122,7 +137,6 @@
       $tocLinks = $toc.find('a[href^="#"]'),
 			cache = {}, cacheinline = {};
 			$docEl = $( document.documentElement ),
-			$body = $( document.body ),
 			$window = $( window ),
 			$scrollable = $body
       

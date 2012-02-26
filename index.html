@@ -20,7 +20,7 @@
         </nav>
       </div>
     </header>
-    <div id="about" class="active">
+    <div id="about">
       <p>If you've created a demo or site that requires Canvas or WebSQL DB, you've been in the awkward situation of telling some of your visitors that their browser isn't good enough. But you can't just recommend they get a browser with those features; for example, "Get a WebRTC capable browser" is pretty much useless to everyone.
 
       <p>The HTML5 Please API translates developer language (features) to user language (browsers). Call the API and you get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users. 
@@ -62,9 +62,13 @@
           </div>
          </div>
       </form>
-      <div class="api-example">
+      <div class="use">
         <h3>Use</h3>
-        <a href="#" id="url" target="_blank"></a>
+        <div id="url"> </div>
+      </div>
+      <div class="preview">
+        <h3>Preview</h3>
+        <div id="h5p-message"></div>
         <p class="help">You can also use this API with CORS. <br>If you are already using Modernizr for feature detection, you can also use the <a href="https://gist.github.com/1896401">Modernizr Plugin</a> instead. </p>
       </div>
 		</section>

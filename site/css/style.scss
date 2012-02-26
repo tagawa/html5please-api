@@ -319,6 +319,8 @@ a { color: $linkcolor; text-decoration: none; }
   h3 {
     @extend .align-center;
     @extend .fancy-heading-star;
+    @include remfallback('margin-top', 2);
+    @include remfallback('margin-bottom', 0.5);
   }
 }
 
@@ -349,7 +351,6 @@ input[type="checkbox"] { margin-right: 0.25em; }
 input[type="text"] { @extend .input-text; }
 
 .options {
-
   .options-content {
     display: inline-block; 
     color: lighten($bgcolorlesscontrast, 10%);
@@ -420,14 +421,9 @@ input[type="text"] { @extend .input-text; }
   }
 }
 
-.api-example {
-  @extend .clearfix;
-  h3 {
-    @extend .fancy-heading-star;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 
+#h5p-message {
+  text-shadow: none;
 }
 
 #url {
