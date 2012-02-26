@@ -54,12 +54,6 @@
         }
 
         $features
-        .bind( "keydown", function( event ) {
-          if ( event.keyCode === $.ui.keyCode.TAB &&
-              $( this ).data( "autocomplete" ).menu.active ) {
-            event.preventDefault();
-          }
-        })
         .autocomplete({
           minLength: 0,
           source: function( request, response ) {
@@ -87,9 +81,6 @@
           close: function( event, ui ) {
           }
         })
-        .focus(function() {
-          $(this).autocomplete('search', '');
-        });
       });
 
       $features.blur(function() {
