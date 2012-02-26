@@ -76,6 +76,8 @@ if ($option_format === 'js' || $option_format === 'json' || $option_callback) {
 
 	$string = file_get_contents('tpl/html.html');
 	$string = preg_replace('/<%= content %>/', html_encode($support_array, $option_style, !$option_nocss), $string);
+
+	/* currently not advertising our XML format. we may deprecate and kill */
 } else if ($option_format === 'xml') {
 	header('Content-Type: text/xml;charset=UTF-8');
 
