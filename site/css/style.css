@@ -597,7 +597,8 @@ footer {
     footer .builders:first-child a b {
       display: inline; }
   footer .builders > a {
-    width: auto; }
+    width: auto;
+    margin-right: 1em; }
     footer .builders > a img {
       margin-bottom: .5em; } }
 /*
