@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, h2, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work, footer, footer .builders h3, footer .builders:first-child a {
+.align-center, h1, h2, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work h4, #reference, footer, footer .builders h3, footer .builders:first-child a {
   text-align: center; }
 
 .input-text, input[type="text"] {
