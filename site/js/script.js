@@ -3,6 +3,7 @@
          $callback = '?callback=h5pCaniuse&',
          $h5pMessage = $('#h5p-message'),
          $widgetformat = $('input[name="widgetformat"]'),
+         $apiresult = $('#api-result'),
          $body = $( document.body ),
          $lastscript = null,
          currentwidget = 0,
@@ -79,6 +80,7 @@
             api.features = this.value.trim().split(' ').join('+').trim();
             // Save the select state for use in the close event, which is called
             // after the menu is closed, and therefore can't be prevented.
+            $apiresult.addClass('active');
             refreshOutput();
             return false;
           },
@@ -92,6 +94,11 @@
 
       $features.blur(function() {
          api.features = $features.attr('value').trim().split(' ').join('+').trim(); 
+         if(api.features != '') {
+           $apiresult.addClass('active');
+         } else {
+           $apiresult.removeClass('active');
+         }
          refreshOutput();
       });
 
