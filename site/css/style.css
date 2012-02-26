@@ -562,10 +562,8 @@ footer {
     position: static; }
   #toc a {
     padding: .3em 0; }
-    #toc a + a:before {
+    #toc a:not(:first-of-type):nth-of-type(odd)::before, #toc a:nth-of-type(odd)::after {
       content: "✶"; }
-    #toc a:before {
-      padding-right: .8em; }
 
   #nav_container {
     height: auto !important; }

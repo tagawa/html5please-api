@@ -615,12 +615,9 @@ footer {
     a {
       padding: .3em 0;
       
-      + a:before {
+      &:not(:first-of-type):nth-of-type(odd)::before,
+      &:nth-of-type(odd)::after {
         content: "✶";
-      }
-      
-      &:before {
-        padding-right: .8em;
       }
     }
   }
