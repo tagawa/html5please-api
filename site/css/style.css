@@ -451,9 +451,10 @@ input[type="checkbox"] {
   padding: 1em;
   word-wrap: break-word;
   text-align: left;
-  min-height: 16em; }
+  min-height: 12em; }
   #widget a {
-    color: #060231; }
+    color: #060231;
+    display: block; }
     #widget a:hover {
       color: #632c31; }
 

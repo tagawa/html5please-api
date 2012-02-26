@@ -154,7 +154,7 @@
           $widget.html(jscontent.prefix + url + jscontent.suffix);
           $widgetmessage.html(jscontent.message);
         } else if (type == widget.uri){
-          $widget.html('<a target="_blank" href="' + url + '">'+ url + '</a>');
+          $widget.html('<a target="_blank" href="' + url + '&readable">'+ url + '</a>');
           $widgetmessage.html('');
         }
       };

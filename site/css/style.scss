@@ -443,10 +443,11 @@ input[type="text"] { @extend .input-text; }
   padding: 1em;
   word-wrap: break-word;
   text-align: left;
-  min-height: 16em;
+  min-height: 12em;
 
   a {
     color: $bgcolor;
+    display: block;
     &:hover {
       color: darken($linkcolor, 20%); 
     }
