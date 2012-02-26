@@ -667,7 +667,7 @@ footer {
   footer {
     .builders {
       h3 {
-        @extend .align-center;
+        text-align: center;
         display: block;
         margin-bottom: .5em;
       }
@@ -675,8 +675,7 @@ footer {
       &:first-child {
         a {
           @include remfallback('font-size', 1.2);
-          @extend .align-center;
-          
+          text-align: center; 
           b {
             display: inline;
           }
