@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work, footer, footer .builders h3, footer .builders:first-child a {
+.align-center, h1, h2, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work, footer, footer .builders h3, footer .builders:first-child a {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -223,7 +223,6 @@ h1 {
 h2 {
   text-shadow: black 2px 2px 1px, #96982a 3px 3px 1px;
   color: #dabed1;
-  text-align: center;
   margin-bottom: 0; }
 
 h3 {

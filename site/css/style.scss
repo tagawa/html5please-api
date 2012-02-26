@@ -161,11 +161,11 @@ h1 {
 }
 
 h2 {
+  @extend .align-center;
   @extend .major-heading-font-size;
   @extend .fancy-heading-star;
   @include textshadows(1 1, #000 $minorfocuscolor );
   color: $textcolor;
-  text-align: center;
   margin-bottom: 0;
 }
 
