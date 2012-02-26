@@ -1,12 +1,30 @@
-      var $url = $('#url'),
-         $features = $('#features'),
+      var $features = $('#features'),
          $options = $('#get-api').find('input'),
          $callback = '?callback=h5pCaniuse&',
          $h5pMessage = $('#h5p-message'),
+         $widgetformat = $('input[name="widgetformat"]'),
          $body = $( document.body ),
          $lastscript = null,
+         currentwidget = 0,
          cache = {},
-         urlcontent = '&lt;div id="h5p-message">&lt;/div>&lt;script>function stripScripts(a){var b=document.createElement("div");b.innerHTML=a;var c=b.getElementsByTagName("script");while(c.length){var d=c[0];d.parentNode.removeChild(d)}return b.innerHTML}var x=document.getElementById("h5p-message");window.h5pCaniuse=function(a){x.innerHTML=stripScripts(a.html)}&lt;/script>&lt;script';
+         $widget = $('#widget'),
+         $widgetmessage = $('#widget-message'),
+         widget = {
+           modernizr: 0,
+           js: 1,
+           uri: 2
+         },
+         jscontent = {
+           prefix: '&lt;div id="h5p-message">&lt;/div>&lt;script>function stripScripts(a){var b=document.createElement("div");b.innerHTML=a;var c=b.getElementsByTagName("script");while(c.length){var d=c[0];d.parentNode.removeChild(d)}return b.innerHTML}var x=document.getElementById("h5p-message");window.h5pCaniuse=function(a){x.innerHTML=stripScripts(a.html)}&lt;/script>&lt;script src="',
+           suffix: '&lt;script>',
+           message: 'For better performance, make sure you test for these features before invoking the widget'
+         },
+
+         modernizrcontent = {
+           prefix: '&lt;div id="h5p-message">&lt;/div>&lt;script>Modernizr.browserPrompt=function(a,b){if(a.agents){Modernizr.browserPrompt.cb(a);return}var c=!0,d=a.features.split(" "),e=a.options,f;for(var g=-1,h=d.length;++g&lt;h;)f=d[g],Modernizr[f]===!1&&(c=!1);if(c)return c;var i=document.createElement("script"),j=document.getElementsByTagName("script")[0],k="http://api.html5please.com/"+d.join("+")+".json?callback=Modernizr.browserPrompt&html&"+e;return Modernizr.browserPrompt.cb=b,i.src=k,j.parentNode.insertBefore(i,j),!1},Modernizr.browserPrompt({',
+           suffix: '},function(a){var b=document.getElementById("h5p-message"),c=document.createElement("div");c.innerHTML=a.html;var d=c.getElementsByTagName("script");while(d.length){var e=d[0];e.parentNode.removeChild(e)}b.innerHTML=c.innerHTML})&lt;script>',
+           message: 'Make sure you include the <a href="http://modernizr.com">modernizr</a> script in the head'
+          };
 
 
      var api = {
@@ -81,6 +99,11 @@
           refreshOutput();
       });
 
+      $widgetformat.change(function() {
+        currentwidget = this.value; 
+        refreshOutput();
+      });
+
       function formattedOptions() {
         var currentOptions = $options.filter(function(index) { return this.checked; });
 
@@ -101,11 +124,12 @@
            apiurl = createUrl(),
            $lastscript && $lastscript.remove();
            if(cache[apiurl]) {
-             $h5pMessage.html(cache[apiurl].html);
+             renderPreview(cache[apiurl], apiurl);
            } else {
              $body.append($script.attr('src', createUrl()));
            }
-           $url.html(urlcontent + ' src="' + apiurl + '">&lt;/script>');
+
+           renderWidget(apiurl, currentwidget);
            $lastscript = $script;
          }
       };
@@ -116,12 +140,30 @@
         }).join(''); 
       };
 
-      window.h5pCaniuse = function(data) {
+      function renderPreview(data, url) {
         if(data.supported){
-          $h5pMessage.text('this browser supports these features');
+          $h5pMessage.html('Your browser supports these features, which means the widget won’t render. Click the <a target="_blank" href="' + url + '&readable">custom API URL</a> to see the full JSON object that is returned.');
         } else {
           $h5pMessage.html(data.html);
         }
+      };
+
+      function renderWidget(url, type) {
+        if(type == widget.modernizr) {
+          $widget.html(modernizrcontent.prefix + 'features: "' + api.features + '", options:"' + formattedOptions() + '"' + modernizrcontent.suffix);
+          $widgetmessage.html(modernizrcontent.message);
+        } else if (type == widget.js) {
+          $widget.html(jscontent.prefix + url + jscontent.suffix);
+          $widgetmessage.html(jscontent.message);
+        } else if (type == widget.uri){
+          $widget.html('<a target="_blank" href="' + url + '">'+ url + '</a>');
+          $widgetmessage.html('');
+        }
+      };
+
+      window.h5pCaniuse = function(data) {
+        renderPreview(data);
+        
         cache[createUrl()] = data;
       }
 
