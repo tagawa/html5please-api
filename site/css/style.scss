@@ -174,8 +174,11 @@ h3 {
   margin: 0;
 }
 
-p { 
+ul, ol { margin: 0; padding: 0; }
+
+p, li { 
   line-height: 1.5; 
+  margin: 1em 0;
   &:last-child {
     margin-bottom: 0;
   }
@@ -494,6 +497,24 @@ input[type="text"] { @extend .input-text; }
   input[type="radio"]:focus + label {
     background:  $bgcolorlesscontrast;
     color: $textcolor;
+  }
+}
+
+#how-does-it-work {
+
+  h4 {
+    margin-top: 2em;
+    text-align: center;
+    color: $minorfocuscolor;
+
+    b {
+      color: $mostfocuscolor;
+      text-transform: uppercase;
+
+      &::after {
+        content: ": ";
+      }
+    }
   }
 
 }

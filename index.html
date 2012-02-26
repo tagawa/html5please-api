@@ -40,11 +40,6 @@
         <img src="site/without-support.png" alt="">
         <figcaption>Page on a browser that does not support requested features</figcaption>
       </figure>
-      <h3>as an <a href="https://github.com/gf3/protobot">IRC bot</a> in <a href="http://webchat.freenode.net?channel=#html5">#html5</a></h3>
-      <figure>
-        <img src="site/irc-bot.png" alt="">
-        <figcaption>IRC bot responds with browser support info for feature queries</figcaption>
-      </figure>
     </section>
 
     <section id="get-api">
@@ -76,6 +71,20 @@
           <div id="h5p-message"></div>
         </div>
       </div>
+    </section>
+    <section id="how-does-it-work">
+      <h2>How does it work?</h2>
+      <h4>Is the user's UA one of the browsers that offer these features?</h4>
+      <p>The User's browser User Agent information is matched against <a href="https://github.com/h5bp/caniuse/blob/master/agents.json">this list of UAs</a> and then based on the information collated from <a href="https://github.com/h5bp/caniuse/blob/master/data.json">caniuse's data feed</a>. If it supports the required features, we return a JSON object but no HTML, no message is displayed.</p> 
+      <p>END</p>
+      <h4><b>Else</b> is there a newer version of the user's browser supporting these features?</h4>
+      <p>If so, the message links to the newer version of the user's browser asking them to view the page in the newer version of their current browser.</p> 
+      <p>END</p>
+
+      <h4><b>Else</b> is there any other stable browser that support these features?</h4>
+      <p>If so, the widget links to all these stable browsers. If the user is viewing the page on desktop, it returns only desktop browsers. If user is viewing the page on mobile devices, it returns only mobile browsers that support these features.</p>
+      <p>In addition, for desktop browsers, if the user is on a non-windows machine, no IE recommendations will appear even if IE supports the required HTML5 features (as there is no supported version of IE on these platforms).</p>
+      <p>END</p>
     </section>
 
     <section id="reference">

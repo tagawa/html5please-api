@@ -229,9 +229,14 @@ h2 {
 h3 {
   margin: 0; }
 
-p {
-  line-height: 1.5; }
-  p:last-child {
+ul, ol {
+  margin: 0;
+  padding: 0; }
+
+p, li {
+  line-height: 1.5;
+  margin: 1em 0; }
+  p:last-child, li:last-child {
     margin-bottom: 0; }
 
 em {
@@ -484,6 +489,16 @@ input[type="checkbox"] {
 .use h4 input[type="radio"]:focus + label {
   background: #5c5a72;
   color: #dabed1; }
+
+#how-does-it-work h4 {
+  margin-top: 2em;
+  text-align: center;
+  color: #96982a; }
+  #how-does-it-work h4 b {
+    color: #a55f8f;
+    text-transform: uppercase; }
+    #how-does-it-work h4 b::after {
+      content: ": "; }
 
 footer {
   font-size: 12.8px;
