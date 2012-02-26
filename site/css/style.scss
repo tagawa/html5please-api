@@ -653,6 +653,13 @@ footer {
   #features{
     font-size: 16px;
   }
+  
+  
+  #get-api {
+    h3 {
+      @include remfallback('font-size', 1);
+    }
+  }
 
 
 

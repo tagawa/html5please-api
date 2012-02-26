@@ -586,6 +586,10 @@ footer {
   #features {
     font-size: 16px; }
 
+  #get-api h3 {
+    font-size: 16px;
+    font-size: 1rem; }
+
   footer .builders h3 {
     display: block;
     text-align: center;
