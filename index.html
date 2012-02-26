@@ -49,29 +49,30 @@
 
     <section id="get-api">
       <h2>Build your API call</h2>
+      <h3>Enter features you use</h3>
       <form>
         <label for="features">
-         Enter features you want to test for
           <input id="features" type="text" required value="">
         </label>
 
         <div class="options">
+          <h3>How do you want this info?</h3>
           <div class="options-content">
             <p>Show browser: <b><input type="radio" name="skin" value="icon" checked><label>logos</label></b> <b><input type="radio" name="skin"  value="text"><label>names</label></b> <b><input type="radio" name="skin"  value="texticon" checked><label>both</label></b></p>
-            <p><b><input type="checkbox" name="style" value="nocss"><label>Disable Styles</label></b></p>
+             <p><b><input type="checkbox" name="style" value="nocss"><label>without style</label></b></p>
           </div>
          </div>
       </form>
       <div id="api-result">
         <div class="use">
-          <h3>Use</h3>
-          <h4><b><input type="radio" name="widgetformat" checked id="widget-modernizr" value="0"><label for="modernizr">with Modernizr <u>(recommended)</u></label></b> <b><input type="radio" name="widgetformat" id="widget-js" value = "1"><label for="pure-js">Pure JS</label></b> <b><input type="radio" name="widgetformat" id="widget-uri" value="2"><label>plain URI</label></b></h4>
+          <h3>Here is your widget</h3>
+          <h4><b><input type="radio" name="widgetformat" checked id="widget-modernizr" value="0"><label for="modernizr">with Modernizr <u>(recommended)</u></label></b> <b><input type="radio" name="widgetformat" id="widget-js" value = "1"><label for="pure-js">just JS</label></b></h4>
           <div id="widget">
           </div>
           <div id="widget-message" class="help"></div>
         </div>
         <div class="preview">
-          <h3>Preview</h3>
+          <h3>Live Preview</h3>
           <div id="h5p-message"></div>
         </div>
       </div>
