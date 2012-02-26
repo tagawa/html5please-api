@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work, footer, footer .builders h3, footer .builders:first-child a {
+.align-center, h1, h2, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work h4, #reference, footer, footer .builders h3, footer .builders:first-child a {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -223,7 +223,6 @@ h1 {
 h2 {
   text-shadow: black 2px 2px 1px, #96982a 3px 3px 1px;
   color: #dabed1;
-  text-align: center;
   margin-bottom: 0; }
 
 h3 {
@@ -534,7 +533,7 @@ footer {
     padding: 0 1em; }
 
   section {
-    padding-top: 2em; }
+    padding-top: 1em; }
 
   h2 {
     font-size: 20.8px;
@@ -561,10 +560,8 @@ footer {
     position: static; }
   #toc a {
     padding: .3em 0; }
-    #toc a + a:before {
+    #toc a:not(:first-of-type):nth-of-type(odd)::before, #toc a:nth-of-type(odd)::after {
       content: "✶"; }
-    #toc a:before {
-      padding-right: .8em; }
 
   #nav_container {
     height: auto !important; }
@@ -585,6 +582,10 @@ footer {
   #features {
     font-size: 16px; }
 
+  #get-api h3 {
+    font-size: 16px;
+    font-size: 1rem; }
+
   footer .builders h3 {
     display: block;
     margin-bottom: .5em; }
@@ -594,7 +595,8 @@ footer {
     footer .builders:first-child a b {
       display: inline; }
   footer .builders > a {
-    width: auto; }
+    width: auto;
+    margin-right: 1em; }
     footer .builders > a img {
       margin-bottom: .5em; } }
 /*

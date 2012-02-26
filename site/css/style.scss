@@ -161,11 +161,11 @@ h1 {
 }
 
 h2 {
+  @extend .align-center;
   @extend .major-heading-font-size;
   @extend .fancy-heading-star;
   @include textshadows(1 1, #000 $minorfocuscolor );
   color: $textcolor;
-  text-align: center;
   margin-bottom: 0;
 }
 
@@ -500,9 +500,9 @@ input[type="text"] { @extend .input-text; }
 }
 
 #how-does-it-work {
-  @extend .align-center;
 
   h4 {
+    @extend .align-center;
     margin-top: 2em;
     color: $minorfocuscolor;
 
@@ -515,7 +515,10 @@ input[type="text"] { @extend .input-text; }
       }
     }
   }
+}
 
+#reference {
+  @extend .align-center;
 }
 
 footer {
@@ -573,7 +576,7 @@ footer {
   }
   
   section {
-    padding-top: 2em;
+    padding-top: 1em;
   }
   
   h2 {
@@ -616,12 +619,9 @@ footer {
     a {
       padding: .3em 0;
       
-      + a:before {
+      &:not(:first-of-type):nth-of-type(odd)::before,
+      &:nth-of-type(odd)::after {
         content: "✶";
-      }
-      
-      &:before {
-        padding-right: .8em;
       }
     }
   }
@@ -654,6 +654,13 @@ footer {
   #features{
     font-size: 16px;
   }
+  
+  
+  #get-api {
+    h3 {
+      @include remfallback('font-size', 1);
+    }
+  }
 
 
 
@@ -679,6 +686,7 @@ footer {
     
       > a {
         width: auto;
+        margin-right: 1em;
         
         img {
           margin-bottom: .5em;
