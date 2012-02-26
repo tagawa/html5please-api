@@ -269,11 +269,11 @@ a {
   text-shadow: black 2px 2px 1px, #b5abed 3px 3px 1px;
   color: #a55f8f; }
   .logo b::before, .logo b::after {
-    content: "❧";
+    content: "\2767";
     text-shadow: 1px 1px 1px #000;
     padding-left: 0.15em; }
   .logo b::before {
-    content: "☙"; }
+    content: "\2619"; }
 .logo i {
   text-shadow: #060231 2px 2px 1px;
   display: block;
