@@ -500,10 +500,10 @@ input[type="text"] { @extend .input-text; }
 }
 
 #how-does-it-work {
+  @extend .align-center;
 
   h4 {
     margin-top: 2em;
-    text-align: center;
     color: $minorfocuscolor;
 
     b {
@@ -519,8 +519,8 @@ input[type="text"] { @extend .input-text; }
 }
 
 footer {
+  @extend .align-center;
   @include remfallback('font-size', 0.8);
-  text-align: center;
   margin-bottom: 4rem;
 
   .builders {
@@ -665,15 +665,15 @@ footer {
   footer {
     .builders {
       h3 {
+        @extend .align-center;
         display: block;
-        text-align: center;
         margin-bottom: .5em;
       }
       
       &:first-child {
         a {
           @include remfallback('font-size', 1.2);
-          text-align: center;
+          @extend .align-center;
           
           b {
             display: inline;
