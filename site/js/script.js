@@ -5,7 +5,8 @@
          $h5pMessage = $('#h5p-message'),
          $body = $( document.body ),
          $lastscript = null,
-         cache = {};
+         cache = {},
+         urlcontent = '&lt;div id="h5p-message">&lt;/div>&lt;script>function stripScripts(a){var b=document.createElement("div");b.innerHTML=a;var c=b.getElementsByTagName("script");while(c.length){var d=c[0];d.parentNode.removeChild(d)}return b.innerHTML}var x=document.getElementById("h5p-message");window.h5pCaniuse=function(a){x.innerHTML=stripScripts(a.html)}&lt;/script>&lt;script';
 
 
      var api = {
@@ -60,7 +61,6 @@
             api.features = this.value.trim().split(' ').join('+').trim();
             // Save the select state for use in the close event, which is called
             // after the menu is closed, and therefore can't be prevented.
-            $( this ).data( 'selected', true );
             refreshOutput();
             return false;
           },
@@ -98,13 +98,14 @@
          if(api.features !== '') {
            $script = $('<script>'),
            api.options = $callback + formattedOptions() + '&html';
-           $url = createUrl(),
+           apiurl = createUrl(),
            $lastscript && $lastscript.remove();
-           if(cache[$url]) {
-             $h5pMessage.html(cache[$url].html);
+           if(cache[apiurl]) {
+             $h5pMessage.html(cache[apiurl].html);
            } else {
              $body.append($script.attr('src', createUrl()));
            }
+           $url.html(urlcontent + ' src="' + apiurl + '">&lt;/script>');
            $lastscript = $script;
          }
       };
