@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'] {
+.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'], #how-does-it-work, footer, footer .builders h3, footer .builders:first-child a {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -492,7 +492,6 @@ input[type="checkbox"] {
 
 #how-does-it-work h4 {
   margin-top: 2em;
-  text-align: center;
   color: #96982a; }
   #how-does-it-work h4 b {
     color: #a55f8f;
@@ -503,7 +502,6 @@ input[type="checkbox"] {
 footer {
   font-size: 12.8px;
   font-size: 0.8rem;
-  text-align: center;
   margin-bottom: 4rem; }
   footer .builders {
     margin: 1em 0 0 0; }
@@ -589,12 +587,10 @@ footer {
 
   footer .builders h3 {
     display: block;
-    text-align: center;
     margin-bottom: .5em; }
   footer .builders:first-child a {
     font-size: 19.2px;
-    font-size: 1.2rem;
-    text-align: center; }
+    font-size: 1.2rem; }
     footer .builders:first-child a b {
       display: inline; }
   footer .builders > a {
