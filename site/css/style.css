@@ -163,7 +163,7 @@ table {
   font-size: 16px;
   font-size: 1rem; }
 
-.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api h3, label[for='features'], .use h4 {
+.align-center, h1, #about, #toc, #in-action, #in-action h3, #get-api, label[for='features'] {
   text-align: center; }
 
 .input-text, input[type="text"] {
@@ -211,7 +211,8 @@ body {
   padding: 0 2em; }
 
 section {
-  padding: 3em 0 0 0; }
+  padding: 2em 0 0 0;
+  margin-top: 1em; }
 
 article {
   margin: 2em 0; }
@@ -345,10 +346,11 @@ a {
     margin-top: 2rem; }
 
 #get-api h3 {
-  margin-top: 32px;
-  margin-top: 2rem;
+  margin-top: 48px;
+  margin-top: 3rem;
   margin-bottom: 8px;
-  margin-bottom: 0.5rem; }
+  margin-bottom: 0.5rem;
+  color: #5c5a72; }
 
 #features {
   display: block;
@@ -362,7 +364,6 @@ label[for='features'] {
 
 .help {
   font-size: small;
-  text-align: center;
   display: block;
   color: #aba9bc;
   margin-top: 0.5em; }
@@ -376,9 +377,6 @@ input[type="checkbox"] {
 input[type="checkbox"] {
   margin-right: 0.25em; }
 
-.options .options-content {
-  display: inline-block;
-  color: #73708f; }
 .options p {
   margin: 0; }
 .options b {
@@ -394,7 +392,7 @@ input[type="checkbox"] {
   left: 0;
   opacity: 0; }
 .options label {
-  padding: 0.5em 0;
+  padding: 0.5em;
   display: block; }
 .options label::before {
   text-shadow: none;
@@ -403,7 +401,6 @@ input[type="checkbox"] {
   background: rgba(92, 90, 114, 0.7);
   border-radius: 2px;
   line-height: 1em;
-  text-align: center;
   color: #000;
   width: 1em;
   height: 1em;
@@ -448,10 +445,9 @@ input[type="checkbox"] {
   font-style: normal;
   font-family: monospace;
   padding: 1em;
-  word-wrap: break-word; }
-  #widget:hover {
-    background: #a55f8f;
-    outline: 1px dashed #a55f8f; }
+  word-wrap: break-word;
+  text-align: left;
+  min-height: 16em; }
   #widget a {
     color: #060231; }
     #widget a:hover {
@@ -464,6 +460,7 @@ input[type="checkbox"] {
   margin: 0 0.5em; }
 .use h4 label {
   background: rgba(6, 2, 49, 0.2);
+  color: #5c5a72;
   box-shadow: 2px 2px 0px 1px #000;
   padding: 0.1em 1em 0;
   letter-spacing: 3px;
@@ -485,7 +482,7 @@ input[type="checkbox"] {
   height: 100%; }
 .use h4 input[type="radio"]:checked + label,
 .use h4 input[type="radio"]:focus + label {
-  background: #a55f8f;
+  background: #5c5a72;
   color: #dabed1; }
 
 footer {

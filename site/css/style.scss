@@ -147,7 +147,8 @@ body {
 }
 
 section { 
-  padding: 3em 0 0 0;
+  padding: 2em 0 0 0;
+  margin-top: 1em;
 }
 
 article {
@@ -315,12 +316,13 @@ a { color: $linkcolor; text-decoration: none; }
 
 #get-api {
   @extend .droid;
+  @extend .align-center;
 
   h3 {
-    @extend .align-center;
     @extend .fancy-heading-star;
-    @include remfallback('margin-top', 2);
+    @include remfallback('margin-top', 3);
     @include remfallback('margin-bottom', 0.5);
+    color: $bgcolorlesscontrast;
   }
 }
 
@@ -341,7 +343,6 @@ label[for='features'] {
 
 .help {
   font-size: small;
-  text-align: center;
   display: block;
   color: lighten($bgcolorlesscontrast, 30%);
   margin-top: 0.5em;
@@ -353,11 +354,6 @@ input[type="checkbox"] { margin-right: 0.25em; }
 input[type="text"] { @extend .input-text; }
 
 .options {
-  .options-content {
-    display: inline-block; 
-    color: lighten($bgcolorlesscontrast, 10%);
-  }
-
   p { 
     margin: 0; 
   }
@@ -379,7 +375,7 @@ input[type="text"] { @extend .input-text; }
   }
 
   label {
-    padding: 0.5em 0;
+    padding: 0.5em;
     display: block;
   }
 
@@ -390,7 +386,6 @@ input[type="text"] { @extend .input-text; }
     background: transparentize($bgcolorlesscontrast, 0.3);
     border-radius: 2px;
     line-height: 1em;
-    text-align: center;
     color: #000;
     width: 1em; height: 1em;
     box-shadow: inset 0 0 5px #000;
@@ -446,12 +441,8 @@ input[type="text"] { @extend .input-text; }
   font-family: monospace;
   padding: 1em;
   word-wrap: break-word;
-
-  &:hover {
-    background: $mostfocuscolor;
-    outline: 1px dashed $mostfocuscolor;
-  }
-
+  text-align: left;
+  min-height: 16em;
 
   a {
     color: $bgcolor;
@@ -463,7 +454,6 @@ input[type="text"] { @extend .input-text; }
 
 
 .use h4 {
-  @extend .align-center;
 
   b {
     display: inline-block;
@@ -475,6 +465,7 @@ input[type="text"] { @extend .input-text; }
   label {
     @extend .alfa;
     background: transparentize($bgcolor, 0.8);
+    color: $bgcolorlesscontrast;
     box-shadow: 2px 2px 0px 1px #000;
     padding: 0.1em 1em 0;
     letter-spacing: 3px;
@@ -501,7 +492,7 @@ input[type="text"] { @extend .input-text; }
 
   input[type="radio"]:checked + label,
   input[type="radio"]:focus + label {
-    background:  $mostfocuscolor;
+    background:  $bgcolorlesscontrast;
     color: $textcolor;
   }
 
