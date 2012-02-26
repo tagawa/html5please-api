@@ -4,20 +4,29 @@
 
 	<% supported_with_upgrade %>
   <div class="caniuse-msg caniuse-agt-ico caniuse-ico-<%= browserid %>">
-    <p>This page uses <abbr title="<% features %>">features</abbr> that are unavailable in your browser, <a class="caniuse-url" href="<%= browserurl %>" rel="external" target="_blank">Please use to the latest version of your browser.</a></p>
+    <p>This page uses <abbr title="<%= features %>">features</abbr> that are unavailable in your browser, <a class="caniuse-url" href="<%= browserurl %>" rel="external" target="_blank">Please use to the latest version of your browser.</a></p>
 	</div>
 	<% /supported_with_upgrade %>
 
-	<% unsupported %>
+	<% noagent %>
 	<div class="caniuse-msg">
-    <p>This page uses <abbr title="<% features %>">features</abbr> that are unavailable in your browser, please view the page in one of these browsers:</p>
+    <p>Please view this page in the following browsers, which support all the <abbr title="<%= features %>">features</abbr> that this page requires:</p>
 	</div>
-	<% /unsupported %>
+	<% /noagent %>
 
-	<div class="caniuse-nfo">
+  <% unsupported %>
+  <div class="caniuse-msg">
+    <p>This page uses <abbr title="<%= features %>">features</abbr> that are unavailable in your browser, please view the page in one of these browsers:</p>
+  </div>
+  <% /unsupported %>
+
+<div class="caniuse-nfo">
 		<% unsupported %>
 			<%= alternatives %>
 		<% /unsupported %>
+		<% noagent %>
+			<%= alternatives %>
+		<% /noagent %>
 		<% supported_with_upgrade %>
 			<%= alternatives %>
 		<% /supported_with_upgrade %>

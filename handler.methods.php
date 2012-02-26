@@ -346,7 +346,7 @@ function html_encode_agent(&$agent_string = '', &$agent_array, $requested_style_
 		$html .= '<span class="caniuse-agt-ttl">' . @$agent_array['name'] . '</span>';
 	}
 	
-	$html .= '</a>';
+	$html .= '</a> ';
 
 	return $html;
 }
@@ -391,16 +391,24 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 
 	$html .= file_get_contents('tpl/tpl.html');
 
-	if ($return_array['supported']) {
+  if (!$return_array['agent']) {
+		$html = preg_replace('/\s*<% noagent %>|<% \/noagent %>/', '', $html);
+		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
+		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+  } else if ($return_array['supported']) {
+		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>|<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
 	} elseif ($return_array['upgradable']) {
+		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>|<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
-	}
+	} 
 	else {
+		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>|<% \/unsupported %>/', '', $html);
