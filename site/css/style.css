@@ -303,10 +303,9 @@ a {
     -o-transition: color 0.3s ease-in-out;
     padding: 1em 0;
     display: inline-block; }
-    #toc a:after {
-      padding-left: 0.8em; }
-    #toc a + a:before {
-      content: ""; }
+    #toc a:not(:first-of-type):nth-of-type(odd)::before, #toc a:nth-of-type(odd)::after {
+      content: "";
+      padding: 0; }
     #toc a.active {
       color: #dabed1; }
   #toc.sticky {

@@ -258,12 +258,10 @@ a { color: $linkcolor; text-decoration: none; }
     padding: 1em 0;
     display: inline-block;
 
-
-    &:after {
-      padding-left: 0.8em;
-    }
-    + a:before {
+    &:not(:first-of-type):nth-of-type(odd)::before,
+    &:nth-of-type(odd)::after {
       content: "";
+      padding: 0;
     }
 
     &.active {

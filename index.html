@@ -16,6 +16,7 @@
         <nav id="toc">
           <a href="#in-action">In Action</a>
           <a href="#get-api">Get the widget</a>
+          <a href="#how-does-it-work">How does it work?</a>
           <a href="#reference">Reference</a>
         </nav>
       </div>
@@ -77,11 +78,11 @@
       <h4>Is the user's UA one of the browsers that offer these features?</h4>
       <p>The User's browser User Agent information is matched against <a href="https://github.com/h5bp/caniuse/blob/master/agents.json">this list of UAs</a> and then based on the information collated from <a href="https://github.com/h5bp/caniuse/blob/master/data.json">caniuse's data feed</a>. If it supports the required features, we return a JSON object but no HTML, no message is displayed.</p> 
       <p>END</p>
-      <h4><b>Else</b> is there a newer version of the user's browser supporting these features?</h4>
+      <h4><b>Else</b> Is there a newer version of the user's browser supporting these features?</h4>
       <p>If so, the message links to the newer version of the user's browser asking them to view the page in the newer version of their current browser.</p> 
       <p>END</p>
 
-      <h4><b>Else</b> is there any other stable browser that support these features?</h4>
+      <h4><b>Else</b> Is there any other stable browser that support these features?</h4>
       <p>If so, the widget links to all these stable browsers. If the user is viewing the page on desktop, it returns only desktop browsers. If user is viewing the page on mobile devices, it returns only mobile browsers that support these features.</p>
       <p>In addition, for desktop browsers, if the user is on a non-windows machine, no IE recommendations will appear even if IE supports the required HTML5 features (as there is no supported version of IE on these platforms).</p>
       <p>END</p>
@@ -89,34 +90,9 @@
 
     <section id="reference">
       <h2>Reference</h2>
-      <article>
-        <h3> Formats </h3>
-        <p> <code><strong>html</strong></code>: the output will be valid HTML with the mimetype of <var>text/html</var>.  </p>
-        <p> <code><strong>json</strong></code>: the output will be valid JSON with the mimetype of <var>application/json</var>.  </p>
-
-      </article>
-      <article>
-        <h3> Options </h3>
-        <p> <code><strong>nocss</strong></code>: the HTML will not include the stylesheet.  </p>
-        <p> <code><strong>text</strong></code>: the HTML will be optimized for text output.  </p>
-        <p> <code><strong>icon</strong></code>: the HTML will be optimized for icon output.  </p>
-        <p> <code><strong>supported</strong></code>: the JSON will only output whether the agent supports the requested features.  </p>
-        <p> <code><strong>noagent</strong></code>: the JS will return results for all browsers with no agent detection.  </p>
-        <p> <code><strong>callback = [ functionName ]</strong></code>: the output will be JavaScript, wrapped in this function name.  </p>
-      </article>
-      <article>
-      <h3> Output </h3>
-      <h4>JSON</h4>
-      <p><code>agents</code>: Each User agent listed as an object with <code>name</code>, <code>prefix</code>, <code>type</code>, <code>url</code>, and <code>currentVersion</code> as keys. </p>
-      <p><code>features</code>: All requested features listed with the key being the unique id for each feature (e.g. 'css-animation') and value being the readable name for that feature (e.g. "CSS Animation")</p>
-      <p><code>results</code>: An object with keys as UAs and values as versions of browsers that support all the requested features. </p>
-      <p><code>result</code>: Contains a list of feature objects, each of which lists UA and minimum version number required to support that feature.</p>
-      <p><code>agent</code>: Contains information about the UA that is used for making this request to the API, with <code>id</code>, <code>name</code>, <code>prefix</code>, <code>type</code>, <code>url</code>, <code>currentVersion</code>, <code>version</code> as keys to this object.</p>
-      <p><code>supported</code>: Indicate if all the requested features are supported or not.</p>
-      <p><code>upgradable</code>: Indicates if a later version of the browser from which the api request was made, would support this feature.</p>
-      <p> <code>html</code>: The content that will be rendered if this request was made with a HTML format.</p>
-      </article>
-    </section>
+      <p><a href="https://github.com/h5bp/caniuse/wiki/API-Reference">API Reference</a>: Explanation of all the options you can use to make this API call.</p>
+      <p><a href="https://github.com/h5bp/caniuse/wiki/Data-Object-Reference">Data Object Reference</a>: Explanation of all the data returned by a call to this API.</p>
+      </section>
 
     <section id="contribute">
         <h2> Contribute </h2>
