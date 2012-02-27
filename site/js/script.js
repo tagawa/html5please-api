@@ -26,7 +26,7 @@
            preprefix: '&lt;div id="h5p-message">&lt;/div>&lt;script async>',
            plugin: undefined,
            prefix : '\n\nModernizr.html5please({ \n  features: ',
-           suffix: ', \n  nope: function(a){ document.getElementById("h5p-message").innerHTML=a.html; }\n})&lt;/script>',
+           suffix: ', \n  yep: initApp() // all tests pass. initialize app. \n  nope: function(a){ document.getElementById("h5p-message").innerHTML=a.html; }\n})&lt;/script>',
            message: 'Make sure you include <a href="http://modernizr.com">modernizr</a> inside the head tag of your markup'
           };
 
