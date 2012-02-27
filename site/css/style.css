@@ -450,7 +450,7 @@ input[type="checkbox"] {
   padding: 1em;
   word-wrap: break-word;
   text-align: left;
-  min-height: 12em;
+  min-height: 2em;
   font-size: 16px;
   white-space: pre-wrap; }
   #widget a {

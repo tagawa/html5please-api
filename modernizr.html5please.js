@@ -41,7 +41,9 @@ Modernizr.html5please = function(opts){
     // make API call
     var script = document.createElement('script');
     var ref = document.getElementsByTagName('script')[0];
-    var url = 'http://api.html5please.com/' + features.join('+') + '.html?callback=Modernizr.html5please.cb';
+    var url = 'http://api.html5please.com/' + features.join('+') + 
+              '.json?callback=Modernizr.html5please.cb' +
+              opts.options ? ('&' + opts.options) : '';
     script.src = url;
     ref.parentNode.insertBefore(script, ref);
 
