@@ -71,7 +71,7 @@
             terms.push( ui.item.value );
             terms.push(' ');
             this.value = terms.join(' ');
-            api.features = this.value.trim().split(' ').join('+').trim();
+            api.features = $.trim($.trim(this.value).split(' ').join('+'));
             // Save the select state for use in the close event, which is called
             // after the menu is closed, and therefore can't be prevented.
             $apiresult.addClass('active');
@@ -84,7 +84,7 @@
       });
 
       $features.blur(function() {
-         api.features = $features.attr('value').trim().split(' ').join('+').trim(); 
+         api.features = $.trim($.trim($features.attr('value')).split(' ').join('+')); 
          if(api.features != '') {
            $apiresult.addClass('active');
          } else {
@@ -133,9 +133,11 @@
       };
 
       function createUrl() {
-        return Object.keys(api).map(function(key) { 
-          return api[key];
-        }).join(''); 
+        var apiurl = '';
+        $.each(api, function(key, value) {
+         apiurl += api[key]; 
+        };
+        return apiurl;
       };
 
       function renderPreview(data, url) {
