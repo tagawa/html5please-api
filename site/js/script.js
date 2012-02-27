@@ -16,7 +16,8 @@
            uri: 2
          },
          jscontent = {
-           prefix: '&lt;div id="h5p-message">&lt;/div>&lt;script async>var h5pmessage=document.getElementById("h5p-message");window.h5please=function(a){h5pmessage.innerHTML=a.html}&lt;/script>&lt;script async src="',
+           prefix: '&lt;div id="h5p-message">&lt;/div>\n'+
+            '&lt;script async>var h5pmessage=document.getElementById("h5p-message");\nwindow.h5please=function(a){ h5pmessage.innerHTML=a.html }&lt;/script>\n&lt;script async src="',
            suffix: '&lt;/script>',
            message: 'For better performance, make sure you test for these features before invoking the widget'
          },
@@ -24,7 +25,7 @@
          modernizrcontent = {
            preprefix: '&lt;div id="h5p-message">&lt;/div>&lt;script async>',
            plugin: undefined,
-           prefix : ';\n\nModernizr.browserPrompt({ \n  features: ',
+           prefix : '\n\nModernizr.html5please({ \n  features: ',
            suffix: ', \n  nope: function(a){ document.getElementById("h5p-message").innerHTML=a.html; }\n})&lt;/script>',
            message: 'Make sure you include <a href="http://modernizr.com">modernizr</a> inside the head tag of your markup'
           };
@@ -96,7 +97,7 @@
       });
 
       $options.change(function() {
-          refreshOutput();
+          refreshOutput(); // i think this is getting double called...
       });
 
       $widgetformat.change(function() {
@@ -119,7 +120,7 @@
 
       function refreshOutput() {
          if(api.features !== '') {
-           $script = $('<script>'),
+           var $script = $('<script>');
            api.options = $callback + formattedOptions() + '&html';
            apiurl = createUrl(),
            $lastscript && $lastscript.remove();
@@ -128,7 +129,6 @@
            } else {
              $body.append($script.attr('src', createUrl() + '&noagent'));
            }
-
            renderWidget(apiurl, currentwidget);
            $lastscript = $script;
          }
@@ -268,6 +268,7 @@ function minify(str){ // sorta kinda
   return str
           .replace(/(^|\n)\s*?\/\/.*/g,'') // line comments
           .replace(/\s+/g,' ')  // extra whitespace
+          .replace(/^\s/,'') // leading whitespace
 }
 
 function processPlugin(data){
