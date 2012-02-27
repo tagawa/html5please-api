@@ -66,7 +66,7 @@ We will be posting more demos and examples of the how the project can be used sh
 
 # History
 
-This project began as one of [@paulirish](http://github.com/paulirish)'s [LazyWeb](https://github.com/paulirish/lazyweb-requests/issues/39) requests for a healthy choose-your-browser page. [@addyosmani](http://github.com/addyosmani) worked on the initial implementation, to be later replaced with a much more rich API and UI by [@jonathantneal](http://github.com/jonathantneal), [@nimbupani](http://github.com/nimbupani) and other contributors. Jons service is what currently powers much of the HTML5 Please API. We are still very much working on improving it and recommend looking at the 'Contributing' section below in case you would like to help out.
+Divya has a [post](http://nimbupani.com/html5please-api.html) about the project history we recommend checking out. This project began as one of her [LazyWeb](https://github.com/paulirish/lazyweb-requests/issues/39) requests for a healthy choose-your-browser page. [@addyosmani](http://github.com/addyosmani) worked on the initial implementation, to be later replaced with a much more rich API and UI by [@jonathantneal](http://github.com/jonathantneal), [@nimbupani](http://github.com/nimbupani) and other contributors. Jons service is what currently powers much of the HTML5 Please API. We are still very much working on improving it and recommend looking at the 'Contributing' section below in case you would like to help out.
 
 # Contributing
 
