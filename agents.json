@@ -53,7 +53,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.opera.com\/mobile\/",
 		"sniffer": "/opera\\s*mobi[\\W\\w]*?version\\/([\\d\\.]+)/i",
-		"currentVersion": "6.5"
+		"currentVersion": "7"
 	},
 	"op_mob": {
 		"name": "Opera Mobile",
