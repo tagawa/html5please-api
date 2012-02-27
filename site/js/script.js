@@ -1,6 +1,6 @@
       var $features = $('#features'),
          $options = $('#get-api').find('input'),
-         $callback = '?callback=h5pCaniuse&',
+         $callback = '?callback=h5please&',
          $h5pMessage = $('#h5p-message'),
          $widgetformat = $('input[name="widgetformat"]'),
          $apiresult = $('#api-result'),
@@ -16,14 +16,17 @@
            uri: 2
          },
          jscontent = {
-           prefix: '&lt;div id="h5p-message">&lt;/div>&lt;script>var x=document.getElementById("h5p-message");window.h5pCaniuse=function(a){x.innerHTML=a.html}&lt;/script>&lt;script src="',
-           suffix: '&lt;/script>',
+           prefix: '&lt;div id="h5p-message">&lt;/div>\n'+
+            '&lt;script async>window.h5please=function(a){ document.getElementById("h5p-message").innerHTML=a.html }&lt;/script>\n&lt;script async src="',
+           suffix: '">&lt;/script>',
            message: 'For better performance, make sure you test for these features before invoking the widget'
          },
 
          modernizrcontent = {
-           prefix: '&lt;div id="h5p-message">&lt;/div>&lt;script>Modernizr.browserPrompt=function(a,b){if(a.agents){Modernizr.browserPrompt.cb(a);return}var c=!0,d=a.features.split(" "),e=a.options,f;for(var g=-1,h=d.length;++g&lt;h;)f=d[g],!Modernizr[f]&&(c=!1);if(c)return c;var i=document.createElement("script"),j=document.getElementsByTagName("script")[0],k="http://api.html5please.com/"+d.join("+")+".json?callback=Modernizr.browserPrompt&html&"+e;return Modernizr.browserPrompt.cb=b,i.src=k,j.parentNode.insertBefore(i,j),!1},Modernizr.browserPrompt({',
-           suffix: '},function(a){var b=document.getElementById("h5p-message");b.innerHTML=a.html})&lt;/script>',
+           preprefix: '&lt;div id="h5p-message">&lt;/div>\n&lt;script async>',
+           plugin: undefined,
+           prefix : '\n\nModernizr.html5please({ \n  features: ',
+           suffix: ', \n  yep: function(){ initApp() }, // all tests pass. initialize app. \n  nope: function(a){ document.getElementById("h5p-message").innerHTML=a.html; }\n})&lt;/script>',
            message: 'Make sure you include <a href="http://modernizr.com">modernizr</a> inside the head tag of your markup'
           };
 
@@ -94,7 +97,7 @@
       });
 
       $options.change(function() {
-          refreshOutput();
+          refreshOutput(); // i think this is getting double called...
       });
 
       $widgetformat.change(function() {
@@ -117,7 +120,7 @@
 
       function refreshOutput() {
          if(api.features !== '') {
-           $script = $('<script>'),
+           var $script = $('<script>');
            api.options = $callback + formattedOptions() + '&html';
            apiurl = createUrl(),
            $lastscript && $lastscript.remove();
@@ -126,7 +129,6 @@
            } else {
              $body.append($script.attr('src', createUrl() + '&noagent'));
            }
-
            renderWidget(apiurl, currentwidget);
            $lastscript = $script;
          }
@@ -150,7 +152,14 @@
 
       function renderWidget(url, type) {
         if(type == widget.modernizr) {
-          $widget.html(modernizrcontent.prefix + 'features: "' + api.features + '", options:"' + formattedOptions() + '"' + modernizrcontent.suffix);
+          $widget.html(
+            modernizrcontent.preprefix +
+            modernizrcontent.plugin +
+            modernizrcontent.prefix +
+            '"' + api.features +
+            '", \n  options:"' + formattedOptions() +
+            '"' + modernizrcontent.suffix);
+
           $widgetmessage.html(modernizrcontent.message);
         } else if (type == widget.js) {
           $widget.html(jscontent.prefix + url + jscontent.suffix);
@@ -161,7 +170,7 @@
         }
       };
 
-      window.h5pCaniuse = function(data) {
+      window.h5please = function(data) {
         renderPreview(data);
         
         cache[createUrl()] = data;
@@ -254,3 +263,16 @@
 			setTimeout( arguments.callee, 1500 );
 		})();
 
+
+function minify(str){ // sorta kinda
+  return str
+          .replace(/(^|\n)\s*?\/\/.*/g,'') // line comments
+          .replace(/\s+/g,' ')  // extra whitespace
+          .replace(/^\s/,'') // leading whitespace
+}
+
+function processPlugin(data){
+  modernizrcontent.plugin = minify(data);
+}
+
+$.get('/modernizr.html5please.js', processPlugin, 'text');
