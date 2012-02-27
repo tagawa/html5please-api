@@ -446,6 +446,7 @@ input[type="text"] { @extend .input-text; }
   text-align: left;
   min-height: 12em;
   font-size: 16px;
+  white-space: pre-wrap;
 
   a {
     color: $bgcolor;

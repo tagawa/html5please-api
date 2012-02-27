@@ -1,22 +1,20 @@
 // HTML5 Please API, Modernizr plugin
 // v0.5
 
-
-/*
-  usage:
+//    usage:
 
 
-Modernizr.html5please({
-    features : 'opacity fontface postmessage regions',     
-    yep      : function(){ // tests all pass
-        initApp();
-    },
-    nope : function(data){ // 1+ test fails. passed data payload from api
-        console.log('hi',data);
-    }
-}); 
+//  Modernizr.html5please({
+//      features : 'opacity fontface postmessage regions',
+//      yep      : function(){ // tests all pass
+//          initApp();
+//      },
+//      nope : function(data){ // 1+ test fails. passed data payload from api
+//          console.log('hi',data);
+//      }
+//  });
 
-*/
+//
 
 
 Modernizr.html5please = function(opts){
