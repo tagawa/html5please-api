@@ -49,7 +49,7 @@ Data from the API is output either as a JSON object, XML or HTML (depending on t
 
 - `icon`: the HTML will be optimized for icon output. 
 
--`supported`: the JSON will only output whether the agent supports the requested features. 
+- `supported`: the JSON will only output whether the agent supports the requested features. 
 
 - `noagent`: the JS will return results for all browsers with no agent detection. 
 
