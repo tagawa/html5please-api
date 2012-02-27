@@ -161,11 +161,11 @@ h1 {
 }
 
 h2 {
+  @extend .align-center;
   @extend .major-heading-font-size;
   @extend .fancy-heading-star;
   @include textshadows(1 1, #000 $minorfocuscolor );
   color: $textcolor;
-  text-align: center;
   margin-bottom: 0;
 }
 
@@ -443,10 +443,11 @@ input[type="text"] { @extend .input-text; }
   padding: 1em;
   word-wrap: break-word;
   text-align: left;
-  min-height: 16em;
+  min-height: 12em;
 
   a {
     color: $bgcolor;
+    display: block;
     &:hover {
       color: darken($linkcolor, 20%); 
     }
@@ -499,10 +500,9 @@ input[type="text"] { @extend .input-text; }
 }
 
 #how-does-it-work {
-
   h4 {
+    @extend .align-center;
     margin-top: 2em;
-    text-align: center;
     color: $minorfocuscolor;
 
     b {
@@ -514,12 +514,15 @@ input[type="text"] { @extend .input-text; }
       }
     }
   }
+}
 
+#reference {
+  @extend .align-center;
 }
 
 footer {
+  @extend .align-center;
   @include remfallback('font-size', 0.8);
-  text-align: center;
   margin-bottom: 4rem;
 
   .builders {
@@ -572,7 +575,7 @@ footer {
   }
   
   section {
-    padding-top: 2em;
+    padding-top: 1em;
   }
   
   h2 {
@@ -615,12 +618,9 @@ footer {
     a {
       padding: .3em 0;
       
-      + a:before {
+      &:not(:first-of-type):nth-of-type(odd)::before,
+      &:nth-of-type(odd)::after {
         content: "✶";
-      }
-      
-      &:before {
-        padding-right: .8em;
       }
     }
   }
@@ -653,6 +653,13 @@ footer {
   #features{
     font-size: 16px;
   }
+  
+  
+  #get-api {
+    h3 {
+      @include remfallback('font-size', 1);
+    }
+  }
 
 
 
@@ -660,16 +667,15 @@ footer {
   footer {
     .builders {
       h3 {
-        display: block;
         text-align: center;
+        display: block;
         margin-bottom: .5em;
       }
       
       &:first-child {
         a {
           @include remfallback('font-size', 1.2);
-          text-align: center;
-          
+          text-align: center; 
           b {
             display: inline;
           }
@@ -678,6 +684,7 @@ footer {
     
       > a {
         width: auto;
+        margin-right: 1em;
         
         img {
           margin-bottom: .5em;
