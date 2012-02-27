@@ -1,5 +1,5 @@
       var $features = $('#features'),
-         $options = $('#get-api').find('input'),
+         $options = $('#get-api .options').find('input'),
          $callback = '?callback=h5please&',
          $h5pMessage = $('#h5p-message'),
          $widgetformat = $('input[name="widgetformat"]'),
