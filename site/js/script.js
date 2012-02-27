@@ -136,7 +136,7 @@
         var apiurl = '';
         $.each(api, function(key, value) {
          apiurl += api[key]; 
-        };
+        });
         return apiurl;
       };
 
