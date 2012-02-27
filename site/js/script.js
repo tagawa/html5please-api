@@ -106,9 +106,7 @@
       });
 
       function formattedOptions() {
-        var currentOptions = $options
-                                .filter(function(index) { return this.checked; })
-                                .not('[name="widgetformat"]');
+        var currentOptions = $options.filter(function(index) { return this.checked; });
 
         if(currentOptions.length > 0) {
           currentOptions = $.map(currentOptions, function(option) { 
