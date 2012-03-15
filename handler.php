@@ -26,11 +26,24 @@ if (!$option_noagent) {
 	$support_array['supported'] = isset($support_array['results'][$useragent_array['id']]) && version_compare($useragent_array['version'], $support_array['results'][$useragent_array['id']]) > -1;
 
 	$support_array['upgradable'] = !$support_array['supported'] && isset($support_array['results'][$useragent_array['id']]);
+	
+	$support_array['partial'] = '';
+	
+	if (empty($support_array['supported'])) {
+	  $partial_array = filter_supportmetrics($option_features, $agents_array, $data_array, 'partial');
+
+	  $support_array['partial'] = isset($partial_array['results'][$useragent_array['id']]) && version_compare($useragent_array['version'], $partial_array['results'][$useragent_array['id']]) > -1;
+	  
+	  $support_array['results'] = $partial_array['results'];
+	  $support_array['agents'] = $partial_array['agents'];
+	}
+
 
 	if ($option_barebones) {
 		$support_array = array(
 			'supported' => $support_array['supported'],
-			'upgradable' => $support_array['upgradable']
+			'upgradable' => $support_array['upgradable'],
+			'partial' => $support_array['partial']
 		);
 	}
 }
