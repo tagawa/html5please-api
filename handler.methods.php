@@ -205,7 +205,7 @@ function filter_features(& $request_features_array = array(), & $keywords_array 
 
 // returns filtered support metrics from features, agents, and data
 
-function filter_supportmetrics(& $option_features = array(), $agents_array = array(), & $data_array = array()) {
+function filter_supportmetrics(& $option_features = array(), $agents_array = array(), & $data_array = array(), $state) {
 	$return_array = array(
 		'agents' =>& $agents_array,
 		'features' => array(),
@@ -218,7 +218,7 @@ function filter_supportmetrics(& $option_features = array(), $agents_array = arr
 	}
 
 	foreach ($option_features as $feature_name) {
-		$property_array = first_set(@$data_array[$feature_name]['supported'], array());
+		$property_array = first_set(@$data_array[$feature_name][$state], array());
 
 		$return_array['result'][$feature_name] = $property_array;
 
