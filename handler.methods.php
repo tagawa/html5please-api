@@ -57,6 +57,32 @@ function write_log($filename) {
 	file_put_contents($log_file, $message);
 }
 
+// Function to reload the data from caniuse
+function file_reload_data($json_filename = 'data.json') {
+
+	// Set current time and time of original JSON-File
+	$current_time = time();
+	$json_filetime = @filemtime($json_filename);
+
+	// Check if file needs to be curl-ed
+	if ($current_time - (24 * 60 * 60) > $json_filetime) {
+		
+		// Set a UA to get the file from caniuse
+		$context = stream_context_create(array(
+				'http' => array('header' => "User-Agent:Mozilla/5.0\r\n")
+		));
+
+		// Curl in content
+		$json_content = file_get_contents('http://caniuse.com/jsonp.php', false, $context);
+
+		if ($json_content) {
+			// Put content into file
+		  file_put_contents($json_filename, $json_content);
+		  write_log($json_filename);
+		}
+	}
+}
+
 function file_get_cached_json($json_filename = '', $json_fn = null, $rebuild = false) {
 	$php_filename  = 'cache/' . $json_filename . '.php';
 
