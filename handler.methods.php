@@ -47,6 +47,16 @@ function file_set_array($filename = '', & $array = array(), $array_name = 'array
 	file_put_php($filename, '$' . $array_name . ' = ' . var_export($array, true) . ';');
 }
 
+
+// Function to log writing events
+function write_log($filename) {
+	$log_file = 'cache/write.log';
+
+	$message = file_get_contents($log_file);
+	$message .= "[" . date('d.m.Y H:i:s') . "]: Write into file " . $filename . "\n";
+	file_put_contents($log_file, $message);
+}
+
 function file_get_cached_json($json_filename = '', $json_fn = null, $rebuild = false) {
 	$php_filename  = 'cache/' . $json_filename . '.php';
 
