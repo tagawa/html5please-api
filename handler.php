@@ -8,6 +8,9 @@ include 'handler.methods.php';
 
 extract(filter_options());
 
+// Get the data from caniuse if necessary
+file_reload_data();
+
 $agents_array   = file_get_cached_json('agents.json', null);
 $data_array     = file_get_cached_json('data.json', 'filter_datajson');
 $keywords_array = file_get_cached_json('keywords.json', 'filter_keywords');
