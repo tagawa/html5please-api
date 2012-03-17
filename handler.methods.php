@@ -72,10 +72,11 @@ function file_reload_data($json_filename = 'data.json') {
 				'http' => array('header' => "User-Agent:Mozilla/5.0\r\n")
 		));
 
-		// Curl in content
+		// Get content from caniuse
 		$json_content = file_get_contents('http://caniuse.com/jsonp.php', false, $context);
+		$json_content = trim($json_content, "()");
 
-		if ($json_content) {
+		if ($json_content !== false) {
 			// Put content into file
 		  file_put_contents($json_filename, $json_content);
 		  write_log($json_filename);
