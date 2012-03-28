@@ -7,6 +7,10 @@
     <link rel="shortcut icon" href="http://html5please.com/favicon.ico" />
     <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Droid+Serif:700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="site/css/style.css">
+    
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
     <header>
@@ -23,7 +27,7 @@
       </div>
     </header>
     <div id="about">
-      <p>If you've created a demo or site that requires Canvas or WebSQL DB, you've been in the awkward situation of telling some of your visitors that their browser isn't good enough. But you can't just recommend they get a browser with those features; for example, "Get a WebRTC capable browser" is pretty much useless to everyone.
+      <p>If you've created a demo or site that requires Canvas or WebSQL DB, you've been in the awkward situation of telling some of your visitors that their browser doesn't support those features. But you can't just recommend they get a browser with those features; for example, "Get a WebRTC capable browser" is pretty much useless to everyone.
 
       <p>The HTML5 Please API translates developer language (features) to user language (browsers). Call the API and you get back some HTML to show the user or a JSON object of the relevant data (with browser logos and all), so you can customize what you show to users. 
       </p>
@@ -56,15 +60,47 @@
         <div class="options">
           <h3>How do you want to show this?</h3>
           <div class="options-content">
-            <p>with browser <b><input type="radio" name="skin" value="icon" checked><label>logos</label></b> <b><input type="radio" name="skin"  value="text"><label>names</label></b> <b><input type="radio" name="skin"  value="texticon" checked><label>both logos &amp; names</label></b></p>
-             <p><b><input type="checkbox" name="style" value="nocss"><label>without style</label></b></p>
+            <p>with browser
+              <b>
+                <input type="radio" name="skin" value="icon" id="options-logo">
+                <label for="options-logo">logos</label>
+              </b>
+              <b>
+                <input type="radio" name="skin" value="text" id="options-names">
+                <label for="options-names">names</label>
+              </b>
+              <b>
+                <input type="radio" name="skin" value="texticon" id="options-both" checked>
+                <label for="options-both">both logos &amp; names</label>
+              </b>
+            </p>
+            <p>
+              <b>
+                <input type="checkbox" name="style" value="nocss" id="options-style">
+                <label for="options-style">without style</label>
+              </b>
+            </p>
           </div>
          </div>
       </form>
       <div id="api-result">
         <div class="use">
           <h3>Here is your widget</h3>
-          <h4><b><input type="radio" name="widgetformat" checked id="widget-modernizr" value="0"><label for="modernizr">with Modernizr <u>(recommended)</u></label></b> <b><input type="radio" name="widgetformat" id="widget-js" value = "1"><label for="pure-js">just JS</label></b><b><input type="radio" name="widgetformat" id="widget-uri" value="2"><label for="widget-uri">URI</label></b></h4>
+          <h4>
+            <b>
+              <input type="radio" name="widgetformat" checked id="widget-modernizr" value="0">
+              <label for="widget-modernizr">with Modernizr <u>(recommended)</u></label>
+            </b>
+            <b>
+              <input type="radio" name="widgetformat" id="widget-js" value="1">
+              <label for="widget-js">just JS</label>
+            </b>
+            
+            <b>
+              <input type="radio" name="widgetformat" id="widget-uri" value="2">
+              <label for="widget-uri">URI</label>
+            </b>
+          </h4>
           <div id="widget">
           </div>
           <div id="widget-message" class="help"></div>
@@ -98,7 +134,7 @@
 
     <section id="contribute">
         <h2> Contribute </h2>
-        <p> This is a community project. You can <a href="https://github.com/h5bp/html5please-api">help by forking caniuse</a> and making it better. Please also file a ticket to start a discussion.  </p>
+        <p> This is a community project. You can <a href="https://github.com/h5bp/html5please-api">help by forking html5please-api</a> and making it better. Please also file a ticket to start a discussion.  </p>
     </section>
     <footer>
     <div class="builders">
@@ -130,15 +166,27 @@
         <img src="http://api.twitter.com/1/users/profile_image/drublic?size=normal" alt="Hans Christian Reinl">
         <b>Hans Chr.</b> Reinl
       </a>
-
+      <a href="http://twitter.com/addyosmani">
+        <img src="http://api.twitter.com/1/users/profile_image/addyosmani?size=normal" alt="Addy Osmani">
+        <b>Addy</b> Osmani
+      </a>
 </div>
     <p> <a href="https://github.com/h5bp/html5please-api/contributors">&amp; more</a> </p>
-    <p>This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a> and was initiated over at <a href="https://github.com/paulirish/lazyweb-requests/issues/39">github:paulirish/lazyweb-requests#39</a>. Much thanks to <a href="//twitter.com/fyrd">Alexis Deveria</a> for the generous sharing of <a href="http://caniuse.com/">caniuse</a> data. </p>
+    <p>This project was inspired by <a href="//get.webgl.org/">get.webgl.org</a> and was initiated over at <a href="https://github.com/paulirish/lazyweb-requests/issues/39">github:paulirish/lazyweb-requests#39</a>. <br>
+      Much thanks to <a href="//twitter.com/fyrd">Alexis Deveria</a> for the generous sharing of <a href="http://caniuse.com/">caniuse</a> data. </p>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="site/js/jquery-1.7.1.min.js"><\/script>')</script>
 
     <script src="site/js/jquery-ui-1.8.17.custom.min.js"></script>
     <script src="site/js/script.js"></script> 
+
+    <script>
+        var _gaq=[['_setAccount','UA-17904194-3'],['_trackPageview'],['_trackPageLoadTime']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
   </body>
 </html>

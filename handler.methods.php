@@ -205,7 +205,7 @@ function filter_features(& $request_features_array = array(), & $keywords_array 
 
 // returns filtered support metrics from features, agents, and data
 
-function filter_supportmetrics(& $option_features = array(), $agents_array = array(), & $data_array = array()) {
+function filter_supportmetrics(& $option_features = array(), $agents_array = array(), & $data_array = array(), $state) {
 	$return_array = array(
 		'agents' =>& $agents_array,
 		'features' => array(),
@@ -218,7 +218,7 @@ function filter_supportmetrics(& $option_features = array(), $agents_array = arr
 	}
 
 	foreach ($option_features as $feature_name) {
-		$property_array = first_set(@$data_array[$feature_name]['supported'], array());
+		$property_array = first_set(@$data_array[$feature_name][$state], array());
 
 		$return_array['result'][$feature_name] = $property_array;
 
@@ -396,22 +396,32 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% partial %>[\W\w]*?<% \/partial %>/', '', $html);
   } else if ($return_array['supported']) {
 		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>|<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% partial %>[\W\w]*?<% \/partial %>/', '', $html);
 	} elseif ($return_array['upgradable']) {
 		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>|<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% partial %>[\W\w]*?<% \/partial %>/', '', $html);
+	} elseif ($return_array['partial']) {
+		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
+		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
+		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
+		$html = preg_replace('/\s*<% unsupported %>[\W\w]*?<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% partial %>|<% \/partial %>/', '', $html);
 	} 
 	else {
 		$html = preg_replace('/\s*<% noagent %>[\W\w]*?<% \/noagent %>/', '', $html);
 		$html = preg_replace('/\s*<% supported %>[\W\w]*?<% \/supported %>/', '', $html);
 		$html = preg_replace('/\s*<% supported_with_upgrade %>[\W\w]*?<% \/supported_with_upgrade %>/', '', $html);
 		$html = preg_replace('/\s*<% unsupported %>|<% \/unsupported %>/', '', $html);
+		$html = preg_replace('/\s*<% partial %>[\W\w]*?<% \/partial %>/', '', $html);
 	}
 
 	$html = preg_replace('/<%= browserid %>/', $return_array['agent']['id'], $html);

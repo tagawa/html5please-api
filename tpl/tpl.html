@@ -20,6 +20,12 @@
   </div>
   <% /unsupported %>
 
+  <% partial %>
+  <div class="caniuse-msg">
+    <p>This page uses <abbr title="<%= features %>">features</abbr> that are not fully supported in any browser but there are some which handle it kinda nice. Please take one of these:</p>
+  </div>
+  <% /partial %>
+
 <div class="caniuse-nfo">
 		<% unsupported %>
 			<%= alternatives %>
@@ -30,6 +36,9 @@
 		<% supported_with_upgrade %>
 			<%= alternatives %>
 		<% /supported_with_upgrade %>
+		<% partial %>
+			<%= alternatives %>
+		<% /partial %>
 	</div>
 </div>
 
