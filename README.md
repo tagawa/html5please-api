@@ -62,7 +62,7 @@ The HTML5 Please service uses UA detection as a part of our process for detectin
 
 ## Examples
 
-We will be posting more demos and examples of the how the project can be used shortly. In the mean time if you would like to look at two projects already making use of the API, see [http://mothereffinganimatedgif.com/](http://mothereffinganimatedgif.com/) or [http://lab.simurai.com/flashlight/](http://lab.simurai.com/flashlight/).
+We will be posting more demos and examples of the how the project can be used shortly. In the mean time if you would like to look at two projects already making use of the API, see [http://mothereffinganimatedgif.com/](http://mothereffinganimatedgif.com/) or [http://lab.simurai.com/carveme/](http://lab.simurai.com/carveme/).
 
 # History
 
