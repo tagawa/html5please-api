@@ -72,7 +72,7 @@ if(!empty($support_array['results']) && !empty($support_array['agents'])) {
     }
 
     if ($option_format === 'html' || $option_html) {
-      $support_array['html'] = html_encode($support_array, $option_style, !$option_nocss);
+      $support_array['html'] = html_encode($support_array, $option_style, !$option_nocss, $option_notemplate);
     }
 
   
@@ -89,12 +89,12 @@ if(!empty($support_array['results']) && !empty($support_array['agents'])) {
     header('Content-Type: text/html;charset=UTF-8');
 
     $string = file_get_contents('tpl/html.html');
-    $string = preg_replace('/<%= content %>/', html_encode($support_array, $option_style, !$option_nocss), $string);
+    $string = preg_replace('/<%= content %>/', html_encode($support_array, $option_style, !$option_nocss, $option_notemplate), $string);
   } else if ($option_format === 'xml') {
     header('Content-Type: text/xml;charset=UTF-8');
 
     if ($option_html) {
-      $support_array['html'] = html_encode($support_array, $option_style, !$option_nocss);
+      $support_array['html'] = html_encode($support_array, $option_style, !$option_nocss, $option_notemplate);
     }
 
     $string = xml_encode($support_array);

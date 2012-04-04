@@ -263,6 +263,7 @@ function filter_options() {
 	$array[$key . 'nocss']      = isset($_GET['nocss']);
 	$array[$key . 'noresult']   = isset($_GET['noresult']);
 	$array[$key . 'noresults']  = isset($_GET['noresults']);
+	$array[$key . 'notemplate']	= isset($_GET['notemplate']);
 	$array[$key . 'style']      = (
 		isset($_GET['texticon']) || (isset($_GET['text']) && isset($_GET['icon'])) ? 'texticon' : (
 			isset($_GET['icon']) ? 'icon' : (
@@ -371,7 +372,7 @@ function html_encode_features(&$return_array) {
 	return implode(', ', $html_array);
 }
 
-function html_encode(&$return_array = array(), $requested_style_string = '', $requested_style_boolean = true) {
+function html_encode(&$return_array = array(), $requested_style_string = '', $requested_style_boolean = true, $requested_templating = false) {
 	$html = '';
   $styles = '';
 
@@ -389,7 +390,11 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 		$html .= '&shy;<style>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
 	}
 
-	$html .= file_get_contents('tpl/tpl.html');
+	// Just template-variables
+	$template_file = ($requested_templating) ? 'tpl/locale.html' : 'tpl/tpl.html';
+
+	// Append file-contents to output
+	$html .= file_get_contents($template_file);
 
   if (!$return_array['agent']) {
 		$html = preg_replace('/\s*<% noagent %>|<% \/noagent %>/', '', $html);
