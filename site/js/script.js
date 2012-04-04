@@ -112,7 +112,7 @@
           currentOptions = $.map(currentOptions, function(option) { 
             return option.value; 
           });
-          return currentOptions.join('&');
+          return currentOptions.join('&amp;');
         } else {
           return '';
         }
@@ -121,13 +121,13 @@
       function refreshOutput() {
          if(api.features !== '') {
            var $script = $('<script>');
-           api.options = $callback + formattedOptions() + '&html';
+           api.options = $callback + formattedOptions() + '&amp;html';
            apiurl = createUrl(),
            $lastscript && $lastscript.remove();
            if(cache[apiurl]) {
              renderPreview(cache[apiurl], apiurl);
            } else {
-             $body.append($script.attr('src', createUrl() + '&noagent'));
+             $body.append($script.attr('src', createUrl() + '&amp;noagent'));
            }
            renderWidget(apiurl, currentwidget);
            $lastscript = $script;
