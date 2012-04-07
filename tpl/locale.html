@@ -1,0 +1,44 @@
+<div class="caniuse">
+	<% supported %>
+	<% /supported %>
+
+	<% supported_with_upgrade %>
+	<div class="caniuse-msg caniuse-agt-ico caniuse-ico-<%= browserid %>">
+		<p>{{h5papi_msg.updateable}}</p>
+	</div>
+	<% /supported_with_upgrade %>
+
+	<% noagent %>
+	<div class="caniuse-msg">
+		<p>{{h5papi_msg.noagent}}</p>
+	</div>
+	<% /noagent %>
+
+	<% unsupported %>
+	<div class="caniuse-msg">
+		<p>{{h5papi_msg.unsupported}}</p>
+	</div>
+	<% /unsupported %>
+
+	<% partial %>
+	<div class="caniuse-msg">
+		<p>{{h5papi_msg.partial}}</p>
+	</div>
+	<% /partial %>
+
+	<div class="caniuse-nfo">
+		<% unsupported %>
+			<%= alternatives %>
+		<% /unsupported %>
+		<% noagent %>
+			<%= alternatives %>
+		<% /noagent %>
+		<% supported_with_upgrade %>
+			<%= alternatives %>
+		<% /supported_with_upgrade %>
+		<% partial %>
+			<%= alternatives %>
+		<% /partial %>
+	</div>
+</div>
+
