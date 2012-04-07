@@ -157,7 +157,7 @@
             modernizrcontent.plugin +
             modernizrcontent.prefix +
             '"' + api.features +
-            '", \n  options:"' + formattedOptions() +
+            '", \n  options: "' + formattedOptions() +
             '"' + modernizrcontent.suffix);
 
           $widgetmessage.html(modernizrcontent.message);
@@ -275,4 +275,4 @@ function processPlugin(data){
   modernizrcontent.plugin = minify(data);
 }
 
-$.get('/modernizr.html5please.js', processPlugin, 'text');
+$.get('modernizr.html5please.js', processPlugin, 'text');
