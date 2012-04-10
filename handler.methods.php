@@ -65,7 +65,7 @@ function file_reload_data($json_filename = 'data.json') {
 	$json_filetime = @filemtime($json_filename);
 
 	// Check if file needs to be curl-ed
-	if ($current_time - (24 * 60 * 60) > $json_filetime) {
+	if ($current_time - (10 * 60) > $json_filetime) {
 		
 		// Set a UA to get the file from caniuse
 		$context = stream_context_create(array(
