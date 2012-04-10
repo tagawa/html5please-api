@@ -380,16 +380,6 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 		return $html;
 	}
 
-	if ($requested_style_boolean && !$return_array['supported']) {
-		if ($requested_style_string == 'text') {
-			$styles = @file_get_contents('css/text.css');
-		} else {
-			$styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
-		}
-
-		$html .= '&shy;<style>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
-	}
-
 	// Just template-variables
 	$template_file = ($requested_templating) ? 'tpl/locale.html' : 'tpl/tpl.html';
 
@@ -435,6 +425,18 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 	$html = preg_replace('/<%= features %>/', html_encode_features($return_array), $html);
 
 	$html = preg_replace('/[\s]+/', ' ', $html);
+
+	
+
+	if ($requested_style_boolean && !$return_array['supported']) {
+		if ($requested_style_string == 'text') {
+			$styles = @file_get_contents('css/text.css');
+		} else {
+			$styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
+		}
+
+		$html .= '<style>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
+	}
 
 	return $html;
 }
