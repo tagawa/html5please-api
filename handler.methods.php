@@ -263,7 +263,7 @@ function filter_options() {
 	$array[$key . 'nocss']      = isset($_GET['nocss']);
 	$array[$key . 'noresult']   = isset($_GET['noresult']);
 	$array[$key . 'noresults']  = isset($_GET['noresults']);
-	$array[$key . 'notemplate']	= isset($_GET['notemplate']);
+	$array[$key . 'template']	  = isset($_GET['template']);
 	$array[$key . 'style']      = (
 		isset($_GET['texticon']) || (isset($_GET['text']) && isset($_GET['icon'])) ? 'texticon' : (
 			isset($_GET['icon']) ? 'icon' : (
