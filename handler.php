@@ -31,6 +31,7 @@ if (!$option_noagent) {
 	
 	if (empty($support_array['supported'])) {
 	  $partial_array = filter_supportmetrics($option_features, $agents_array, $data_array, 'partial');
+    filter_agents($partial_array, $useragent_array);
 
 	  $support_array['partial'] = isset($partial_array['results'][$useragent_array['id']]) && version_compare($useragent_array['version'], $partial_array['results'][$useragent_array['id']]) > -1;
 	  
