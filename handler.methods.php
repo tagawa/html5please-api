@@ -426,8 +426,6 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 
 	$html = preg_replace('/[\s]+/', ' ', $html);
 
-	
-
 	if ($requested_style_boolean && !$return_array['supported']) {
 		if ($requested_style_string == 'text') {
 			$styles = @file_get_contents('css/text.css');
@@ -435,7 +433,8 @@ function html_encode(&$return_array = array(), $requested_style_string = '', $re
 			$styles = @file_get_contents('css/text.css') . @file_get_contents('css/icon.css');
 		}
 
-		$html .= '<style>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
+		$styles = '<style scoped>' . preg_replace('/[\s]+/', ' ', $styles) . '</style>';
+		$html = preg_replace('/<%= styles %>/', $styles, $html);
 	}
 
 	return $html;
