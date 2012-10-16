@@ -13,7 +13,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.firefox.com\/",
 		"sniffer": "/firefox\\/([\\d\\.]+)/i",
-		"currentVersion": "16"
+		"currentVersion": "13"
 	},
 	"chrome": {
 		"name": "Chrome",
@@ -21,7 +21,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.google.com\/chrome",
 		"sniffer": "/chrome\\/([\\d\\.]+)/i",
-		"currentVersion": "22"
+		"currentVersion": "19"
 	},
 	"safari": {
 		"name": "Safari",
@@ -29,7 +29,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.apple.com\/safari\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "6"
+		"currentVersion": "5.1"
 	},
 	"opera": {
 		"name": "Opera",
@@ -45,7 +45,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.apple.com\/iphone\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "6"
+		"currentVersion": "5"
 	},
 	"op_mini": {
 		"name": "Opera Mini",
@@ -53,7 +53,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.opera.com\/mobile\/",
 		"sniffer": "/opera\\s*mini[\\W\\w]*?version\\/([\\d\\.]+)/i",
-		"currentVersion": "7.5"
+		"currentVersion": "7"
 	},
 	"op_mob": {
 		"name": "Opera Mobile",
@@ -61,7 +61,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.opera.com\/mobile\/",
 		"sniffer": "/opera\\s*mobi[\\W\\w]*?version\\/([\\d\\.]+)/i",
-		"currentVersion": "12.1"
+		"currentVersion": "12"
 	},
 	"android": {
 		"name": "Android Browser",
