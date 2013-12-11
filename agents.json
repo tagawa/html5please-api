@@ -5,7 +5,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.microsoft.com\/windows\/internet-explorer\/",
 		"sniffer": "/msie[\\W\\w]*?([\\d\\.]+)/i",
-		"currentVersion": "10"
+		"currentVersion": "11"
 	},
 	"firefox": {
 		"name": "Firefox",
@@ -21,7 +21,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.google.com\/chrome",
 		"sniffer": "/chrome\\/([\\d\\.]+)/i",
-		"currentVersion": "30"
+		"currentVersion": "31"
 	},
 	"safari": {
 		"name": "Safari",
@@ -29,7 +29,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.apple.com\/safari\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "6"
+		"currentVersion": "7"
 	},
 	"opera": {
 		"name": "Opera",
@@ -45,7 +45,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.apple.com\/iphone\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "6"
+		"currentVersion": "7"
 	},
 	"op_mini": {
 		"name": "Opera Mini",
