@@ -4,7 +4,7 @@
 		"prefix": "ms",
 		"type": "desktop",
 		"url": "http:\/\/www.microsoft.com\/windows\/internet-explorer\/",
-		"sniffer": "/(?:msie[\W\w]*?|Trident[\W\w]*rv\:)([\d\.]+)/i",
+		"sniffer": "/(?:msie[\\W\\w]*?|Trident[\\W\\w]*rv\\:)([\\d\\.]+)/i",
 		"currentVersion": "11"
 	},
 	"firefox": {
