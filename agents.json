@@ -21,7 +21,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.google.com\/chrome",
 		"sniffer": "/chrome\\/([\\d\\.]+)/i",
-		"currentVersion": "34"
+		"currentVersion": "35"
 	},
 	"safari": {
 		"name": "Safari",
