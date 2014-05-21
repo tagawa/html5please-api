@@ -4,8 +4,7 @@
 
 Developers wishing to use modern browser features in their applications or demos often run into a very common issue: a user somewhere may be using a browser **incompatible** with what your project needs to function correctly. There are instances where this behaviour can be normalized using polyfills, but for all other instances, it's necessary to display a notification or message informing the user they need to **upgrade** to a different browser. The HTML5 Please API can help with this.
 
-Rather than needing to take care of browser detection and manually listing the latest versions of browsers supported each time you use a modern feature, we provide a solution for this. Our **API** uses data sourced from [caniuse](http://caniuse.com)
-and retrieves browser support information based on features you require on the client-side.  For example, if you want your page to only render on browsers that support Transitions and Canvas, you can send in an API request to [api.html5please.com](http://api.html5please.com) and print the returned HTML as a message when the page is viewed on browsers that do not support these features. 
+Rather than needing to take care of browser detection and manually listing the latest versions of browsers supported each time you use a modern feature, we provide a solution for this. Our **API** uses data sourced from [caniuse](http://caniuse.com) and retrieves browser support information based on features you require on the client-side.  For example, if you want your page to only render on browsers that support Transitions and Canvas, you can send in an API request to [api.html5please.com](http://api.html5please.com) and print the returned HTML as a message when the page is viewed on browsers that do not support these features. 
 
 We also provide a number of useful snippets to save you time creating a notification for your users. The project can generate widgets using a special [Modernizr](http://modernizr.com) plugin, pure JavaScript snippets that do the same or simply HTML links for those that wish to link their users out to a page with suggestions on browsers to consider upgrading to in order to support all the features needed for your site. 
 
@@ -57,16 +56,15 @@ Data from the API is output either as a JSON object, XML or HTML (depending on t
 
 ## UA Detection
 
-The HTML5 Please service uses UA detection as a part of our process for detecting the browser currently used by the user. This is strictly used for deciding what browsers and browser versions we should recommend end-users upgrade to in order to use a feature. For more information on this, please see [this](https://github.com/h5bp/html5please-api/wiki/How-does-the-UA-Detection-work%3F
-) entry on the wiki.
+The HTML5 Please service uses UA detection as a part of our process for detecting the browser currently used by the user. This is strictly used for deciding what browsers and browser versions we should recommend end-users upgrade to in order to use a feature. For more information on this, please see [this](https://github.com/h5bp/html5please-api/wiki/How-does-the-UA-Detection-work%3F) entry on the wiki.
 
 ## Examples
 
-We will be posting more demos and examples of the how the project can be used shortly. In the mean time if you would like to look at two projects already making use of the API, see [http://mothereffinganimatedgif.com/](http://mothereffinganimatedgif.com/) or [http://lab.simurai.com/carveme/](http://lab.simurai.com/carveme/).
+We will be posting more demos and examples of the how the project can be used shortly. In the mean time if you would like to look at a project already making use of the API, see [http://mothereffinganimatedgif.com/](http://mothereffinganimatedgif.com/).
 
 # History
 
-Divya has a [post](http://nimbupani.com/html5please-api.html) about the project history we recommend checking out. This project began as one of her [LazyWeb](https://github.com/paulirish/lazyweb-requests/issues/39) requests for a healthy choose-your-browser page. [@addyosmani](http://github.com/addyosmani) worked on the initial implementation, to be later replaced with a much more rich API and UI by [@jonathantneal](http://github.com/jonathantneal), [@nimbupani](http://github.com/nimbupani) and other contributors. Jons service is what currently powers much of the HTML5 Please API. We are still very much working on improving it and recommend looking at the 'Contributing' section below in case you would like to help out.
+Divya has a [post](http://nimbupani.com/html5please-api.html) about the project history we recommend checking out. This project began as one of her [LazyWeb](https://github.com/paulirish/lazyweb-requests/issues/39) requests for a healthy choose-your-browser page. [@addyosmani](http://github.com/addyosmani) worked on the initial implementation, to be later replaced with a much more rich API and UI by [@jonathantneal](http://github.com/jonathantneal), [@nimbupani](http://github.com/nimbupani) and other contributors. Jon's service is what currently powers much of the HTML5 Please API. We are still very much working on improving it and recommend looking at the 'Contributing' section below in case you would like to help out.
 
 # Contributing
 
