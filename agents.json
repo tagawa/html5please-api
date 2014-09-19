@@ -29,7 +29,7 @@
 		"type": "desktop",
 		"url": "http:\/\/www.apple.com\/safari\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "7"
+		"currentVersion": "7.1"
 	},
 	"opera": {
 		"name": "Opera",
@@ -45,7 +45,7 @@
 		"type": "mobile",
 		"url": "http:\/\/www.apple.com\/iphone\/",
 		"sniffer": "/version\\/([\\d\\.]+)[\\W\\w]*?safari/i",
-		"currentVersion": "7"
+		"currentVersion": "8"
 	},
 	"op_mini": {
 		"name": "Opera Mini",
